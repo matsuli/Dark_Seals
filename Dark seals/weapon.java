@@ -68,9 +68,7 @@ public class weapon extends PApplet {
 		  }
 
 		 
-		  stroke(255);
-		  line(attacker.location.x, attacker.location.y, sX, sY);
-		  stroke(0);
+
 		  
 		  float wa = atan2(sY-attacker.location.y, sX-attacker.location.x);
 	
