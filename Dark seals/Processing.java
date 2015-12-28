@@ -24,17 +24,22 @@ public class Processing extends PApplet {
   public void draw() {
 	  
 	 background(255); 
+	 
+	  fill(0);
+	  stroke(0);
+	 
 	 Player.drawPlayer();
 	
 	 if(Player.swordL==true || Player.swordU==true || Player.swordR==true || Player.swordD==true){
-	//	   playerweapon.melee (Player);
+		   playerweapon.melee (Player);
+		   line( Player.location.x,  Player.location.y, playerweapon.sX, playerweapon.sY);
 	  }	
 	  
-	   fill(0);
-	  ellipse(Player.location.x, Player.location.y, Player.playerRadius*2, Player.playerRadius*2);
-    stroke(0);
+	 
+	 ellipse(Player.location.x, Player.location.y, Player.playerRadius*2, Player.playerRadius*2);
     
-   rect(200-Player.playerX, 200-Player.playerY, 100, 100);
+    
+	 rect(200-Player.playerX, 200-Player.playerY, 100, 100);
     
     
     
@@ -47,7 +52,7 @@ public class Processing extends PApplet {
   
   public static void main(String args[]) {
 	    PApplet.main(new String[] { "--present", "Processing" });
-
+	    
 	  }
 
   public  void keyPressed() {
