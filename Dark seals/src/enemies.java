@@ -1,4 +1,5 @@
+import processing.core.*;
 
-public class enemies {
+public class enemies extends actor {
 
 }
