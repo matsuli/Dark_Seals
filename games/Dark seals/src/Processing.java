@@ -1,5 +1,8 @@
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import processing.core.*;
 
 
@@ -11,6 +14,8 @@ public class Processing extends PApplet {
 	
 	public player Player = new player();
 	public weapon playerweapon = new weapon();
+	
+	ArrayList<enemy> enemies = new ArrayList<enemy>();
 
   public  void setup() {
     background(255);
@@ -18,12 +23,18 @@ public class Processing extends PApplet {
   }
   public void settings() {
 	  size(1000, 1000);
-
+	
 	    
 	   
 	}
 
   public void draw() {
+	  
+	
+		
+	 if(enemies.size()<1){
+		 addEnemy("Enemy", 100, 100); 
+	 }
 	  
 	 background(255); 
 	 
@@ -31,12 +42,30 @@ public class Processing extends PApplet {
 	  stroke(0);
 	 
 	 Player.drawPlayer();
+	 
 	
 	 if(Player.swordL==true || Player.swordU==true || Player.swordR==true || Player.swordD==true){
 		   playerweapon.melee (Player);
 		   line( Player.location.x,  Player.location.y, playerweapon.sX, playerweapon.sY);
 	  }	
-	  
+	 
+	 
+	 for (Iterator<enemy> it = enemies.iterator(); it.hasNext(); ) {
+		    enemy e = it.next(); 
+		    e.draw();
+			 ellipse(e.location.x, e.location.y, e.EnemyRadius*2, e.EnemyRadius*2);  
+			 fill(90, 90);
+			 stroke(90, 90);
+			 arc(e.location.x, e.location.y, e.sightRadius*2, e.sightRadius*2, e.a1, e.a2);
+			 
+		    if (e.toRemove)
+		      it.remove();
+		  } 
+	 
+	 fill(0);
+	 stroke(0);
+	 
+	 
 	 
 	 ellipse(Player.location.x, Player.location.y, Player.playerRadius*2, Player.playerRadius*2);
     
@@ -52,7 +81,14 @@ public class Processing extends PApplet {
     
     }
   
-  public static void main(String args[]) {
+  private void addEnemy(String string, float posX, float posY) {
+	{			
+			enemy Enemy  = new enemy(Player, posX, posY);
+			enemies.add(Enemy);
+		}
+	
+}
+public static void main(String args[]) {
 	    PApplet.main(new String[] { "--present", "Processing" });
 	    
 	  }
@@ -116,6 +152,8 @@ public class Processing extends PApplet {
 	      Player.sneak = false;
 	    }
 	}
+	
+
   
 }
 
