@@ -7,8 +7,8 @@ import processing.data.FloatList;
 public class player extends actor {
 
 	
-	 public float playerX;
-	 public float playerY;
+	 public static float playerX;
+	 public static float playerY;
 	 public int phasetimer=0;
 	 public int teleporttimer=0;
 	 public boolean teleportNow=false;
@@ -18,7 +18,7 @@ public class player extends actor {
 	 public int playerRadius=25;
 	 public int teleportSpeed=26;
 	 public boolean teleportPerk=true;
-	 
+
 
 	  
 	  float speed = 7;
@@ -28,8 +28,8 @@ public class player extends actor {
 	  float down = 0;
 	  boolean sneak;
 	  
-	   FloatList pplayerX = new FloatList();    //Floatlist that contains the x-cordinates for player in
-	   FloatList pplayerY = new FloatList();    //Same for y
+	  public static FloatList pplayerX = new FloatList();    //Floatlist that contains the x-cordinates for player in
+	  public static FloatList pplayerY = new FloatList();    //Same for y
 	   
 	   PVector hitbox1=new PVector ();      // These vectors conatin the x and y-values for the points on the playercircle that are used to calculate hitboxes
 	   PVector hitbox2=new PVector ();
@@ -43,19 +43,13 @@ public class player extends actor {
   
 	   player() {
 		   location = new PVector(1000/2, 1000/2);
-		   
+		   isPlayer=true;
 	  }
 	 
 	  
 	  
 	void drawPlayer () {
 	  //player
-	  
-
-		  
-	 
-	    
-	  
 	  
 	  // X=centerX+-radie
 	// Y=+-(sqrt(pow(radie, 2)-pow(X,2)+2*centerX*X-pow(centerX,2))+-centerY);
@@ -155,9 +149,21 @@ public class player extends actor {
 	if(pplayerY.size()>20){
 	  pplayerY.remove(1);}
 	  
-	 
+	 if (canShoot == false) {
+	      canShootCounter ++;
+	      if (canShootCounter == 20) {
+	        canShoot = true;
+	      }
+	    }
 
-	  
+	 for (Bullet b : Processing.bullets) {
+	        if ((location.x - b.location.x) * (location.x - b.location.x) + (location.y - b.location.y) * (location.y - b.location.y) <
+	          (playerRadius + b.radius) * (playerRadius + b.radius) && b.shooter.isPlayer == false) {
+	          Processing.gameOver = true;
+	        }
+	      }
+	 
+	 
 	}
 }
 

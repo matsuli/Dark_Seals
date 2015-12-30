@@ -28,7 +28,7 @@ public class enemy extends actor {
 //		      spawn2Y=random(height)+Player.playerY;
 //		    } 
 		    location = new PVector(posX,posY);
-		    elocationTest= new PVector(100, 100);
+		    elocationTest= new PVector(posX, posY);
 		    eoldPosX = Player.location.x;
 		    eoldPosY = Player.location.y;
 		    erotation2 = atan2(eoldPosY - location.y, eoldPosX - location.x) / PI * 180;
@@ -43,20 +43,13 @@ public class enemy extends actor {
 		    if(enemyState==1){
 		    eoldPosX = Player.location.x;
 		    eoldPosY = Player.location.y;
-		    erotation2 = atan2(eoldPosY - elocationTest.y+Player.playerY, eoldPosX - elocationTest.x+Player.playerX) / PI * 180;
+		    erotation2 = atan2(eoldPosY - elocationTest.y+player.playerY, eoldPosX - elocationTest.x+player.playerX) / PI * 180;
 		    elocationTest.x = elocationTest.x + cos(erotation2/180*PI)*espeed;
 		    elocationTest.y = elocationTest.y + sin(erotation2/180*PI)*espeed;
 		    ad=atan2(eoldPosY - location.y, eoldPosX - location.x);}
 		    
-		    location.x=elocationTest.x-Player.playerX;
-		    location.y=elocationTest.y-Player.playerY;
-		    
-		    
-
-		    
-		    
-	
-		    
+		    location.x=elocationTest.x-player.playerX;
+		    location.y=elocationTest.y-player.playerY;
 		    
 		             //This angle is the direction (på enhetscirkel) where the enemy2 is heading.
 		    
@@ -109,7 +102,12 @@ public class enemy extends actor {
 	  
 	  
 	  
-	  
+		    for (Bullet b : Processing.bullets) {
+		        if ((location.x - b.location.x) * (location.x - b.location.x) + (location.y - b.location.y) * (location.y - b.location.y) <
+		          (EnemyRadius + b.radius) * (EnemyRadius + b.radius)) {
+		          toRemove = true;
+		        }
+		      }
 	  
 	  
 	  

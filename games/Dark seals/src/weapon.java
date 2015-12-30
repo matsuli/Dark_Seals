@@ -10,6 +10,7 @@ public class weapon extends PApplet {
 
 	float sX;
 	float sY;
+	float wa;
 	
 	void melee (actor attacker) {
 
@@ -71,8 +72,8 @@ public class weapon extends PApplet {
 		 
 
 		  
-		  float wa = atan2(sY-attacker.location.y, sX-attacker.location.x);
-	
+		  wa = atan2(sY-attacker.location.y, sX-attacker.location.x);
+
 	
 	
 	}
