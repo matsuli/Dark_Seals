@@ -3,7 +3,7 @@ import processing.core.*;
 
 public class weapon extends PApplet {
 
-	float reach=100;
+	float reach=100;			//radien på cirkeln som weapon rör sig
 	int e;  
 	float rotX = 0;  
 	  
@@ -12,13 +12,13 @@ public class weapon extends PApplet {
 	float sY;
 	float wa;
 	
-	void melee (actor attacker) {
+	void melee (actor attacker) {		//samma som i processing, men använder nu actor som argument. Actorn som attackerar med weaponet kan vara både en player eller enemy.
 
 		  if (attacker.swordL == true) {
 		    if(rotX>=0 && rotX<radians(135)){
 		      rotX=radians(135);}
-		  sX = reach * cos( rotX ) + attacker.location.x;
-		  sY = reach * sin( rotX) + attacker.location.y;  
+		  sX = reach * cos( rotX ) + attacker.location.x;		//sX är punkt på cirkel med mittpunkt attackerlocation och radien reach, rotX är rotationsvinkeln (i grader).
+		  sY = reach * sin( rotX) + attacker.location.y;  		//SE MAOLS TABELLER s.38
 		   
 		    rotX=rotX+radians(4);
 		    
@@ -72,7 +72,7 @@ public class weapon extends PApplet {
 		 
 
 		  
-		  wa = atan2(sY-attacker.location.y, sX-attacker.location.x);
+		  wa = atan2(sY-attacker.location.y, sX-attacker.location.x);		//vinkeln som vapnet är i, jämfört med attackers location (tror jag, inte samma som rotX, underligt nog?)
 
 	
 	

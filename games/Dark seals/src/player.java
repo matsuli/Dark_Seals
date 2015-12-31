@@ -4,12 +4,14 @@ import processing.core.*;
 import processing.data.FloatList;
 
 
-public class player extends actor {
+public class player extends actor {			//player extends actor, playern är en actor
 
 	
-	 public static float playerX;
+	 public static float playerX;		//OBS! dessa är som sagt statics. Detta betyder att player.playerX kan användas var som helst i detta package.
 	 public static float playerY;
-	 public int phasetimer=0;
+	 public static PVector PlayerLocation;	//Också en static. I actor finns redan en location vektor, som är players location. MEN denna kan INTE vara static, 
+	 										//då den hör till actor o det finns många actors. Därför skapar vi en PlayerLocation vektor för player, som också anger players position men är static. 
+	 public int phasetimer=0;				//player.PlayerLocation kan alltså användas överallt i denna package.
 	 public int teleporttimer=0;
 	 public boolean teleportNow=false;
 	 public float teleportX;
@@ -28,7 +30,7 @@ public class player extends actor {
 	  float down = 0;
 	  boolean sneak;
 	  
-	  public static FloatList pplayerX = new FloatList();    //Floatlist that contains the x-cordinates for player in
+	  public static FloatList pplayerX = new FloatList();    //Floatlist that contains the previous and current x-cordinates for player (OBS!) Denna är också static.
 	  public static FloatList pplayerY = new FloatList();    //Same for y
 	   
 	   PVector hitbox1=new PVector ();      // These vectors conatin the x and y-values for the points on the playercircle that are used to calculate hitboxes
@@ -41,11 +43,11 @@ public class player extends actor {
 	   PVector hitbox8=new PVector ();
 	   
   
-	   player() {
-		   location = new PVector(1000/2, 1000/2);
-		   isPlayer=true;
-	  }
-	 
+	   player(int ScreenWidth, int ScreenHeight) {
+		   location = new PVector(ScreenWidth/2, ScreenHeight/2);			//skapar location vektorn, playerns position är i mitten av screenen
+		   PlayerLocation = new PVector(location.x, location.y);		//skapar den statiska PLayerLocation vektorn, som är samma som location. Denna kan användas var som helst i detta package.
+	  }						//OBS! PlayerLocation uppdateras inte, denna konstruktor runnar bara en gång. Ändrar vi alltså nångång players location vektor måste vi samtidigt ändra players PlayerLocation vektor. 
+	   						//annars har vi problem då location används inom drawPlayer men PlayerLocation används i processing, enemies osv.
 	  
 	  
 	void drawPlayer () {
@@ -129,7 +131,7 @@ public class player extends actor {
 	  
 	  
 
-	 playerX += (right - left) * speed;
+	 playerX += (right - left) * speed;		//movement systemet är samma som i processing, allt utom player rör sig runt player baserat på playerX/Y
 	  
 
 
@@ -158,8 +160,8 @@ public class player extends actor {
 
 	 for (Bullet b : Processing.bullets) {
 	        if ((location.x - b.location.x) * (location.x - b.location.x) + (location.y - b.location.y) * (location.y - b.location.y) <
-	          (playerRadius + b.radius) * (playerRadius + b.radius) && b.shooter.isPlayer == false) {
-	          Processing.gameOver = true;
+	          (playerRadius + b.radius) * (playerRadius + b.radius) && b.shooter!=this) {		//hit detection. OBS! då vi bara har en bulletclass, måste b.shooter!=this vara där för att player inte ska skjuta sig själv då bulleten spawnar i player. Dock gör detta att player är immun till sina egna bullets, vilket kan vara problematiskt. 
+	          Processing.gameOver = true;														//vill vi bli av med det här tror jag det lönar sig att adda nån sorts timer hit, så att player e immun till sina egna bullets en kort stund efter att han skjutit dem
 	        }
 	      }
 	 

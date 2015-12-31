@@ -1,7 +1,7 @@
 import processing.core.*;
 
-public class enemy extends actor {
-
+public class enemy extends actor {	//enemyn extendar actor, enemyn är alltså en actor
+	
 	  PVector elocationTest;
 	  float eoldPosX, eoldPosY, erotation2, espeed;
 	  float EnemyRadius = 20;
@@ -13,24 +13,14 @@ public class enemy extends actor {
 	  float ad=0;
 	  float a1;
 	  float a2;
-	  player Player;
+
 	  
-	  enemy (player Player, float posX, float posY) {
-
-
-		    this.Player=Player;
-		    
-
-//		    spawn2X=random(width)+Player.playerX;
-//		    spawn2Y=random(height)+Player.playerY; 
-//		    while (sqrt(((width/2-spawn2X)*(width/2-spawn2X))+((height/2-spawn2Y)*(height/2-spawn2Y)))<400) {
-//		      spawn2X=random(width)+Player.playerX;
-//		      spawn2Y=random(height)+Player.playerY;
-//		    } 
+	  enemy (float posX, float posY) {
+		   		    
 		    location = new PVector(posX,posY);
 		    elocationTest= new PVector(posX, posY);
-		    eoldPosX = Player.location.x;
-		    eoldPosY = Player.location.y;
+		    eoldPosX =  player.PlayerLocation.x;
+		    eoldPosY = player.PlayerLocation.y;
 		    erotation2 = atan2(eoldPosY - location.y, eoldPosX - location.x) / PI * 180;
 		    espeed = 4;
 		    ad=atan2(eoldPosY - location.y, eoldPosX - location.x);
@@ -41,14 +31,14 @@ public class enemy extends actor {
 
 
 		    if(enemyState==1){
-		    eoldPosX = Player.location.x;
-		    eoldPosY = Player.location.y;
+		    eoldPosX = player.PlayerLocation.x;
+		    eoldPosY = player.PlayerLocation.y;
 		    erotation2 = atan2(eoldPosY - elocationTest.y+player.playerY, eoldPosX - elocationTest.x+player.playerX) / PI * 180;
 		    elocationTest.x = elocationTest.x + cos(erotation2/180*PI)*espeed;
 		    elocationTest.y = elocationTest.y + sin(erotation2/180*PI)*espeed;
 		    ad=atan2(eoldPosY - location.y, eoldPosX - location.x);}
 		    
-		    location.x=elocationTest.x-player.playerX;
+		    location.x=elocationTest.x-player.playerX;				//location är enemyns position. OBS! man behöver inte kompensera för playerX/Y, då det redan gjorts här.
 		    location.y=elocationTest.y-player.playerY;
 		    
 		             //This angle is the direction (på enhetscirkel) where the enemy2 is heading.
@@ -58,9 +48,9 @@ public class enemy extends actor {
 		     a2=(float) (ad + PI*2.5/6);                           //They are calculated based on were the enemy is heading, meaning the enemy is always looking in the direction he is heading.
 		                                                     //These angles must lie betwwn PI and -PI, otherwise the detection calculations wont work. They don´t always do, in that case they have to be compensated for.
 		    
-		     float a=atan2(Player.location.y-location.y, Player.location.x-location.x);              //a är vinkeln mellan player, enemien, och enemiens x-axel som startar från enemy. Inte 100% säker på hur det funkar, 
+		     float a=atan2(player.PlayerLocation.y-location.y, player.PlayerLocation.x-location.x);              //a är vinkeln mellan player, enemien, och enemiens x-axel som startar från enemy. Inte 100% säker på hur det funkar, 
 		                                                                             //tror det räknas som man sku transleita ti enemys position, sen räkna vinkeln mellan player o origo o x-axel.
-		   if(sq(Player.location.x-location.x)+sq(Player.location.y-location.y)<=sq(sightRadius))      //Nearcenter is true when player is inside sightradius
+		   if(sq(player.PlayerLocation.x-location.x)+sq(player.PlayerLocation.y-location.y)<=sq(sightRadius))      //Nearcenter is true when player is inside sightradius
 		    {nearCenter=true;}
 		    else{nearCenter=false;}
 		    
@@ -100,12 +90,15 @@ public class enemy extends actor {
 		      noDetectTimer += 0;
 		    }
 	  
-	  
+		  
 	  
 		    for (Bullet b : Processing.bullets) {
+		    	
+		    	
 		        if ((location.x - b.location.x) * (location.x - b.location.x) + (location.y - b.location.y) * (location.y - b.location.y) <
-		          (EnemyRadius + b.radius) * (EnemyRadius + b.radius)) {
+		          (EnemyRadius + b.radius) * (EnemyRadius + b.radius) && b.shooter!=this) {		//hit detection. Igen, b.shooter!=this för att den inte ska döda sig själv då den skjuter
 		          toRemove = true;
+		          b.toRemove = true;		//removar också bullet
 		        }
 		      }
 	  
