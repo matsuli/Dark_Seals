@@ -136,9 +136,7 @@ public class player extends actor {			//player extends actor, playern är en acto
 
 
 	 playerY += (down - up) * speed;
-	  
-
-	  
+	  	  
 
 	pplayerX.append(playerX);      //append adds a new entry to the floatlist. Adds the current values for playerX and Y into the pplayerX/Y floatlists, where they are saved for use in later frames. (The Laser)
 	pplayerY.append(playerY);

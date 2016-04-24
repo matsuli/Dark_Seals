@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import world.*;
 import processing.core.*;
 
 
@@ -18,10 +18,14 @@ public class Processing extends PApplet {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
+//	public ShapeRenderer renderer = new ShapeRenderer();
+
+
+
 	
   public  void setup() {
     background(255);
-    
+//    renderer.shapes.add(new Rectangle(0, 0, 20, 20));
   }
   
   public void settings() {
@@ -31,7 +35,7 @@ public class Processing extends PApplet {
 
   public void draw() {
 	  
-	
+	//  renderer.draw();
 
 	  
 	 if(enemies.size()<2){
@@ -87,6 +91,10 @@ public class Processing extends PApplet {
 			 arc(e.location.x, e.location.y, e.sightRadius*2, e.sightRadius*2, e.a1, e.a2);		//ritar enemyns detection cirkelsektor (det här ska väl bort sen i riktiga spelet, eller?)
 			 fill(0);
 			 stroke(0);
+			 if(e.ReloadTimer==120){
+				 shoot(e, player.PlayerLocation.x, player.PlayerLocation.y);
+				 e.ReloadTimer=0;
+			 }
 		    if (e.toRemove)
 		      it.remove();			//removar enemyn om toRemove=true
 		  }

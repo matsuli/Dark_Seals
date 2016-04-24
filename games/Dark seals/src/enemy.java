@@ -10,6 +10,7 @@ public class enemy extends actor {	//enemyn extendar actor, enemyn är alltså en 
 	  float sightRadius=180;
 	  boolean nearCenter;
 	  float noDetectTimer = 0;
+	  float ReloadTimer = 0;
 	  float ad=0;
 	  float a1;
 	  float a2;
@@ -78,7 +79,8 @@ public class enemy extends actor {	//enemyn extendar actor, enemyn är alltså en 
 		                //Ritar cirkelsektorn
 		    
 		    if(nearCenter==true && a >=a1 && a<=a2){                //If player is within sightradius and inside the angle of the circle sector, player is detected and enemyState changes.
-		      enemyState=1;}                                        //Det här är alltid av någon orsak false om a1<-PI eller a2>PI, men de specialfallen har vi redan checkat för tidigare
+		      enemyState=1;
+		      ReloadTimer ++;}                                        //Det här är alltid av någon orsak false om a1<-PI eller a2>PI, men de specialfallen har vi redan checkat för tidigare
 
 		    
 		    if (nearCenter == false && enemyState == 1) {          //om player är out of sight, men enemy jagar, startar en timer (noDetectTimer)
