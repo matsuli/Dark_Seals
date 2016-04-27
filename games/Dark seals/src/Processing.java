@@ -2,7 +2,6 @@
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import world.*;
 import processing.core.*;
 
 
