@@ -90,6 +90,7 @@ public class enemy extends actor {	//enemyn extendar actor, enemyn är alltså en 
 		      enemyState = 0;
 		      noDetectTimer = 0;
 		      noDetectTimer += 0;
+		      ReloadTimer=0;
 		    }
 	  
 		  
@@ -104,20 +105,6 @@ public class enemy extends actor {	//enemyn extendar actor, enemyn är alltså en 
 		        }
 		      }
 	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+	  	  
 	  }
 }
