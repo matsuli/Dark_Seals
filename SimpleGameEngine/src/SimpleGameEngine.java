@@ -79,8 +79,11 @@ public class SimpleGameEngine extends JFrame {
 		bbg.fillRect(0, 0, windowWidth, windowHeight);
 		
 		//draw a circle for orientation
-		bbg.setColor(Color.BLACK);
-		bbg.fillOval(200, 200, 20, 20);
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setColor(Color.BLACK);
+		g2d.drawOval(200, 200, 150, 150);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		
 		//player
 		bbg.setColor(Color.RED);
