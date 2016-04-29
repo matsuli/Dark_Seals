@@ -14,7 +14,7 @@ public class SimpleGameEngine extends JFrame {
 	long fps = 60;
 	Insets insets;
 	//used for input
-	InputHandler input;
+	public static InputHandler input;
 	//Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	
@@ -55,6 +55,9 @@ public class SimpleGameEngine extends JFrame {
 		setVisible (false);
 	}
 	
+	
+	
+	
 	//initial setup
 	void initialize () {
 		setTitle ("SimpleGameEngine");
@@ -70,7 +73,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	//check for input, move things, etc.
 	void update () {
-		playerMovement ();
+		player.Movement ();
 	}
 	
 	//draw everything
@@ -89,25 +92,13 @@ public class SimpleGameEngine extends JFrame {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		
 		//player
-		bbg.setColor(Color.RED);
-		bbg.fillRect(playerX,playerY,20,20);
+		player.drawPlayer(bbg);
+
 		
 		//should be last in the method
 		g.drawImage(backBuffer, insets.left, insets.top, this);
 	}
 	
-	void playerMovement () {
-		if (input.isKeyDown(KeyEvent.VK_D)) {
-			playerX += 5;
-		}
-		if (input.isKeyDown(KeyEvent.VK_A)) {
-			playerX -= 5;
-		}
-		if (input.isKeyDown(KeyEvent.VK_S)) {
-			playerY += 5;
-		}
-		if (input.isKeyDown(KeyEvent.VK_W)) {
-			playerY -= 5;
-		}
+
 	}
-}
+
