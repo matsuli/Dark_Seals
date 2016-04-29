@@ -79,17 +79,16 @@ public class SimpleGameEngine extends JFrame {
 	
 	//draw everything
 	public void paint (Graphics g) {
-		super.paint(g);
+		
 		//background
 		bbg.setColor(Color.WHITE);
 		bbg.fillRect(0, 0, windowWidth, windowHeight);
 		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		//draw a circle for orientation
-		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		bbg.setColor(Color.BLACK);
 		bbg.drawOval(200, 200, 150, 150);
-		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+		
 		
 		//player
 		player.drawPlayer(bbg);
