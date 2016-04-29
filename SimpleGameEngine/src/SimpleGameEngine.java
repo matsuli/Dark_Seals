@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Vector;
+
 import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
 
@@ -18,12 +20,14 @@ public class SimpleGameEngine extends JFrame {
 
 	Graphics2D bbg = (Graphics2D)backBuffer.getGraphics ();
 	
-	
 	//new player
 	Player player = new Player ();
 	//Player variables
 	static int playerX = windowWidth/2;
 	static int playerY = windowHeight/2;
+	//
+	static int px = 0;
+	static int py = 0;
 	
 	
 	public static void main (String [] args) {
@@ -62,7 +66,7 @@ public class SimpleGameEngine extends JFrame {
 	void initialize () {
 		setTitle ("SimpleGameEngine");
 		setSize(windowWidth, windowHeight);
-		setResizable (false);
+		setResizable (true);
 		setDefaultCloseOperation (EXIT_ON_CLOSE);
 		setVisible (true);
 		insets = getInsets ();
@@ -73,6 +77,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	//check for input, move things, etc.
 	void update () {
+		
 		player.Movement ();
 		paint(bbg);
 	}
@@ -87,7 +92,7 @@ public class SimpleGameEngine extends JFrame {
 		
 		//draw a circle for orientation
 		bbg.setColor(Color.BLACK);
-		bbg.drawOval(200, 200, 150, 150);
+		bbg.drawOval(200-px, 200-py, 150, 150);
 		
 		
 		//player
