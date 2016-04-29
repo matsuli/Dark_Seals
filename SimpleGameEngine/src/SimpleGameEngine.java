@@ -3,8 +3,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
 
-//test
-
 public class SimpleGameEngine extends JFrame {
 	
 	//basic variables
@@ -17,6 +15,8 @@ public class SimpleGameEngine extends JFrame {
 	public static InputHandler input;
 	//Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
+
+	Graphics2D bbg = (Graphics2D)backBuffer.getGraphics ();
 	
 	
 	//new player
@@ -40,7 +40,7 @@ public class SimpleGameEngine extends JFrame {
 			long time = System.currentTimeMillis ();
 			
 			update ();
-			draw ();
+			repaint ();
 			
 			//delay for each frame - time it took for one frame
 			time = (1000/fps)-(System.currentTimeMillis()-time);
@@ -74,27 +74,28 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		player.Movement ();
+		paint(bbg);
 	}
 	
 	//draw everything
-	void draw () {
-		Graphics g = getGraphics ();
-		Graphics bbg = backBuffer.getGraphics ();
+	public void paint (Graphics g) {
+		super.paint(g);
 		//background
 		bbg.setColor(Color.WHITE);
 		bbg.fillRect(0, 0, windowWidth, windowHeight);
+		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		//draw a circle for orientation
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setColor(Color.BLACK);
-		g2d.drawOval(200, 200, 150, 150);
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		bbg.setColor(Color.BLACK);
+		bbg.drawOval(200, 200, 150, 150);
+		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		
 		//player
 		player.drawPlayer(bbg);
 
-		
+
+		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		//should be last in the method
 		g.drawImage(backBuffer, insets.left, insets.top, this);
 	}
