@@ -18,6 +18,9 @@ public class SimpleGameEngine extends JFrame {
 	//Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	
+	
+	//new player
+	Player player = new Player ();
 	//Player variables
 	static int playerX = windowWidth/2;
 	static int playerY = windowHeight/2;
