@@ -17,9 +17,9 @@ public class SimpleGameEngine extends JFrame {
 	//used for input
 	public static InputHandler input;
 	 //Buffering
-	static BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
+	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	
-	static Graphics2D bbg = backBuffer.createGraphics();
+	 Graphics2D bbg = backBuffer.createGraphics();
 	
 	//new player
 	static Player player = new Player ();
@@ -86,26 +86,31 @@ public class SimpleGameEngine extends JFrame {
 	//draw everything
 	public void paint (Graphics g) {
 		
+		BufferedImage offscreen = null;
+		offscreen = new BufferedImage (SimpleGameEngine.windowWidth, SimpleGameEngine.windowHeight,BufferedImage.TYPE_INT_RGB);
+		Graphics2D offgc = offscreen.createGraphics();
+		
 		//background
-		bbg.setColor(Color.WHITE);
-		bbg.fillRect(0, 0, windowWidth, windowHeight);
-		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-	//	bbg.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-	//	bbg.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
-	//	bbg.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+		offgc.setColor(Color.WHITE);
+		offgc.fillRect(0, 0, windowWidth, windowHeight);
+		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	//	offgc.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+	//	offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
+	//	offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		
 		//draw a circle for orientation
-		bbg.setColor(Color.BLACK);
-		bbg.drawOval(200-px, 200-py, 150, 150);
+		offgc.setColor(Color.BLACK);
+		offgc.drawOval(200-px, 200-py, 150, 150);
 		
 		
 		//player
-		player.drawPlayer(bbg);
+		player.drawPlayer(offgc);
 
 
-		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		//should be last in the method
-		g.drawImage(backBuffer, insets.left, insets.top, this);
+		g.drawImage(offscreen, insets.left, insets.top, this);
+
 	}
 	
 

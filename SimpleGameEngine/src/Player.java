@@ -5,10 +5,10 @@ import java.awt.event.KeyEvent;
 public class Player  {
 	int radius = 20;
 	
-	public void drawPlayer (Graphics bbg) {
+	public void drawPlayer (Graphics g) {
 		
-				bbg.setColor(Color.RED);
-				bbg.fillOval(SimpleGameEngine.playerX,SimpleGameEngine.playerY,radius,radius);
+				g.setColor(Color.RED);
+				g.fillOval(SimpleGameEngine.playerX,SimpleGameEngine.playerY,radius,radius);
 	}
 	
 	public void Movement () {
