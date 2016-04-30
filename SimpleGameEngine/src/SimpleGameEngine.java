@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.RenderingHints.Key;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
@@ -15,13 +16,13 @@ public class SimpleGameEngine extends JFrame {
 	Insets insets;
 	//used for input
 	public static InputHandler input;
-	//Buffering
-	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
-
-	Graphics2D bbg = (Graphics2D)backBuffer.getGraphics ();
+	 //Buffering
+	static BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
+	
+	static Graphics2D bbg = backBuffer.createGraphics();
 	
 	//new player
-	Player player = new Player ();
+	static Player player = new Player ();
 	//Player variables
 	static int playerX = windowWidth/2;
 	static int playerY = windowHeight/2;
@@ -89,6 +90,9 @@ public class SimpleGameEngine extends JFrame {
 		bbg.setColor(Color.WHITE);
 		bbg.fillRect(0, 0, windowWidth, windowHeight);
 		bbg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	//	bbg.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+	//	bbg.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
+	//	bbg.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		
 		//draw a circle for orientation
 		bbg.setColor(Color.BLACK);
