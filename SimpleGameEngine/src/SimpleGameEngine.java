@@ -101,11 +101,12 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setColor(Color.BLACK);
 		offgc.drawOval(200-px, 200-py, 150, 150);
 		
-		
 		//player
 		player.drawPlayer(offgc);
-
-
+		
+		//bullets
+		//Shot [] shots = new Shot [];
+		
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		//should be last in the method
 		g.drawImage(offscreen, insets.left, insets.top, this);

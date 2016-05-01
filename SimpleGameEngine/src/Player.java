@@ -2,8 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-public class Player  {
+public class Player extends Actor {
 	int radius = 20;
+	//used in movement
 	int right = 5;
 	int left = 5;
 	int down = 5;
