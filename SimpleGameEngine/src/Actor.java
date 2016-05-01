@@ -1,6 +1,7 @@
+import java.awt.Point;
 
 public class Actor {
-	int ax, ay; //actor location?
+	Point location = new Point (); //actor location?
 	boolean canShoot=false;
 	int canShootCounter;
 }
