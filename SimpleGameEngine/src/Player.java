@@ -4,6 +4,10 @@ import java.awt.event.KeyEvent;
 
 public class Player  {
 	int radius = 20;
+	int right = 5;
+	int left = 5;
+	int down = 5;
+	int up = 5;
 	
 	public void drawPlayer (Graphics g) {
 		
@@ -13,16 +17,16 @@ public class Player  {
 	
 	public void Movement () {
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
-			SimpleGameEngine.px += 5;
+			SimpleGameEngine.px += right;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_A)) {
-			SimpleGameEngine.px -= 5;
+			SimpleGameEngine.px -= left;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_S)) {
-			SimpleGameEngine.py += 5;
+			SimpleGameEngine.py += down;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_W)) {
-			SimpleGameEngine.py -= 5;
+			SimpleGameEngine.py -= up;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
