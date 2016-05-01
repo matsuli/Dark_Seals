@@ -18,16 +18,16 @@ public class Player extends Actor {
 	
 	public void Movement () {
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
-			SimpleGameEngine.px += right;
+			SimpleGameEngine.px -= right;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_A)) {
-			SimpleGameEngine.px -= left;
+			SimpleGameEngine.px += left;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_S)) {
-			SimpleGameEngine.py += down;
+			SimpleGameEngine.py -= down;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_W)) {
-			SimpleGameEngine.py -= up;
+			SimpleGameEngine.py += up;
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
