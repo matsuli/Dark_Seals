@@ -16,6 +16,7 @@ public class SimpleGameEngine extends JFrame {
 	Insets insets;
 	//used for input
 	public static InputHandler input;
+	public static ActorHandler ActorHandler;
 	 //Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	Graphics2D bbg = backBuffer.createGraphics();
@@ -78,7 +79,8 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		
-		player.Movement ();		
+		player.Movement ();
+	//	ActorHandler.update();
 		paint(bbg);
 	}
 	
@@ -97,19 +99,16 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		
-		player.drawPlayer(offgc);
-		
-		offgc.translate(px, py);			//TRANSLATER med px, py, dvs. sätter px o py som kordinatsystemets 0,0 o gör att allt annat än player rör sig runt player
-		//draw a circle for orientation		//OBS! EFTER DENNA TRANSLATE SKA INGA POSITIONER ÄNDRAS! Bara rita objekten, deras positions måste bestämmas före detta
-		offgc.setColor(Color.BLACK);
-		offgc.drawOval(200, 200, 150, 150);
-		
 		//player
-		offgc.drawRect(50, 50, 150, 150);
-		
+		player.drawPlayer(offgc);
 		//bullets
 		//Shot [] shots = new Shot [];
 		
+		offgc.translate(px, py);			//TRANSLATER med px, py, dvs. sätter px o py som kordinatsystemets 0,0 o gör att allt annat än player rör sig runt player
+		//draw a circle for orientation		//OBS! Eter denna translate ska bara saker som inte rör sig ritas, annars hamnar deras position ur synk med var de ritas
+		offgc.setColor(Color.BLACK);
+		offgc.drawOval(200, 200, 150, 150);
+		offgc.drawRect(50, 50, 150, 150);
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		offgc.translate(0, 0);			//sätter kordinatsystemet tillbaks till det vanliga, inte strictly necessary, men känns safer. NU kan positioner ändras igen.
 		//should be last in the method
