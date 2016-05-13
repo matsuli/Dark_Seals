@@ -30,6 +30,7 @@ public class SimpleGameEngine extends JFrame {
 	static int px = 0;
 	static int py = 0;
 	
+	world space = new world ();
 	
 	public static void main (String [] args) {
 		SimpleGameEngine game = new SimpleGameEngine ();
@@ -109,6 +110,8 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setColor(Color.BLACK);
 		offgc.drawOval(200, 200, 150, 150);
 		offgc.drawRect(50, 50, 150, 150);
+		//world
+		space.drawWorld (offgc);
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		offgc.translate(0, 0);			//sätter kordinatsystemet tillbaks till det vanliga, inte strictly necessary, men känns safer. NU kan positioner ändras igen.
 		//should be last in the method

@@ -24,7 +24,7 @@ public class Bullet {
 
 	    if (location.x > 0 && location.x < SimpleGameEngine.windowWidth && location.y > 0 && location.y < SimpleGameEngine.windowHeight && toRemove==false) {
 	    } else {
-	      SimpleGameEngine.bullets.remove(this);		//removar denna bullet
+	      //SimpleGameEngine.bullets.remove(this);		//removar denna bullet
 	    }
 	   
 	  }
