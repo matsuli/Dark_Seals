@@ -7,8 +7,9 @@ public class hitDetObj {
 	
 	public void object (int ox, int oy, int ow, int oh) {
 		//kan ej röra sig åt höger
-				if (ox <= (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) && (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) <= (ox + ow/2) && oy <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius) && (SimpleGameEngine.playerY + SimpleGameEngine.player.radius) <= (oy + oh)) {
-					SimpleGameEngine.player.right = -5;
+				if (ox <= (SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && (SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) <= (ox + ow/2) && oy <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) && (SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) <= (oy + oh)) {
+					
+					SimpleGameEngine.px += (SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px)-ox;
 				}
 				//kan ej röra sig åt vänster
 				if ((ox + ow/2) <= (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) && (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) <= (ox + ow) && oy <=(SimpleGameEngine.playerY+ SimpleGameEngine.player.radius) && (SimpleGameEngine.playerY + SimpleGameEngine.player.radius) <= (oy + oh)) {
