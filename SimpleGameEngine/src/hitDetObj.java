@@ -1,26 +1,46 @@
+import java.util.ArrayList;
 
 public class hitDetObj {
 	
-	public hitDetObj () {
-		
+	int ox;
+	int oy;
+	int ow;
+	int oh;
+	
+	
+	
+	public hitDetObj (int ox, int oy, int ow, int oh) {
+		this.ox=ox;
+		this.oy=oy;
+		this.ow=ow;
+		this.oh=oh;
 	}
 	
-	public void object (int ox, int oy, int ow, int oh) {
-		//kan ej röra sig åt höger
-		if (ox <= (SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && (SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) <= (ox + ow/2) && oy <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) && (SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) <= (oy + oh)) {
-			SimpleGameEngine.px += (SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px)-ox;
-		}
-		//kan ej röra sig åt vänster
-		if ((ox + ow/2) <= (SimpleGameEngine.playerX - SimpleGameEngine.player.radius/2-SimpleGameEngine.px) && (SimpleGameEngine.playerX - SimpleGameEngine.player.radius/2-SimpleGameEngine.px) <= (ox + ow) && oy <=(SimpleGameEngine.playerY+ SimpleGameEngine.player.radius-SimpleGameEngine.py) && (SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) <= (oy + oh)) {
-			SimpleGameEngine.px += (SimpleGameEngine.playerX-SimpleGameEngine.px)-(ox+ow);
-		}
-		//kan ej röra sig nedåt
-		if (ox <= (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) && (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) <= (ox + ow) && oy <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius) && (SimpleGameEngine.playerY + SimpleGameEngine.player.radius) <= (oy + oh/2)) {
-			SimpleGameEngine.player.down = -5;
-		}
-		//kan ej röra sig uppåt
-		if (ox <= (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) && (SimpleGameEngine.playerX + SimpleGameEngine.player.radius) <= (ox + ow) && (oy + oh/2) <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius) && (SimpleGameEngine.playerY + SimpleGameEngine.player.radius) <= (oy + oh)) {
-			SimpleGameEngine.player.up = -5;
+	public void hitdetect (){
+		
+	if (ox <=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && (SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px) <= (ox + ow) && oy <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) && (SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py) <= (oy + oh)) {
+			SimpleGameEngine.player.hit=true;
+	
+	
+	if(ox >=(SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px)){
+		SimpleGameEngine.player.hitRight=true;			
+	}
+	if(ox+ow <=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px)){
+		SimpleGameEngine.player.hitLeft=true;	
+	}
+	if(oy >=(SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py)){
+		SimpleGameEngine.player.hitDown=true;	
+	}
+	if(oy+oh <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py)){
+		SimpleGameEngine.player.hitUp=true;	
+	}	
+		
 		}
 	}
-}
+	
+
+	}
+	
+
+	
+
