@@ -22,8 +22,7 @@ public class Player extends Actor {
 			  x = x-(r/2);
 			  y = y-(r/2);
 			  g.fillOval(x,y,r,r);
-			  System.out.println(hit);
-			
+			  
 	}
 	
 	public void Movement (world space) {
