@@ -11,8 +11,8 @@ public class world {
 	
 	public void initialize () {
 		
-		addhitDetObject(objects, 20, 40, 100, 100);
-		addhitDetObject(objects, 320, 100, 100, 100);
+		addhitDetObject(objects, 20, 40, 100, 100, "rect");			//Adda hitdetect objects här
+		addhitDetObject(objects, 320, 100, 100, 100, "rect");
 
 		
 	}
@@ -44,9 +44,13 @@ public class world {
 		g.drawRect(320, 100, 100, 100);
 	}
 	
-	public void addhitDetObject(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
-		hitDetObj r = new hitDetObj (ox, oy, ow, oh);
+	public void addhitDetObject(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String type){
+		
+		if(type=="rect"){
+		
+		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
 		objects.add(r);	
+			}
 		
 		}
 	
