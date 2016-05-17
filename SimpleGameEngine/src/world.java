@@ -6,7 +6,6 @@ import java.util.Iterator;
 
 public class world {
 	
-	
 	ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
 	
 	public void initialize () {
@@ -18,7 +17,6 @@ public class world {
 	}
 	
 	public void HitDetect (Graphics g) {
-			
 		
 		SimpleGameEngine.player.hit=false;
 		SimpleGameEngine.player.hitRight=false;
@@ -31,35 +29,29 @@ public class world {
 			hitDetObj o = it.next();
 			o.hitdetect();
 			o.draw(g);
-			
-			
-			}
-			
 		}
+			
+	}
 				
 	
 	public void drawWorld (Graphics g) {
-		g.setColor(Color.blue);
-		this.HitDetect (g);
-		g.drawLine(70, 40, 70, 140);		
 		
-
+		g.setColor(Color.blue);
+		this.HitDetect (g);		
+		
 	}
 	
 	public void addhitDetObject(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String type){
 		
 		if(type=="rect"){
-		
-		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
-		objects.add(r);	
-			}
+			hitDetRect r = new hitDetRect (ox, oy, ow, oh);
+			objects.add(r);	
+		}
 		if(type=="circle"){
-			
 			hitDetCircle c = new hitDetCircle (ox, oy, ow, oh);
 			objects.add(c);	
-				}
-		
 		}
+	}
 	
 }
 

@@ -20,18 +20,13 @@ public class hitDetObj {
 		this.oh=oh;
 	}
 	
-	
 	public void hitdetect(){
-		
-		
-		}
-	
-	public void draw(Graphics g){
-		
 		
 	}
 	
-	
+	public void draw(Graphics g){
+		
+	}
 	
 }
 	

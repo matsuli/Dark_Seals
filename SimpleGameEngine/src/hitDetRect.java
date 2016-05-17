@@ -2,26 +2,16 @@ import java.awt.Graphics;
 
 public class hitDetRect extends hitDetObj {
 	
-
-	
-	
-
-	
 	public hitDetRect(int ox, int oy, int ow, int oh) {
 		super(ox, oy, ow, oh);
 		
 	}
 	
-
-
 	public void hitdetect (){
-		
-		
-		
-	if (ox <=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && (SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px) <= (ox + ow) && oy <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) && (SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py) <= (oy + oh)) {
-			hit=true;
-	
-	
+			
+		if (ox <=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && (SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px) <= (ox + ow) && oy <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) && (SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py) <= (oy + oh)) {
+		hit=true;
+
 			if(ox >=(SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px) && oy != (SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) && (oy+oh)!=SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py) {
 				hitRight=true;			
 			}
@@ -30,7 +20,7 @@ public class hitDetRect extends hitDetObj {
 			}
 			if(oy >=(SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py) && ox !=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px != (ox + ow) ){
 				hitDown=true;
-					}
+			}
 			if(oy+oh <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py)&& ox !=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px != (ox + ow)){
 				hitUp=true;	
 			}	
@@ -40,7 +30,6 @@ public class hitDetRect extends hitDetObj {
 			SimpleGameEngine.player.hit=true;
 			hit=false;
 			}
-	
 		if(hitRight==true){
 			SimpleGameEngine.player.hitRight=true;
 			hitRight=false;
@@ -57,7 +46,7 @@ public class hitDetRect extends hitDetObj {
 			SimpleGameEngine.player.hitLeft=true;
 			hitLeft=false;	
 			}
-	}
+		}
 
 	public void draw(Graphics g){
 		g.drawRect(ox, oy, ow, oh);

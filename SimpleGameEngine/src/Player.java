@@ -22,18 +22,15 @@ public class Player extends Actor {
 			  x = x-(r/2);
 			  y = y-(r/2);
 			  g.fillOval(x,y,r,r);
-			  
 	}
 	
 	public void Movement () {
-				
 				
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
 			
 			if(hitRight==false){
 			SimpleGameEngine.px -= right;}
 			else{
-
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_A)) {
@@ -41,7 +38,6 @@ public class Player extends Actor {
 			if(hitLeft==false){
 				SimpleGameEngine.px += left;}
 			else{
-
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_S)) {
@@ -49,30 +45,24 @@ public class Player extends Actor {
 			if(hitDown==false){
 				SimpleGameEngine.py -= down;}
 			else{
-	
+			}
 		}
-	}
 
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_W)) {
 	
 			if(hitUp==false)
 				SimpleGameEngine.py += up;
 			else{
-				
-				
-
-	}
-}
+			}
+		}
+		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
 		}
 		
-	
 	}
 
-
-	
-	 }
+}
 		
 	
 	
