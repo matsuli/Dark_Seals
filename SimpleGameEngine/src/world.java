@@ -8,6 +8,8 @@ public class world {
 	
 	ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
 	
+	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
+	
 	public void initialize () {
 		
 		addhitDetObject(objects, 20, 40, 100, 100, "rect");			//Adda hitdetect objects här
@@ -32,12 +34,21 @@ public class world {
 		}
 			
 	}
-				
+	
+	public void Bullet (Graphics g) {
+		for (int i = bullets.size()-1; i >= 0; i--) {
+		    Bullet bullet = bullets.get(i);
+		    bullet.update();
+		    g.setColor(Color.black);;
+		    g.fillOval(bullet.location.x, bullet.location.y, bullet.radius*2, bullet.radius*2);
+	  }
+	}
 	
 	public void drawWorld (Graphics g) {
 		
 		g.setColor(Color.blue);
-		this.HitDetect (g);		
+		this.HitDetect (g);
+		this.Bullet(g);
 		
 	}
 	

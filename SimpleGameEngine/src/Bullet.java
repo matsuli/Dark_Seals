@@ -3,7 +3,7 @@ import java.awt.Point;
 public class Bullet {
 	Actor shooter;
 	boolean toRemove=false;
-	float radius = 5;
+	int radius = 5;
 	float oldPosX, oldPosY, speed;
 	double rotation;
 	Point location;//bullet location
@@ -24,7 +24,7 @@ public class Bullet {
 
 	    if (location.x > 0 && location.x < SimpleGameEngine.windowWidth && location.y > 0 && location.y < SimpleGameEngine.windowHeight && toRemove==false) {
 	    } else {
-	      //SimpleGameEngine.bullets.remove(this);		//removar denna bullet
+	      world.bullets.remove(this);		//removar denna bullet
 	    }
 	   
 	  }

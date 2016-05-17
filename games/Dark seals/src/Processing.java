@@ -53,7 +53,6 @@ public class Processing extends PApplet {
 	 
 	  if (mousePressed == true && mouseButton==LEFT && Player.canShoot==true) {			//Player shooter genom att använda shoot-metoden. Target är mouseX, mouseY
 		  shoot(Player, mouseX, mouseY);
-		  
 	  }
 	 
 	  int i;
@@ -62,7 +61,7 @@ public class Processing extends PApplet {
 		    bullet.update();									//updaterar bullets position (variablerna för bulletten, speciellt location-vektorn)
 		    fill(0);
 		    ellipse(bullet.location.x, bullet.location.y, bullet.radius*2, bullet.radius*2);	//ritar bulleten baserat på location-vektorn, som just uppdaterades
-		  }
+	  }
 	 	 
 	
 	 if(Player.swordL==true || Player.swordU==true || Player.swordR==true || Player.swordD==true){
