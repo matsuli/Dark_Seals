@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.awt.Graphics;
 
 public class hitDetRect extends hitDetObj {
 	
@@ -11,6 +11,8 @@ public class hitDetRect extends hitDetObj {
 		super(ox, oy, ow, oh);
 		
 	}
+	
+
 
 	public void hitdetect (){
 		
@@ -56,7 +58,10 @@ public class hitDetRect extends hitDetObj {
 			hitLeft=false;	
 			}
 	}
-	
+
+	public void draw(Graphics g){
+		g.drawRect(ox, oy, ow, oh);
+	}
 			
 }
 	

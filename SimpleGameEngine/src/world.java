@@ -13,11 +13,11 @@ public class world {
 		
 		addhitDetObject(objects, 20, 40, 100, 100, "rect");			//Adda hitdetect objects här
 		addhitDetObject(objects, 320, 100, 100, 100, "rect");
-
+		addhitDetObject(objects, 320, 300, 50, 50, "circle");		//cirkelns hitdetection funkar inte ännu
 		
 	}
 	
-	public void HitDetect () {
+	public void HitDetect (Graphics g) {
 			
 		
 		SimpleGameEngine.player.hit=false;
@@ -30,6 +30,7 @@ public class world {
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
 			hitDetObj o = it.next();
 			o.hitdetect();
+			o.draw(g);
 			
 			
 			}
@@ -38,10 +39,11 @@ public class world {
 				
 	
 	public void drawWorld (Graphics g) {
-		g.drawLine(70, 40, 70, 140);		
 		g.setColor(Color.blue);
-		g.drawRect(20, 40, 100, 100);
-		g.drawRect(320, 100, 100, 100);
+		this.HitDetect (g);
+		g.drawLine(70, 40, 70, 140);		
+		
+
 	}
 	
 	public void addhitDetObject(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String type){
@@ -51,6 +53,11 @@ public class world {
 		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
 		objects.add(r);	
 			}
+		if(type=="circle"){
+			
+			hitDetCircle c = new hitDetCircle (ox, oy, ow, oh);
+			objects.add(c);	
+				}
 		
 		}
 	

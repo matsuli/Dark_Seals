@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 
 public class hitDetObj {
 
@@ -25,9 +26,14 @@ public class hitDetObj {
 		
 		}
 	
-	
-	
+	public void draw(Graphics g){
+		
+		
 	}
+	
+	
+	
+}
 	
 	
 

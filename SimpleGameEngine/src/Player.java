@@ -25,9 +25,8 @@ public class Player extends Actor {
 			  
 	}
 	
-	public void Movement (world space) {
-		
-		space.HitDetect ();
+	public void Movement () {
+				
 				
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
 			
