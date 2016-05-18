@@ -1,7 +1,7 @@
 import java.awt.Color;
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.awt.Graphics2D;
 
 
 public class world {
@@ -18,7 +18,7 @@ public class world {
 		
 	}
 	
-	public void HitDetect (Graphics g) {
+	public void HitDetect (Graphics2D g) {
 		
 		SimpleGameEngine.player.hit=false;
 		SimpleGameEngine.player.hitRight=false;
@@ -35,7 +35,7 @@ public class world {
 			
 	}
 	
-	public void Bullet (Graphics g) {
+	public void Bullet (Graphics2D g) {
 		for (int i = bullets.size()-1; i >= 0; i--) {
 		    Bullet bullet = bullets.get(i);
 		    bullet.update();
@@ -44,7 +44,7 @@ public class world {
 	  }
 	}
 	
-	public void drawWorld (Graphics g) {
+	public void drawWorld (Graphics2D g) {
 		
 		g.setColor(Color.blue);
 		this.HitDetect (g);

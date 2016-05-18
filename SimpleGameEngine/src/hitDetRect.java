@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class hitDetRect extends hitDetObj {
 	
@@ -48,7 +48,7 @@ public class hitDetRect extends hitDetObj {
 			}
 		}
 
-	public void draw(Graphics g){
+	public void draw(Graphics2D g){
 		g.drawRect(ox, oy, ow, oh);
 	}
 			

@@ -7,6 +7,7 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Ellipse2D;
 
 public class SimpleGameEngine extends JFrame {
 	
@@ -108,6 +109,7 @@ public class SimpleGameEngine extends JFrame {
 		offgc.drawRect(50, 50, 150, 150);
 		//world
 		space.drawWorld (offgc);
+	//	offgc.draw(new Ellipse2D.Double(320, 300, 50, 50));
 		
 		offgc.translate(-px, -py);			//sätter kordinatsystemet tillbaks till det vanliga, inte strictly necessary, men känns safer. NU kan positioner ändras igen.
 		
