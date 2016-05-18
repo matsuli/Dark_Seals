@@ -1,8 +1,8 @@
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
+
 
 public class Player extends Actor {
 	int radius = 10;
@@ -16,6 +16,13 @@ public class Player extends Actor {
 	boolean hitRight;
 	boolean hitUp;
 	boolean hitDown;
+	
+	Player(){
+		
+		location.x=SimpleGameEngine.playerX;
+		location.y=SimpleGameEngine.playerY;
+		
+	}
 	
 	public void drawPlayer (Graphics2D g, int x, int y, int r) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
 			  g.setColor(Color.RED);
@@ -59,6 +66,7 @@ public class Player extends Actor {
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
 		}
+
 		
 	}
 	

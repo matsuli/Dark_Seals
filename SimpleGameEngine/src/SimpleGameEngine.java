@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 
 public class SimpleGameEngine extends JFrame {
 	
@@ -25,13 +26,15 @@ public class SimpleGameEngine extends JFrame {
 	Graphics2D bbg = backBuffer.createGraphics();
 	
 	//new player
-	static Player player = new Player ();
+	static Player player;
 	//Player variables
 	static int playerX = windowWidth/2;
 	static int playerY = windowHeight/2;
 	//
 	static int px = 0;
 	static int py = 0;
+	
+	
 	
 	world space = new world ();
 	
@@ -76,6 +79,8 @@ public class SimpleGameEngine extends JFrame {
 		setSize (insets.left+windowWidth+insets.right, insets.top+windowHeight+insets.bottom);
 		space.initialize();
 		input = new InputHandler (this);
+		player= new Player ();
+		
 	}
 	
 	//check for input, move things, etc.
