@@ -16,6 +16,11 @@ public class Player extends Actor {
 	boolean hitRight;
 	boolean hitUp;
 	boolean hitDown;
+	int hitCorrectionLeft;
+	int hitCorrectionRight;
+	int hitCorrectionUp;
+	int hitCorrectionDown;
+	boolean hitCorrected;
 	
 	Player(){
 		
@@ -37,21 +42,27 @@ public class Player extends Actor {
 			
 			if(hitRight==false){
 			SimpleGameEngine.px -= right;}
-			else{
+			else if(hitCorrected==false){
+				SimpleGameEngine.px += hitCorrectionRight;
+				hitCorrected=true;
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_A)) {
 			
 			if(hitLeft==false){
 				SimpleGameEngine.px += left;}
-			else{
+			else if(hitCorrected==false){
+				SimpleGameEngine.px -= hitCorrectionLeft;
+				hitCorrected=true;
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_S)) {
 	
 			if(hitDown==false){
 				SimpleGameEngine.py -= down;}
-			else{
+			else if(hitCorrected==false){
+				SimpleGameEngine.py += hitCorrectionDown;
+				hitCorrected=true;
 			}
 		}
 
@@ -59,15 +70,17 @@ public class Player extends Actor {
 	
 			if(hitUp==false)
 				SimpleGameEngine.py += up;
-			else{
+			else if(hitCorrected==false){
+				SimpleGameEngine.py -= hitCorrectionUp;
+				hitCorrected=true;
 			}
 		}
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
 		}
-
-		
+		hitCorrected=false;
+		System.out.println(hitRight);
 	}
 	
 }

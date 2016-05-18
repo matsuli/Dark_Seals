@@ -25,10 +25,75 @@ public class hitDetCircle extends hitDetObj {
 		int py=SimpleGameEngine.player.location.y-SimpleGameEngine.py;
 		
 		
-		 if ((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py) <
+		 if ((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py) <=
 		          (SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)){
-			 System.out.println("hit");
+			 
+			 if(centerX>px){
+				 hitRight=true;		
+				 
+				int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+				int x1=(int) (centerX-px);
+				int y=(int) (centerY-py);
+				int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+				int x2=(int)(Math.sqrt(i2*i2-y*y));
+				hitCorrectionRight=x2-x1;
+				
+			 }
+			 if(centerX<px){
+				 hitLeft=true;	
+				 
+				int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+				int x1=(int) (-centerX+px);
+				int y=(int) (centerY-py);
+				int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+				int x2=(int)(Math.sqrt(i2*i2-y*y));
+					hitCorrectionLeft=x2-x1;
+				
+			 }
+			 if(centerY>py){
+				 hitDown=true;
+					int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+					int y1=(int) (centerY-py);
+					int x=(int) (centerX-px);
+					int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+					int y2=(int)(Math.sqrt(i2*i2-x*x));
+					hitCorrectionDown=y2-y1;
+			 }
+			 if(centerY<py){
+				 hitUp=true;	
+				 int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+					int y1=(int) (-centerY+py);
+					int x=(int) (centerX-px);
+					int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+					int y2=(int)(Math.sqrt(i2*i2-x*x));
+					hitCorrectionUp=y2-y1;
+			 }
 		 	}
+		 
+		 if(hit==true){
+				SimpleGameEngine.player.hit=true;
+				hit=false;
+				}
+			if(hitRight==true){
+				SimpleGameEngine.player.hitRight=true;
+				SimpleGameEngine.player.hitCorrectionRight=hitCorrectionRight;
+				hitRight=false;
+				}
+			if(hitDown==true){
+				SimpleGameEngine.player.hitDown=true;
+				hitDown=false;
+				SimpleGameEngine.player.hitCorrectionDown=hitCorrectionDown;
+				}
+			if(hitUp==true){
+				SimpleGameEngine.player.hitUp=true;
+				hitUp=false;
+				SimpleGameEngine.player.hitCorrectionUp=hitCorrectionUp;
+				}
+			if(hitLeft==true){
+				SimpleGameEngine.player.hitLeft=true;
+				hitLeft=false;	
+				SimpleGameEngine.player.hitCorrectionLeft=hitCorrectionLeft;
+				}
 		 }
 		
 	

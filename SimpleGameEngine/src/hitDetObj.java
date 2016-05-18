@@ -11,6 +11,10 @@ public class hitDetObj {
 	boolean hitRight;
 	boolean hitUp;
 	boolean hitDown;	
+	int hitCorrectionLeft;
+	int hitCorrectionRight;
+	int hitCorrectionUp;
+	int hitCorrectionDown;
 	
 	
 	public hitDetObj (int ox, int oy, int ow, int oh) {
