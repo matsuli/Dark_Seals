@@ -36,7 +36,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	
 	
-	world space = new world ();
+	 world space = new world ();
 	
 	public static void main (String [] args) {
 		SimpleGameEngine game = new SimpleGameEngine ();
@@ -86,7 +86,7 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		
-		player.Movement();		
+		player.Movement(space);		
 		paint(bbg);
 
 	}
@@ -114,6 +114,7 @@ public class SimpleGameEngine extends JFrame {
 		offgc.drawRect(50, 50, 150, 150);
 		//world
 		space.drawWorld (offgc);
+	//	space.HitDetect();
 	//	offgc.draw(new Ellipse2D.Double(320, 300, 50, 50));
 		
 		offgc.translate(-px, -py);			//sätter kordinatsystemet tillbaks till det vanliga, inte strictly necessary, men känns safer. NU kan positioner ändras igen.

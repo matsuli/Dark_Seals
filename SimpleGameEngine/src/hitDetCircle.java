@@ -21,8 +21,8 @@ public class hitDetCircle extends hitDetObj {
 
 	public void hitdetect(){
 	
-		int px=SimpleGameEngine.player.location.x-SimpleGameEngine.px;
-		int py=SimpleGameEngine.player.location.y-SimpleGameEngine.py;
+		double px=SimpleGameEngine.player.hitDetCircle.getCenterX();
+		double py=SimpleGameEngine.player.hitDetCircle.getCenterY();
 		
 		
 		 if ((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py) <=
@@ -47,7 +47,7 @@ public class hitDetCircle extends hitDetObj {
 				int y=(int) (centerY-py);
 				int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
 				int x2=(int)(Math.sqrt(i2*i2-y*y));
-					hitCorrectionLeft=x2-x1;
+				hitCorrectionLeft=x2-x1;
 				
 			 }
 			 if(centerY>py){

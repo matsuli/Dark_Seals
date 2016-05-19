@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Ellipse2D;
 
 
 public class Player extends Actor {
@@ -16,6 +17,7 @@ public class Player extends Actor {
 	boolean hitRight;
 	boolean hitUp;
 	boolean hitDown;
+	Ellipse2D hitDetCircle;
 	int hitCorrectionLeft;
 	int hitCorrectionRight;
 	int hitCorrectionUp;
@@ -26,61 +28,66 @@ public class Player extends Actor {
 		
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;
-		
+		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 	}
 	
-	public void drawPlayer (Graphics2D g, int x, int y, int r) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
+	public void drawPlayer (Graphics2D g, int x, int y, int d) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
 			  g.setColor(Color.RED);
-			  x = x-(r/2);
-			  y = y-(r/2);
-			  g.fillOval(x,y,r,r);
+			  x = x-(d/2);
+			  y = y-(d/2);
+			  g.fillOval(x,y,d,d);
 	}
 	
-	public void Movement () {
-				
+	public void Movement (world space) {
+		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
-			
-			if(hitRight==false){
-			SimpleGameEngine.px -= right;}
-			else if(hitCorrected==false){
+						
+			SimpleGameEngine.px -= right;
+			space.HitDetect();
+			if(hitRight==true){
 				SimpleGameEngine.px += hitCorrectionRight;
-				hitCorrected=true;
+				
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_A)) {
 			
-			if(hitLeft==false){
-				SimpleGameEngine.px += left;}
-			else if(hitCorrected==false){
+			
+				SimpleGameEngine.px += left;
+				space.HitDetect();
+			if(hitLeft==true){
 				SimpleGameEngine.px -= hitCorrectionLeft;
-				hitCorrected=true;
+				
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_S)) {
 	
-			if(hitDown==false){
-				SimpleGameEngine.py -= down;}
-			else if(hitCorrected==false){
+			
+				SimpleGameEngine.py -= down;
+				space.HitDetect();
+			 if(hitDown==true){
 				SimpleGameEngine.py += hitCorrectionDown;
-				hitCorrected=true;
+				
 			}
 		}
 
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_W)) {
 	
-			if(hitUp==false)
+			
 				SimpleGameEngine.py += up;
-			else if(hitCorrected==false){
+				space.HitDetect();
+			 if(hitUp==true){
 				SimpleGameEngine.py -= hitCorrectionUp;
-				hitCorrected=true;
+				
 			}
 		}
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
 		}
-		hitCorrected=false;
-		System.out.println(hitRight);
+		
+		
+		
 	}
 	
 }

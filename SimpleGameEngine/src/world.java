@@ -14,23 +14,24 @@ public class world {
 		
 		addhitDetObject(objects, 20, 40, 100, 100, "rect");			//Adda hitdetect objects här
 		addhitDetObject(objects, 320, 100, 100, 100, "rect");
-		addhitDetObject(objects, 320, 300, 50, 50, "circle");		//cirkelns hitdetection funkar inte ännu
+		addhitDetObject(objects, 320, 300, 50, 50, "circle");		
 		
 	}
 	
-	public void HitDetect (Graphics2D g) {
+	public void HitDetect () {
 		
 		SimpleGameEngine.player.hit=false;
 		SimpleGameEngine.player.hitRight=false;
 		SimpleGameEngine.player.hitLeft=false;
 		SimpleGameEngine.player.hitUp=false;
 		SimpleGameEngine.player.hitDown=false;
+		SimpleGameEngine.player.hitDetCircle.setFrame(SimpleGameEngine.player.location.x-SimpleGameEngine.player.radius-SimpleGameEngine.px, SimpleGameEngine.player.location.y-SimpleGameEngine.player.radius-SimpleGameEngine.py, SimpleGameEngine.player.radius*2, SimpleGameEngine.player.radius*2);
 		
 		
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
 			hitDetObj o = it.next();
 			o.hitdetect();
-			o.draw(g);
+			
 		}
 			
 	}
@@ -47,7 +48,10 @@ public class world {
 	public void drawWorld (Graphics2D g) {
 		
 		g.setColor(Color.blue);
-		this.HitDetect (g);
+		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
+			hitDetObj o = it.next();
+			o.draw(g);
+		}
 		this.Bullet(g);
 		
 	}
