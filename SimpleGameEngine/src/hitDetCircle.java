@@ -8,9 +8,15 @@ public class hitDetCircle extends hitDetObj {
 	Ellipse2D circle;
 	double centerX;
 	double centerY;
+	int ow;
+	int oh;
+	
 	
 	public hitDetCircle(int ox, int oy, int ow, int oh) {
-		super(ox, oy, ow, oh);
+		this.ox=ox;
+		this.oy=oy;
+		this.ow=ow;
+		this.oh=oh;
 		r=ow/2;
 		ox = ox-(r/2);
 		oy = oy-(r/2);		

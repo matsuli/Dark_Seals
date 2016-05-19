@@ -12,9 +12,9 @@ public class world {
 	
 	public void initialize () {
 		
-		addhitDetObject(objects, 20, 40, 100, 100, "rect");			//Adda hitdetect objects här
-		addhitDetObject(objects, 320, 100, 100, 100, "rect");
-		addhitDetObject(objects, 320, 300, 50, 50, "circle");		
+		addhitDetRect(objects, 20, 40, 100, 100);			//Adda hitdetect objects här
+		addhitDetRect(objects, 320, 100, 100, 100);
+		addhitDetCircle(objects, 320, 300, 50, 50);		
 		
 	}
 	
@@ -56,18 +56,26 @@ public class world {
 		
 	}
 	
-	public void addhitDetObject(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String type){
+	public void addhitDetRect(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
 		
-		if(type=="rect"){
+		
 			hitDetRect r = new hitDetRect (ox, oy, ow, oh);
 			objects.add(r);	
 		}
-		if(type=="circle"){
+	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
+		
 			hitDetCircle c = new hitDetCircle (ox, oy, ow, oh);
 			objects.add(c);	
 		}
+	public void addhitDetTriangle(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2, int ox3,int oy3){
+		
+		hitDetTriangle t = new hitDetTriangle (ox, oy, ox2, oy2, ox3, oy3);
+		objects.add(t);	
 	}
 	
-}
+	
+	}
+	
+
 
 

@@ -6,9 +6,14 @@ public class hitDetRect extends hitDetObj {
 	
 	
 	Rectangle2D rect;
+	int ow;
+	int oh;
 	
 	public hitDetRect(int ox, int oy, int ow, int oh) {
-		super(ox, oy, ow, oh);
+		this.ox=ox;
+		this.oy=oy;
+		this.ow=ow;
+		this.oh=oh;
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	

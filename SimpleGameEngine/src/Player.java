@@ -28,8 +28,8 @@ public class Player extends Actor {
 		
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;
-		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
-	}
+		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);		//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten
+	}																										//location-radius innebär att location e cirkelns mitt
 	
 	public void drawPlayer (Graphics2D g, int x, int y, int d) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
 			  g.setColor(Color.RED);
