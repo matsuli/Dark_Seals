@@ -25,7 +25,7 @@ public class Player extends Actor {
 	boolean hitCorrected;
 	
 	Player(){
-		
+		shooterLocation.setLocation(SimpleGameEngine.playerX - radius,SimpleGameEngine.playerY - radius);
 		location.x=SimpleGameEngine.playerX-SimpleGameEngine.px;
 		location.y=SimpleGameEngine.playerY-SimpleGameEngine.py;
 		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);		//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten

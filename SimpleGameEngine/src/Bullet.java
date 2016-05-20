@@ -10,7 +10,7 @@ public class Bullet {
 	
 	Bullet (Actor shooter, float targetPosX, float targetPosY) {
 		this.shooter=shooter;
-	    location = new Point (shooter.location.x, shooter.location.y);
+	    location = new Point (shooter.shooterLocation.x, shooter.shooterLocation.y);
 	    oldPosX = targetPosX;
 	    oldPosY = targetPosY;
 	    rotation = Math.atan2(oldPosY - location.y, oldPosX - location.x) / Math.PI * 180;
