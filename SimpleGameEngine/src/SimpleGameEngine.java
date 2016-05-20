@@ -126,5 +126,17 @@ public class SimpleGameEngine extends JFrame {
 		g.drawImage(offscreen, insets.left, insets.top, this);
 	}
 	
+	//to do
+	//mouse input
+	//bullets hitdetect
+	//trianglar
+	//texture funktion
+	//save function
+	//interaction
+	//settings
+	//stamina?
+	//sneak?
+	//npcs, enemies
+	//AI
 }
 
