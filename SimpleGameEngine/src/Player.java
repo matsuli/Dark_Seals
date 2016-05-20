@@ -27,7 +27,7 @@ public class Player extends Actor {
 	Player(){
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;
-		shooterLocation.setLocation(location.x - radius + SimpleGameEngine.px,location.y - radius + SimpleGameEngine.py);
+		shooterLocation.setLocation(location.x - radius - SimpleGameEngine.px,location.y - radius - SimpleGameEngine.py);
 		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);		//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten
 	}																										//location-radius innebär att location e cirkelns mitt
 	
@@ -87,7 +87,7 @@ public class Player extends Actor {
 		}
 		
 		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);	
-		shooterLocation.setLocation(location.x - radius + SimpleGameEngine.px,location.y - radius + SimpleGameEngine.py);
+		shooterLocation.setLocation(location.x - radius - SimpleGameEngine.px,location.y - radius - SimpleGameEngine.py);
 	}
 	
 }

@@ -34,7 +34,7 @@ public class hitDetectLine extends hitDetObj {
 
 	        double disc = pBy2 * pBy2 - q;
 	        if (disc < 0) {
-	            return Collections.emptyList();
+	 //           return Collections.emptyList();
 	        }
 	        // if disc == 0 ... dealt with later
 	        double tmpSqrt = Math.sqrt(disc);
@@ -44,11 +44,11 @@ public class hitDetectLine extends hitDetObj {
 	        Point p1 = new Point(pointA.x - baX * abScalingFactor1, pointA.y
 	                - baY * abScalingFactor1);
 	        if (disc == 0) { // abScalingFactor1 == abScalingFactor2
-	            return Collections.singletonList(p1);
+	//            return Collections.singletonList(p1);
 	        }
 	        Point p2 = new Point(pointA.x - baX * abScalingFactor2, pointA.y
 	                - baY * abScalingFactor2);
-	        return Arrays.asList(p1, p2);
+	//        return Arrays.asList(p1, p2);
 	    }
 
 	    static class Point {

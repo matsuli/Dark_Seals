@@ -90,13 +90,14 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		mouse.poll();
+		System.out.println (mouse.getPosition().x);
 		player.Control(space);		
 		paint(bbg);
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
-			player.shoot (player,mouse.getPosition().x,mouse.getPosition().y );
+			player.shoot (player,mouse.getPosition().x-px,mouse.getPosition().y-py);
 		}
-		System.out.println (player.shooterLocation);
+		
 	}
 	
 	//draw everything
