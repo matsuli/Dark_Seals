@@ -96,6 +96,7 @@ public class SimpleGameEngine extends JFrame {
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
 			player.shoot (player,mouse.getPosition().x,mouse.getPosition().y );
 		}
+		System.out.println (player.shooterLocation);
 	}
 	
 	//draw everything
@@ -121,8 +122,6 @@ public class SimpleGameEngine extends JFrame {
 		offgc.drawRect(50, 50, 150, 150);
 		//world
 		space.drawWorld (offgc);
-	//	space.HitDetect();
-	//	offgc.draw(new Ellipse2D.Double(320, 300, 50, 50));
 		
 		offgc.translate(-px, -py);			//sätter kordinatsystemet tillbaks till det vanliga, inte strictly necessary, men känns safer. NU kan positioner ändras igen.
 		
