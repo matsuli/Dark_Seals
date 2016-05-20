@@ -86,7 +86,7 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		
-		player.Movement(space);		
+		player.Control(space);		
 		paint(bbg);
 	}
 	

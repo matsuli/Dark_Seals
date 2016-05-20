@@ -38,7 +38,7 @@ public class Player extends Actor {
 			  g.fillOval(x,y,d,d);
 	}
 	
-	public void Movement (world space) {
+	public void Control (world space) {
 		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
