@@ -26,8 +26,8 @@ public class Player extends Actor {
 	
 	Player(){
 		
-		location.x=SimpleGameEngine.playerX;
-		location.y=SimpleGameEngine.playerY;
+		location.x=SimpleGameEngine.playerX-SimpleGameEngine.px;
+		location.y=SimpleGameEngine.playerY-SimpleGameEngine.py;
 		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);		//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten
 	}																										//location-radius innebär att location e cirkelns mitt
 	
@@ -39,7 +39,7 @@ public class Player extends Actor {
 	}
 	
 	public void Control (world space) {
-		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+		hitDetCircle.setFrame(location.x-radius, location.y-radius, radius*2, radius*2);
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
 						
