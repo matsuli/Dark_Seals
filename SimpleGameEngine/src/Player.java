@@ -86,6 +86,7 @@ public class Player extends Actor {
 			System.exit(0);
 		}
 		
+		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);	
 	}
 	
 }
