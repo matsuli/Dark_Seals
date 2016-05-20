@@ -14,7 +14,7 @@ public class Bullet {
 	    oldPosX = targetPosX;
 	    oldPosY = targetPosY;
 	    rotation = Math.atan2(oldPosY - location.y, oldPosX - location.x) / Math.PI * 180;
-	    speed = 15;
+	    speed = 5;
 	  }
 	
 	void update() {
@@ -22,7 +22,7 @@ public class Bullet {
 	    location.y = (int) (location.y + Math.sin(rotation/180*Math.PI)*speed);
 
 
-	    if (location.x > 0 && location.x < SimpleGameEngine.windowWidth && location.y > 0 && location.y < SimpleGameEngine.windowHeight && toRemove==false) {
+	    if (location.x > 0 - SimpleGameEngine.px && location.x < SimpleGameEngine.windowWidth - SimpleGameEngine.px && location.y > 0 - SimpleGameEngine.py && location.y < SimpleGameEngine.windowHeight - SimpleGameEngine.py && toRemove==false) {
 	    } else {
 	      world.bullets.remove(this);		//removar denna bullet
 	    }

@@ -20,6 +20,7 @@ public class SimpleGameEngine extends JFrame {
 	Insets insets;
 	//used for input
 	public static InputHandler input;
+	public static mouseInput mouse;
 	public static ActorHandler ActorHandler;
 	 //Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
@@ -79,15 +80,22 @@ public class SimpleGameEngine extends JFrame {
 		setSize (insets.left+windowWidth+insets.right, insets.top+windowHeight+insets.bottom);
 		space.initialize();
 		input = new InputHandler (this);
-		player= new Player ();
+		mouse = new mouseInput ();
+		addMouseListener( mouse );
+		addMouseMotionListener( mouse );
+		player = new Player ();
 		
 	}
 	
 	//check for input, move things, etc.
 	void update () {
-		
+		mouse.poll();
 		player.Control(space);		
 		paint(bbg);
+		//shoot
+		if (SimpleGameEngine.mouse.buttonDown(1)) {
+			player.shoot (player,mouse.getPosition().x,mouse.getPosition().y );
+		}
 	}
 	
 	//draw everything
