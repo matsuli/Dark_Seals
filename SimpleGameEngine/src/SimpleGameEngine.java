@@ -88,7 +88,6 @@ public class SimpleGameEngine extends JFrame {
 		
 		player.Movement(space);		
 		paint(bbg);
-
 	}
 	
 	//draw everything

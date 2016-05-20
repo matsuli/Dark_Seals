@@ -86,8 +86,6 @@ public class Player extends Actor {
 			System.exit(0);
 		}
 		
-		
-		
 	}
 	
 }
