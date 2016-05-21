@@ -4,18 +4,20 @@ public class Actor {
 	Point location = new Point (); //actor location?
 	Point shooterLocation = new Point ();
 	boolean canShoot=false;
-	int canShootCounter;
+	int canShootCounter = 0;
 	
 	void shoot(Actor shooter, float targetPosX, float targetPosY) {	
-		world.bullets.add(new Bullet(shooter, targetPosX, targetPosY));
 		shooter.canShoot = false;
-		shooter.canShootCounter = 0;
 		
-		if (canShoot == false) {
-		      canShootCounter ++;
-		      if (canShootCounter == 20) {
-		        canShoot = true;
+		if (shooter.canShoot == false) {
+		      shooter.canShootCounter ++;
+		      if (shooter.canShootCounter == 20) {
+		        shooter.canShoot = true;
+		        shooter.canShootCounter = 0;
 		      }
-		    }
+		}
+		if (shooter.canShoot == true) {
+			world.bullets.add(new Bullet(shooter, targetPosX, targetPosY));
+		}
 	}
 }
