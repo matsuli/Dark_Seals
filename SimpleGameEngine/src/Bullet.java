@@ -17,13 +17,13 @@ public class Bullet {
 	    oldPosX = targetPosX;
 	    oldPosY = targetPosY;
 	    //rotation = Math.atan2(oldPosY - location.y, oldPosX - location.x) / Math.PI * 180;
-	    rotation = Math.toDegrees(Math.atan2(oldPosY - location.y, oldPosX - location.x));
+	    rotation = Math.toDegrees(Math.atan2((double)(oldPosY - location.y), (double)(oldPosX - location.x)));
 	    speed = 5;
 	  }
 	
 	void update() {
-	    location.x = (int) (location.x + Math.cos(rotation/180*Math.PI)*speed);
-	    location.y = (int) (location.y + Math.sin(rotation/180*Math.PI)*speed);
+	    location.x = (int) (location.x + Math.cos(Math.PI*rotation/180)*speed);
+	    location.y = (int) (location.y + Math.sin(Math.PI*rotation/180)*speed);
 	    
 	    
 	    if (location.x > 0 - SimpleGameEngine.px && location.x < SimpleGameEngine.windowWidth - SimpleGameEngine.px && location.y > 0 - SimpleGameEngine.py && location.y < SimpleGameEngine.windowHeight - SimpleGameEngine.py && toRemove==false) {
