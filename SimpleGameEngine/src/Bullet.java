@@ -30,6 +30,6 @@ public class Bullet {
 	    } else {
 	      world.bullets.remove(this);		//removar denna bullet
 	    }
-	    hitDetBullet.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+	    hitDetBullet.setFrame(location.x-radius, location.y-radius, radius*2, radius*2);
 	  }
 }

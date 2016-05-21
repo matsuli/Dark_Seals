@@ -17,30 +17,31 @@ public class hitDetRect extends hitDetObj {
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	
-	public void hitdetect (){
-				
-		if (SimpleGameEngine.player.hitDetCircle.intersects(rect)) {
+	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius){
+		
+		hit=false;
+		if (hitDetCircle.intersects(rect)) {
 		hit=true;
 		
-			if(ox >=(SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px)) {
+			if(ox >=(hitDetCircle.getCenterX())) {
 				hitRight=true;	
 				
-				hitCorrectionRight=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px)-ox;
+				hitCorrectionRight=(int) (hitDetCircle.getCenterX() + radius)-ox;
 			}
-			if(ox+ow <=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && oy != (SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py) && (oy+oh)!=SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py){
+			if(ox+ow <=(hitDetCircle.getCenterX())){
 				hitLeft=true;	
-				hitCorrectionLeft=(ox+ow)-(SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px);
+				hitCorrectionLeft=(int) ((ox+ow)-(hitDetCircle.getCenterX()- radius));
 			}
-			if(oy >=(SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py) && ox !=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px != (ox + ow) ){
+			if(oy >=(hitDetCircle.getCenterY()) ){
 				hitDown=true;
-				hitCorrectionDown=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py)-oy;
+				hitCorrectionDown=(int) ((hitDetCircle.getCenterY() + radius)-oy);
 			}
-			if(oy+oh <=(SimpleGameEngine.playerY + SimpleGameEngine.player.radius-SimpleGameEngine.py)&& ox !=(SimpleGameEngine.playerX + SimpleGameEngine.player.radius-SimpleGameEngine.px) && SimpleGameEngine.playerX - SimpleGameEngine.player.radius-SimpleGameEngine.px != (ox + ow)){
+			if(oy+oh <=(hitDetCircle.getCenterY())){
 				hitUp=true;	
-				hitCorrectionUp=(oy+oh)-(SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py);
+				hitCorrectionUp=(int) ((oy+oh)-(hitDetCircle.getCenterY()- radius));
 			}	
 		}
-	
+	if(hitDetCircle==SimpleGameEngine.player.hitDetCircle){
 		if(hit==true){
 			SimpleGameEngine.player.hit=true;
 			hit=false;
@@ -65,6 +66,8 @@ public class hitDetRect extends hitDetObj {
 			hitLeft=false;	
 			SimpleGameEngine.player.hitCorrectionLeft=hitCorrectionLeft;
 			}
+		}
+	return hit;
 	}
 
 	public void draw(Graphics2D g){

@@ -25,22 +25,22 @@ public class hitDetCircle extends hitDetObj {
 		centerY=circle.getCenterY();
 	}
 
-	public void hitdetect(){
+	public boolean hitdetect(Ellipse2D hitDetCircle, int radius){
 	
-		double px=SimpleGameEngine.player.hitDetCircle.getCenterX();
-		double py=SimpleGameEngine.player.hitDetCircle.getCenterY();
-		
+		double px=hitDetCircle.getCenterX();
+		double py=hitDetCircle.getCenterY();
+		hit=false;
 		
 		 if ((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py) <=
-		          (SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)){
-			 
+		          (radius + r) * (radius + r)){
+		hit=true;	 
 			 if(centerX>px){
 				 hitRight=true;		
 				 
 				int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
 				int x1=(int) (centerX-px);
 				int y=(int) (centerY-py);
-				int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+				int i2= (int) Math.sqrt(((radius + r) * (radius + r)));
 				int x2=(int)(Math.sqrt(i2*i2-y*y));
 				hitCorrectionRight=x2-x1;
 				
@@ -51,7 +51,7 @@ public class hitDetCircle extends hitDetObj {
 				int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
 				int x1=(int) (-centerX+px);
 				int y=(int) (centerY-py);
-				int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+				int i2= (int) Math.sqrt(((radius + r) * (radius + r)));
 				int x2=(int)(Math.sqrt(i2*i2-y*y));
 				hitCorrectionLeft=x2-x1;
 				
@@ -61,7 +61,7 @@ public class hitDetCircle extends hitDetObj {
 					int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
 					int y1=(int) (centerY-py);
 					int x=(int) (centerX-px);
-					int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+					int i2= (int) Math.sqrt(((radius + r) * (radius + r)));
 					int y2=(int)(Math.sqrt(i2*i2-x*x));
 					hitCorrectionDown=y2-y1;
 			 }
@@ -70,12 +70,12 @@ public class hitDetCircle extends hitDetObj {
 				 int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
 					int y1=(int) (-centerY+py);
 					int x=(int) (centerX-px);
-					int i2= (int) Math.sqrt(((SimpleGameEngine.player.radius + r) * (SimpleGameEngine.player.radius + r)));
+					int i2= (int) Math.sqrt(((radius + r) * (radius + r)));
 					int y2=(int)(Math.sqrt(i2*i2-x*x));
 					hitCorrectionUp=y2-y1;
 			 }
 		 	}
-		 
+		 if(hitDetCircle==SimpleGameEngine.player.hitDetCircle){ 
 		 if(hit==true){
 				SimpleGameEngine.player.hit=true;
 				hit=false;
@@ -101,8 +101,9 @@ public class hitDetCircle extends hitDetObj {
 				SimpleGameEngine.player.hitCorrectionLeft=hitCorrectionLeft;
 				}
 		 }
+		return hit;
 		
-	
+	}
 	
 	public void draw(Graphics2D g){		
 		

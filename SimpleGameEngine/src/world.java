@@ -30,7 +30,7 @@ public class world {
 		
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
 			hitDetObj o = it.next();
-			o.hitdetect();
+			o.hitdetect(SimpleGameEngine.player.hitDetCircle, SimpleGameEngine.player.radius);
 			
 		}
 			
@@ -44,9 +44,10 @@ public class world {
 		    g.fillOval(bullet.location.x-bullet.radius, bullet.location.y-bullet.radius, bullet.radius*2, bullet.radius*2);
 		    for (int i2 = objects.size()-1;i2>=0;i2--) {
 		    	hitDetObj o = objects.get(i2);
-		    	if (bullet.hitDetBullet.intersects(o)) {
-		    		bullets.remove(this);
-		    	}
+		
+		   if (o.hitdetect(bullet.hitDetBullet, bullet.radius)) {
+		    		bullets.remove(bullet);
+		   	}
 		    }
 		}
 	}

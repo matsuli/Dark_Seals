@@ -1,4 +1,5 @@
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 
 public class hitDetObj {
 
@@ -16,7 +17,8 @@ public class hitDetObj {
 	
 	
 	
-	public void hitdetect(){
+	public boolean hitdetect(Ellipse2D hitDetCircle, int radius){
+		return hit;
 		
 	}
 	
