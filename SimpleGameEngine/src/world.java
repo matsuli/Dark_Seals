@@ -42,7 +42,13 @@ public class world {
 		    bullet.update();
 		    g.setColor(Color.black);
 		    g.fillOval(bullet.location.x-bullet.radius, bullet.location.y-bullet.radius, bullet.radius*2, bullet.radius*2);
-	  }
+		    for (int i2 = objects.size()-1;i2>=0;i2--) {
+		    	hitDetObj o = objects.get(i2);
+		    	if (bullet.hitDetBullet.intersects(o)) {
+		    		bullets.remove(this);
+		    	}
+		    }
+		}
 	}
 	
 	public void drawWorld (Graphics2D g) {

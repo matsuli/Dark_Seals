@@ -39,7 +39,7 @@ public class hitDetRect extends hitDetObj {
 				hitUp=true;	
 				hitCorrectionUp=(oy+oh)-(SimpleGameEngine.playerY - SimpleGameEngine.player.radius-SimpleGameEngine.py);
 			}	
-		}	
+		}
 	
 		if(hit==true){
 			SimpleGameEngine.player.hit=true;
@@ -65,7 +65,7 @@ public class hitDetRect extends hitDetObj {
 			hitLeft=false;	
 			SimpleGameEngine.player.hitCorrectionLeft=hitCorrectionLeft;
 			}
-		}
+	}
 
 	public void draw(Graphics2D g){
 		g.drawRect(ox, oy, ow, oh);

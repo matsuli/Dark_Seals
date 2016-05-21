@@ -35,6 +35,8 @@ public class SimpleGameEngine extends JFrame {
 	//
 	static int px = 0;
 	static int py = 0;
+	//mouse coordinates
+	float mouseX, mouseY;
 	
 	
 	
@@ -91,14 +93,15 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		mouse.poll();
+		mouseX = mouse.getPosition().x-px-insets.left;
+		mouseY = mouse.getPosition().y-py-insets.top;
 		//System.out.println (mouse.getPosition().x + "," + mouse.getPosition().y);
-		System.out.println(player.canShoot);
-		System.out.println(player.canShootCounter);
+		System.out.println(Math.atan2(mouseX, mouseY) / Math.PI * 180);
 		player.Control(space);		
 		paint(bbg);
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
-			player.shoot (player,mouse.getPosition().x-px-insets.left,mouse.getPosition().y-py-insets.top);
+			player.shoot (player,mouseX,mouseY);
 		}
 		//pmouse.mouseLeft();
 	}
