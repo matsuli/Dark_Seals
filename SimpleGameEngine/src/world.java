@@ -40,8 +40,8 @@ public class world {
 		for (int i = bullets.size()-1; i >= 0; i--) {
 		    Bullet bullet = bullets.get(i);
 		    bullet.update();
-		    g.setColor(Color.black);;
-		    g.fillOval(bullet.location.x, bullet.location.y, bullet.radius*2, bullet.radius*2);
+		    g.setColor(Color.black);
+		    g.fillOval(bullet.location.x-bullet.radius, bullet.location.y-bullet.radius, bullet.radius*2, bullet.radius*2);
 	  }
 	}
 	

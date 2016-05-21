@@ -21,6 +21,7 @@ public class SimpleGameEngine extends JFrame {
 	//used for input
 	public static InputHandler input;
 	public static mouseInput mouse;
+	public static Pmouse pmouse = new Pmouse ();
 	public static ActorHandler ActorHandler;
 	 //Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
@@ -90,14 +91,14 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		mouse.poll();
-		System.out.println (mouse.getPosition().x);
+		System.out.println (pmouse.mouseY);
 		player.Control(space);		
 		paint(bbg);
 		//shoot
-		if (SimpleGameEngine.mouse.buttonDown(1)) {
-			player.shoot (player,mouse.getPosition().x-px,mouse.getPosition().y-py);
-		}
-		
+		//if (SimpleGameEngine.mouse.buttonDown(1)) {
+			//player.shoot (player,mouse.getPosition().x-px-insets.left,mouse.getPosition().y-py-insets.top);
+		//}
+		pmouse.mouseLeft();
 	}
 	
 	//draw everything
