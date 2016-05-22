@@ -15,8 +15,8 @@ public class world {
 		addhitDetRect(objects, 20, 40, 100, 100);			//Adda hitdetect objects här
 		addhitDetRect(objects, 320, 100, 100, 100);
 		addhitDetCircle(objects, 320, 300, 50, 50);		
-		addhitDetLine(objects, 100, 100, 150, 400);
-		
+		addhitDetLine(objects, 50, 200, 150, 400);
+		addhitDetLine(objects, 100, 150, 400, 25);
 	}
 	
 	public void HitDetect () {

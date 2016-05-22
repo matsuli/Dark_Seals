@@ -8,10 +8,10 @@ import java.awt.geom.Ellipse2D;
 public class Player extends Actor {
 	int radius = 10;
 	//used in movement
-	int right = 5;
-	int left = 5;
-	int down = 5;
-	int up = 5;
+	int right = 1;
+	int left = 1;
+	int down = 1;
+	int up = 1;
 	boolean hit;
 	boolean hitLeft;
 	boolean hitRight;
