@@ -15,6 +15,7 @@ public class world {
 		addhitDetRect(objects, 20, 40, 100, 100);			//Adda hitdetect objects här
 		addhitDetRect(objects, 320, 100, 100, 100);
 		addhitDetCircle(objects, 320, 300, 50, 50);		
+		addhitDetLine(objects, 100, 100, 150, 400);
 		
 	}
 	
@@ -78,6 +79,11 @@ public class world {
 		
 		hitDetTriangle t = new hitDetTriangle (ox, oy, ox2, oy2, ox3, oy3);
 		objects.add(t);	
+	}
+public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2){
+		
+		hitDetectLine l = new hitDetectLine (ox, oy, ox2, oy2);
+		objects.add(l);	
 	}
 	
 	

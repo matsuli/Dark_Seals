@@ -1,4 +1,6 @@
-	import java.util.Arrays;
+	import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.util.Arrays;
 	import java.util.Collections;
 	import java.util.List;
 	
@@ -18,37 +20,33 @@ public class hitDetectLine extends hitDetObj {
 	
 
 
-	    public void hitDetect(Point pointA,
-	            Point pointB, Point center, double radius) {
-	        double baX = ox2 - ox;
-	        double baY = oy2 - oy;
-	        double caX = SimpleGameEngine.player.hitDetCircle.getCenterX() - ox;
-	        double caY = SimpleGameEngine.player.hitDetCircle.getCenterY() - oy;
-
-	        double a = baX * baX + baY * baY;
-	        double bBy2 = baX * caX + baY * caY;
-	        double c = caX * caX + caY * caY - radius * radius;
-
-	        double pBy2 = bBy2 / a;
-	        double q = c / a;
-
-	        double disc = pBy2 * pBy2 - q;
-	        if (disc < 0) {
-	 //           return Collections.emptyList();
-	        }
-	        // if disc == 0 ... dealt with later
-	        double tmpSqrt = Math.sqrt(disc);
-	        double abScalingFactor1 = -pBy2 + tmpSqrt;
-	        double abScalingFactor2 = -pBy2 - tmpSqrt;
-
-	        Point p1 = new Point(pointA.x - baX * abScalingFactor1, pointA.y
-	                - baY * abScalingFactor1);
-	        if (disc == 0) { // abScalingFactor1 == abScalingFactor2
-	//            return Collections.singletonList(p1);
-	        }
-	        Point p2 = new Point(pointA.x - baX * abScalingFactor2, pointA.y
-	                - baY * abScalingFactor2);
-	//        return Arrays.asList(p1, p2);
+	    public boolean hitdetect(Ellipse2D hitDetCircle, int radius) {
+	    	hit=false;
+	    	
+	    double a = Math.toDegrees(Math.atan2(ox - ox2, oy - oy2)); 	
+	    
+	    double a2 = Math.toDegrees(Math.atan2(ox - hitDetCircle.getCenterX(), oy - hitDetCircle.getCenterY())); 
+	    
+	    double a3 = Math.toDegrees(Math.asin(radius/(Math.sqrt((ox-hitDetCircle.getCenterX())*(ox-hitDetCircle.getCenterX()) + (oy-hitDetCircle.getCenterY())*(oy-hitDetCircle.getCenterY())))));
+	   // System.out.println(a);
+	 //   System.out.println(a2);
+	   // System.out.println(a3);   
+	//        if  (){
+	//        	hit=false;	
+	           
+	  //      }
+	    
+	  if(a-a2<a3& a-a2>-a3 ){
+	  	hit=true;
+	   }
+	    
+	        
+	        if(hit==true){
+				SimpleGameEngine.player.hit=true;
+				hit=false;
+				}
+	        
+			return hit;
 	    }
 
 	    static class Point {
@@ -61,6 +59,12 @@ public class hitDetectLine extends hitDetObj {
 	            return "Point [x=" + x + ", y=" + y + "]";
 	        }
 	    }
+	    public void draw(Graphics2D g){
+	    	
+	    g.drawLine(ox, oy, ox2, oy2);
+	    
+	    	}
+	    }
 
 
-}
+

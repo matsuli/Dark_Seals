@@ -96,6 +96,7 @@ public class SimpleGameEngine extends JFrame {
 		
 		
 		player.Control(space);
+		System.out.println (player.hit);
 		mouse.poll();
 	//	System.out.println (mouse.getPosition().y-insets.top);
 		mouseX = mouse.getPosition().x-px-insets.left;
