@@ -92,15 +92,19 @@ public class SimpleGameEngine extends JFrame {
 	
 	//check for input, move things, etc.
 	void update () {
+
+		
+		
+		player.Control(space);
 		mouse.poll();
+	//	System.out.println (mouse.getPosition().y-insets.top);
 		mouseX = mouse.getPosition().x-px-insets.left;
 		mouseY = mouse.getPosition().y-py-insets.top;
-		//System.out.println (mouse.getPosition().x + "," + mouse.getPosition().y);
-	//	System.out.println(Math.atan2(mouseX, mouseY) / Math.PI * 180);
-		player.Control(space);		
+		
 		paint(bbg);
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
+		//	System.out.println(Math.atan2(mouseY-playerY, mouseX-playerX) / Math.PI * 180);
 			player.shoot (player,mouseX,mouseY);
 		}
 		//pmouse.mouseLeft();
