@@ -2,22 +2,22 @@
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-	import java.util.Collections;
-	import java.util.List;
+
 	
 	
 public class hitDetectLine extends hitDetObj {
 
 	
-	int ox2;
-	int oy2;
+	double ox2;
+	double oy2;
 	Line2D line;
-	int k;
+	double k;
 	double k2;
+	double c;
+	double b;
+	double a;
 	
-	public hitDetectLine(int x, int y, int x2, int y2) {
+	public hitDetectLine(int x, int y, int x2, double y2) {
 		if(x<=x2){		
 		this.ox=x;
 		this.ox2=x2;}
@@ -28,20 +28,57 @@ public class hitDetectLine extends hitDetObj {
 		this.oy=y;
 		this.oy2=y2;
 		line = new Line2D.Double(ox, oy, ox2, oy2);
-		k = (oy2-oy);
 		
+		k = (oy2-oy);
 		k2=(oy2-oy)/(ox2-ox);
+		c=getLineY(0.0);
+		b=-1;
+		a=k2;
 		
 	}
 	
 	public double getLineY(Double x){
-		double i = (x-ox)*k2*oy;
+		double i = (x-ox)*k2+oy;
 		return i;
 	}
 	public double getLineX(Double y){
 		double i;
-		i=y/(k2*oy)+ox;
+		i=(y-oy)/k2+ox;
 		return i;
+	}
+	
+	public double getTangentX(Double y, Double x, int r){
+		double i; //=(c+ax+by)*(c+ax+by)
+		i=(a*a+b*b)*(r*r);
+		double i2;
+		i2=(Math.sqrt(i));
+		double i3;
+		i3=(i2-c-b*y)/a;
+		double i4;
+		i4=(-i2-c-b*y)/a;
+		if(Math.abs(x-i3)<Math.abs(x-i4)){
+		return i3;	
+		}
+		else{
+		return i4;		
+		}
+	}
+	
+	public double getTangentY(Double x, Double y, int r){
+		double i; //=(c+ax+by)*(c+ax+by)
+		i=(a*a+b*b)*(r*r);
+		double i2;
+		i2=(Math.sqrt(i));
+		double i3;
+		i3=(i2-c-a*x)/b;
+		double i4;
+		i4=(-i2-c-a*x)/b;
+		if(Math.abs(y-i3)<Math.abs(y-i4)){
+		return i3;	
+		}
+		else{
+		return i4;		
+		}
 	}
 	
 	
@@ -53,39 +90,51 @@ public class hitDetectLine extends hitDetObj {
 
 //	if((Math.sqrt((ox-hitDetCircle.getCenterX())*(ox-hitDetCircle.getCenterX()) + (oy-hitDetCircle.getCenterY())*(oy-hitDetCircle.getCenterY()))<radius)){
 //		hit=true;	
-//	}
+//	}		
+	    	double px=centerP.getX();
+	    	double py=centerP.getY();
+	    	double lx=getTangentX(py, px, radius);	
+		  	double ly=getTangentY(px, py, radius);	
 	    
 	 if(line.ptSegDist(centerP)<radius){
 	  	hit=true;
 	  	
 	  	int i =line.relativeCCW(centerP);
-	  	System.out.println(i);
+	 // 	System.out.println(i);
 	  	
 	  	if(i==1 && k>0){
 	  		hitDown=true;
 	  		hitLeft=true;
 	  		
-	  	double i2=getLineX(centerP.getY());	
-	  	
+	  		hitCorrectionLeft=(int) (lx-px);
+	  		hitCorrectionDown=(int) (py-ly);
 	  		
 	  	}
 	  	else if( i==-1 && k>0){
 	  		hitUp=true;
 	  		hitRight=true;
+	  		hitCorrectionRight=(int) (px-lx);
+	  		hitCorrectionUp=(int) (ly-py);
 	  	}
 	  	else if( i==-1 && k<0){
 	  		hitUp=true;
 	  		hitLeft=true;
+	  		hitCorrectionUp=(int) (ly-py);
+	  		hitCorrectionLeft=(int) (lx-px);
+	  		
 	  	}
 	  	else if(i==1 && k<0){
 	  		hitDown=true;
 	  		hitRight=true;
+	  		hitCorrectionDown=(int) (py-ly);
+	  		hitCorrectionRight=(int) (px-lx);
 	  	}
 	  	
 	  	
 	  	
 	   }
-			
+	
+	 
 	
 	if(hit==true){
 		
@@ -115,24 +164,13 @@ public class hitDetectLine extends hitDetObj {
 		SimpleGameEngine.player.hitCorrectionLeft=hitCorrectionLeft;
 		}
 	
-	
-			return hit;
-			
+			return hit;		
 	    }
 
-	    static class Point {
-	        double x, y;
 
-	        public Point(double x, double y) { this.x = x; this.y = y; }
-
-	        @Override
-	        public String toString() {
-	            return "Point [x=" + x + ", y=" + y + "]";
-	        }
-	    }
 	    public void draw(Graphics2D g){
 	    	
-	    g.drawLine(ox, oy, ox2, oy2);
+	    g.draw(line);
 	    
 	    	}
 	    }
