@@ -37,7 +37,7 @@ public class hitDetCircle extends hitDetObj {
 			 if(centerX>px){
 				 hitRight=true;		
 				 
-				int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+				
 				int x1=(int) (centerX-px);
 				int y=(int) (centerY-py);
 				int i2= (int) Math.sqrt(((radius + r) * (radius + r)));
@@ -48,7 +48,7 @@ public class hitDetCircle extends hitDetObj {
 			 if(centerX<px){
 				 hitLeft=true;	
 				 
-				int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+				
 				int x1=(int) (-centerX+px);
 				int y=(int) (centerY-py);
 				int i2= (int) Math.sqrt(((radius + r) * (radius + r)));
@@ -58,7 +58,7 @@ public class hitDetCircle extends hitDetObj {
 			 }
 			 if(centerY>py){
 				 hitDown=true;
-					int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+					
 					int y1=(int) (centerY-py);
 					int x=(int) (centerX-px);
 					int i2= (int) Math.sqrt(((radius + r) * (radius + r)));
@@ -67,7 +67,7 @@ public class hitDetCircle extends hitDetObj {
 			 }
 			 if(centerY<py){
 				 hitUp=true;	
-				 int i=(int) Math.sqrt(((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py)));
+				 
 					int y1=(int) (-centerY+py);
 					int x=(int) (centerX-px);
 					int i2= (int) Math.sqrt(((radius + r) * (radius + r)));

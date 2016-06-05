@@ -97,10 +97,10 @@ public class hitDetectLine extends hitDetObj {
 		  	double ly=getTangentY(px, py, radius);	
 	    
 	 if(line.ptSegDist(centerP)<radius){
-	  	hit=true;
-	  	
+	  	hit=true;	
+	  		
 	  	int i =line.relativeCCW(centerP);
-	 // 	System.out.println(i);
+	 	System.out.println(i);
 	  	
 	  	if(i==1 && k>0){
 	  		hitDown=true;
@@ -130,11 +130,61 @@ public class hitDetectLine extends hitDetObj {
 	  		hitCorrectionRight=(int) (px-lx);
 	  	}
 	  	
+	  	if(centerP.distance(ox, oy)<radius || centerP.distance(ox2, oy2)<radius){
+	  		double centerX;
+	  		double centerY;
+	  		if(centerP.distance(ox, oy)<radius ){
+	  			 centerX=ox;
+	  			 centerY=oy;
+	  		}
+	  		else{
+	  			centerX=ox2;
+	  			centerY=oy2;
+	  		}
+	  		
+	  		
+			 if(centerX>px){
+				 hitRight=true;		
+				 
+				int x1=(int) (centerX-px);
+				int y=(int) (centerY-py);
+				int i2= (int) Math.sqrt(((radius) * (radius)));
+				int x2=(int)(Math.sqrt(i2*i2-y*y));
+				hitCorrectionRight=x2-x1;
+				
+			 }
+			 if(centerX<px){
+				 hitLeft=true;	
+				 
+				int x1=(int) (-centerX+px);
+				int y=(int) (centerY-py);
+				int i2= (int) Math.sqrt(((radius) * (radius)));
+				int x2=(int)(Math.sqrt(i2*i2-y*y));
+				hitCorrectionLeft=x2-x1;
+				
+			 }
+			 if(centerY>py){
+				 hitDown=true;
+					int y1=(int) (centerY-py);
+					int x=(int) (centerX-px);
+					int i2= (int) Math.sqrt(((radius) * (radius)));
+					int y2=(int)(Math.sqrt(i2*i2-x*x));
+					hitCorrectionDown=y2-y1;
+			 }
+			 if(centerY<py){
+				 hitUp=true;	
+					int y1=(int) (-centerY+py);
+					int x=(int) (centerX-px);
+					int i2= (int) Math.sqrt(((radius ) * (radius)));
+					int y2=(int)(Math.sqrt(i2*i2-x*x));
+					hitCorrectionUp=y2-y1;
+			 }	
+	  	}
+	  		  	
 	  	
-	  	
-	   }
+	 	}
 	
-	 
+	    
 	
 	if(hit==true){
 		
