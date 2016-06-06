@@ -7,7 +7,8 @@ import java.awt.geom.Point2D;
 	
 public class hitDetectLine extends hitDetObj {
 
-	
+	double ox;
+	double oy;
 	double ox2;
 	double oy2;
 	Line2D line;
@@ -16,8 +17,9 @@ public class hitDetectLine extends hitDetObj {
 	double c;
 	double b;
 	double a;
+	double lineLenght;
 	
-	public hitDetectLine(int x, int y, int x2, double y2) {
+	public hitDetectLine(double x, double y, double x2, double y2) {
 		if(x<=x2){		
 		this.ox=x;
 		this.ox2=x2;}
@@ -28,7 +30,7 @@ public class hitDetectLine extends hitDetObj {
 		this.oy=y;
 		this.oy2=y2;
 		line = new Line2D.Double(ox, oy, ox2, oy2);
-		
+		lineLenght=Math.sqrt((ox-ox2)*(ox-ox2) + (oy-oy2)*(oy-oy2));
 		k = (oy2-oy);
 		k2=(oy2-oy)/(ox2-ox);
 		c=getLineY(0.0);
@@ -130,7 +132,7 @@ public class hitDetectLine extends hitDetObj {
 	  		hitCorrectionRight=(int) (px-lx);
 	  	}
 	  	
-	  	if(centerP.distance(ox, oy)<radius || centerP.distance(ox2, oy2)<radius){
+	  	if((centerP.distance(ox, oy)<radius || centerP.distance(ox2, oy2)<radius) && (centerP.distance(ox, oy)>lineLenght || centerP.distance(ox2, oy2)>lineLenght)){
 	  		double centerX;
 	  		double centerY;
 	  		if(centerP.distance(ox, oy)<radius ){
