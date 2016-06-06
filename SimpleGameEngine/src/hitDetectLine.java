@@ -107,8 +107,13 @@ public class hitDetectLine extends hitDetObj {
 	    
 	 if(line.ptSegDist(centerP)<radius ||(i!=prevI && prevI!=0 && (prevCenterP.distance(ox, oy)<lineLenght && prevCenterP.distance(ox2, oy2)<lineLenght))){
 	  	hit=true;	
-		System.out.println(hit);	
-	  		 	  	
+		
+	  if(i!=prevI){
+		  i=prevI;
+		  lx=getTangentX(prevPy, prevPx, radius);	
+		  ly=getTangentY(prevPx, prevPy, radius);	
+	  }
+	  	
 	  	if(i==1 && k>0){
 	  		hitDown=true;
 	  		hitLeft=true;
