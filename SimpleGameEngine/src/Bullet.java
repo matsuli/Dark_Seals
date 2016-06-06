@@ -1,5 +1,8 @@
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 public class Bullet {
 	Actor shooter;
@@ -7,12 +10,12 @@ public class Bullet {
 	int radius = 5;
 	float oldPosX, oldPosY;
 	double rotation, speed;
-	Point location;//bullet location
+	Point2D.Double location;//bullet location
 	Ellipse2D hitDetBullet;
 	
 	Bullet (Actor shooter, float targetPosX, float targetPosY) {
 		this.shooter=shooter;
-	    location = new Point ((shooter.shooterLocation.x), (shooter.shooterLocation.y));
+	    location = new Point2D.Double ((shooter.shooterLocation.getX()), (shooter.shooterLocation.getY()));
 		hitDetBullet = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 	    oldPosX = targetPosX;
 	    oldPosY = targetPosY;
@@ -23,8 +26,8 @@ public class Bullet {
 	
 	void update() {
 		//System.out.println(rotation);
-	    location.x = (int) (location.x + Math.cos(Math.PI*rotation/180)*speed);
-	    location.y = (int) (location.y + Math.sin(Math.PI*rotation/180)*speed);
+	    location.x =  (location.x + Math.cos(Math.PI*rotation/180)*speed);
+	    location.y =  (location.y + Math.sin(Math.PI*rotation/180)*speed);
 	    
 	    
 	    if (location.x > 0 - SimpleGameEngine.px && location.x < SimpleGameEngine.windowWidth - SimpleGameEngine.px && location.y > 0 - SimpleGameEngine.py && location.y < SimpleGameEngine.windowHeight - SimpleGameEngine.py && toRemove==false) {
@@ -33,4 +36,9 @@ public class Bullet {
 	    }
 	    hitDetBullet.setFrame(location.x-radius, location.y-radius, radius*2, radius*2);
 	  }
+	void draw(Graphics2D g){
+		g.fill(hitDetBullet);
+	}
+	
 }
+
