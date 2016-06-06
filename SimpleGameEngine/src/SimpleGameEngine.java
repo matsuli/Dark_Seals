@@ -21,7 +21,6 @@ public class SimpleGameEngine extends JFrame {
 	//used for input
 	public static InputHandler input;
 	public static mouseInput mouse;
-	public static Pmouse pmouse = new Pmouse ();
 	public static ActorHandler ActorHandler;
 	 //Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
@@ -108,7 +107,6 @@ public class SimpleGameEngine extends JFrame {
 		//	System.out.println(Math.atan2(mouseY-playerY, mouseX-playerX) / Math.PI * 180);
 			player.shoot (player,mouseX,mouseY);
 		}
-		//pmouse.mouseLeft();
 	}
 	
 	//draw everything
@@ -146,7 +144,6 @@ public class SimpleGameEngine extends JFrame {
 	}
 	
 	//to do
-	//mouse input
 	//bullets hitdetect
 	//trianglar
 	//texture funktion
