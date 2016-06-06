@@ -17,7 +17,7 @@ public class hitDetObj {
 	
 	
 	
-	public boolean hitdetect(Ellipse2D hitDetCircle, int radius){
+	public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){
 		return hit;
 		
 	}

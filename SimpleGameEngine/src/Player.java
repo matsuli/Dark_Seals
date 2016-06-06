@@ -18,6 +18,7 @@ public class Player extends Actor {
 	boolean hitUp;
 	boolean hitDown;
 	Ellipse2D hitDetCircle;
+	Ellipse2D prevHitDetCircle;
 	int hitCorrectionLeft;
 	int hitCorrectionRight;
 	int hitCorrectionUp;
@@ -28,7 +29,8 @@ public class Player extends Actor {
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px,location.y - SimpleGameEngine.py);
-		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);		//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten
+		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);	//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten
+		prevHitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 	}																										//location-radius innebär att location e cirkelns mitt
 	
 	public void drawPlayer (Graphics2D g, int x, int y, int d) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
@@ -40,6 +42,7 @@ public class Player extends Actor {
 	
 	public void Control (world space) {
 		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+		prevHitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
 						
@@ -86,7 +89,7 @@ public class Player extends Actor {
 			System.exit(0);
 		}
 		
-		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);	
+		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px,location.y - SimpleGameEngine.py);
 	}
 	

@@ -86,24 +86,29 @@ public class hitDetectLine extends hitDetObj {
 	
 
 
-	    public boolean hitdetect(Ellipse2D hitDetCircle, int radius) {
+	    public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle) {
 	    	hit=false;
 	    	Point2D centerP = new Point2D.Double(hitDetCircle.getCenterX(), hitDetCircle.getCenterY());
-
+	    	Point2D prevCenterP = new Point2D.Double(prevHitDetCircle.getCenterX(), prevHitDetCircle.getCenterY());
+	    	
 //	if((Math.sqrt((ox-hitDetCircle.getCenterX())*(ox-hitDetCircle.getCenterX()) + (oy-hitDetCircle.getCenterY())*(oy-hitDetCircle.getCenterY()))<radius)){
 //		hit=true;	
 //	}		
 	    	double px=centerP.getX();
 	    	double py=centerP.getY();
+	    	double prevPx=prevCenterP.getX();
+	    	double prevPy=prevCenterP.getY();
 	    	double lx=getTangentX(py, px, radius);	
 		  	double ly=getTangentY(px, py, radius);	
+		  	int i =line.relativeCCW(centerP);
+		  	int prevI=line.relativeCCW(prevCenterP);
+		  	
+		  
 	    
-	 if(line.ptSegDist(centerP)<radius){
+	 if(line.ptSegDist(centerP)<radius ||(i!=prevI && prevI!=0 && (prevCenterP.distance(ox, oy)<lineLenght && prevCenterP.distance(ox2, oy2)<lineLenght))){
 	  	hit=true;	
-	  		
-	  	int i =line.relativeCCW(centerP);
-	 	System.out.println(i);
-	  	
+		System.out.println(hit);	
+	  		 	  	
 	  	if(i==1 && k>0){
 	  		hitDown=true;
 	  		hitLeft=true;
@@ -186,7 +191,7 @@ public class hitDetectLine extends hitDetObj {
 	  	
 	 	}
 	
-	    
+	 if(hitDetCircle==SimpleGameEngine.player.hitDetCircle){     
 	
 	if(hit==true){
 		
@@ -215,7 +220,7 @@ public class hitDetectLine extends hitDetObj {
 		hitLeft=false;	
 		SimpleGameEngine.player.hitCorrectionLeft=hitCorrectionLeft;
 		}
-	
+	 }
 			return hit;		
 	    }
 

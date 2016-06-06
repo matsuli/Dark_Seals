@@ -6,6 +6,7 @@ public class Actor {
 	boolean canShoot=true;
 	int canShootCounter = 0;
 	
+	
 	void shoot(Actor shooter, float targetPosX, float targetPosY) {	
 				
 		if (shooter.canShoot == false) {

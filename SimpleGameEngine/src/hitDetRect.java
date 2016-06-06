@@ -17,7 +17,7 @@ public class hitDetRect extends hitDetObj {
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	
-	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius){
+	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius, Ellipse2D unused){
 		
 		hit=false;
 		if (hitDetCircle.intersects(rect)) {

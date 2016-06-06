@@ -31,7 +31,7 @@ public class world {
 		
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
 			hitDetObj o = it.next();
-			o.hitdetect(SimpleGameEngine.player.hitDetCircle, SimpleGameEngine.player.radius);
+			o.hitdetect(SimpleGameEngine.player.hitDetCircle, SimpleGameEngine.player.radius, SimpleGameEngine.player.prevHitDetCircle);
 			
 		}
 			
@@ -46,7 +46,7 @@ public class world {
 		    for (int i2 = objects.size()-1;i2>=0;i2--) {
 		    	hitDetObj o = objects.get(i2);
 		
-		   if (o.hitdetect(bullet.hitDetBullet, bullet.radius)) {
+		   if (o.hitdetect(bullet.hitDetBullet, bullet.radius, bullet.prevHitDetBullet)) {
 		    		bullets.remove(bullet);
 		   	}
 		    }

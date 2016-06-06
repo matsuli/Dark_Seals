@@ -25,7 +25,7 @@ public class hitDetCircle extends hitDetObj {
 		centerY=circle.getCenterY();
 	}
 
-	public boolean hitdetect(Ellipse2D hitDetCircle, int radius){
+	public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D unused){
 	
 		double px=hitDetCircle.getCenterX();
 		double py=hitDetCircle.getCenterY();

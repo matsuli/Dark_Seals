@@ -12,11 +12,13 @@ public class Bullet {
 	double rotation, speed;
 	Point2D.Double location;//bullet location
 	Ellipse2D hitDetBullet;
+	Ellipse2D prevHitDetBullet;
 	
 	Bullet (Actor shooter, float targetPosX, float targetPosY) {
 		this.shooter=shooter;
 	    location = new Point2D.Double ((shooter.shooterLocation.getX()), (shooter.shooterLocation.getY()));
 		hitDetBullet = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
+		prevHitDetBullet = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 	    oldPosX = targetPosX;
 	    oldPosY = targetPosY;
 	    //rotation = Math.atan2(oldPosY - location.y, oldPosX - location.x) / Math.PI * 180;
@@ -25,7 +27,9 @@ public class Bullet {
 	  }
 	
 	void update() {
-		//System.out.println(rotation);
+		
+		prevHitDetBullet.setFrame(location.x-radius, location.y-radius, radius*2, radius*2);
+		
 	    location.x =  (location.x + Math.cos(Math.PI*rotation/180)*speed);
 	    location.y =  (location.y + Math.sin(Math.PI*rotation/180)*speed);
 	    
