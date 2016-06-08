@@ -17,7 +17,6 @@ public class hitDetRect extends hitDetObj {
 		this.ow=ow;
 		this.oh=oh;
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
-		texture = null;
 	}
 	
 	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius, Ellipse2D unused){
@@ -75,7 +74,8 @@ public class hitDetRect extends hitDetObj {
 
 	public void draw(Graphics2D g){
 		g.drawRect(ox, oy, ow, oh);
-//		g.drawImage(texture, ox, oy, ????);
+	g.drawImage(texture, ox, oy, null);
+	System.out.println(texture);
 	}
 			
 }
