@@ -1,7 +1,13 @@
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import javax.imageio.ImageIO;
+
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 
 public class world {
@@ -65,12 +71,20 @@ public class world {
 		
 	}
 	
-	public void addhitDetRect(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
+	public void addhitDetRect(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture){
+		BufferedImage img = null;
 		
-		
-			hitDetRect r = new hitDetRect (ox, oy, ow, oh);
-			objects.add(r);	
+		if (texture == "none") {
+		} else {
+			try {
+			    img = ImageIO.read(new File(texture));
+			} catch (IOException e) {
+			}
 		}
+		
+		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
+		objects.add(r);	
+	}
 	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
 		
 			hitDetCircle c = new hitDetCircle (ox, oy, ow, oh);
