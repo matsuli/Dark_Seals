@@ -1,7 +1,8 @@
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.io.Serializable;
 
-public class hitDetObj {
+public class hitDetObj implements Serializable {
 
 	int ox;
 	int oy;

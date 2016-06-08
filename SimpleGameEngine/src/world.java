@@ -7,7 +7,12 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class world {
@@ -16,14 +21,35 @@ public class world {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
+	boolean write =false;
+//	boolean write =true;
+	
 	public void initialize () {
+	
+	if(write){														//Adda hitdetect objects här
+//		addhitDetCircle(objects, 100, 100, 50, 50);
+//		addhitDetCircle(objects, 320, 300, 50, 50);		
+//		addhitDetLine(objects, 374, 250, 500, 400);
+//		addhitDetLine(objects, 360, 400, 0, 125);
+//		addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
+//		saveWorld("world1");						
 		
-	addhitDetRect(objects, 20, 40, 100, 100, "images/chicken.gif");			//Adda hitdetect objects här
-//	addhitDetRect(objects, 320, 100, 100, 100);
-		addhitDetCircle(objects, 320, 300, 50, 50);		
-		addhitDetLine(objects, 374, 250, 500, 400);
-		addhitDetLine(objects, 360, 400, 0, 125);
-		addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
+//		addhitDetCircle(objects, 225, 100, 50, 50);		
+//		addhitDetLine(objects, 100, 250, 125, 450);
+//		addhitDetLine(objects, 50, 500, 0, 0);
+//		addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
+//		saveWorld("world2");		
+																	//skapar en fil med valfritt namn och sparar arraylisten objects där, 
+	}																//object till den har addats ovan
+	else{
+	//	loadWorld("world1");	
+		loadWorld("world2"); //laddar arraylisten ur en fil
+	}
+		
+		
+		
+
+		
 	}
 	
 	public void HitDetect () {
@@ -101,9 +127,32 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 		hitDetectLine l = new hitDetectLine (ox, oy, ox2, oy2);
 		objects.add(l);	
 	}
-	
-	
+
+	public void saveWorld(String world){
+		try {
+			FileOutputStream fos = new FileOutputStream(world);
+			ObjectOutputStream	oos = new ObjectOutputStream(fos);
+			oos.writeObject(objects);
+			oos.close();
+		} catch(Exception ex) {
+		    ex.printStackTrace();
+		}	
 	}
+
+	public void loadWorld(String world){
+		try {
+		FileInputStream fis = new FileInputStream(world);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		objects = (ArrayList <hitDetObj>)ois.readObject();
+		ois.close();
+		
+		} catch(Exception ex) {
+			    ex.printStackTrace();
+			}	
+		}
+	}
+
+
 	
 
 

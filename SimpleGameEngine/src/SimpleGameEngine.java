@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.RenderingHints.Key;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -41,14 +42,14 @@ public class SimpleGameEngine extends JFrame {
 	
 	 world space = new world ();
 	
-	public static void main (String [] args) {
+	public static void main (String [] args) throws IOException {
 		SimpleGameEngine game = new SimpleGameEngine ();
 		game.run ();
 		System.exit(0);
 	}
 	
 	//starts game, loops game
-	public void run () {
+	public void run () throws IOException {
 		initialize ();
 		
 		while (isRunning) {
@@ -72,7 +73,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	
 	//initial setup
-	void initialize () {
+	void initialize () throws IOException {
 		setTitle ("SimpleGameEngine");
 		setSize(windowWidth, windowHeight);
 		setResizable (true);
