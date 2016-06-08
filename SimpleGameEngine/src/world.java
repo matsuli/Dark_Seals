@@ -83,7 +83,7 @@ public class world {
 		}
 		
 		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
-		r.texture = img; ///THIS DOESNT WORK, r.texture är null
+		r.texture = img; ///THIS DOESNT WORK, r.texture är null även efter detta
 		objects.add(r);	
 	}
 	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
