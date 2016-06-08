@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -40,7 +39,7 @@ public class world {
 //		addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
 //		saveWorld("world2");		
 																	//skapar en fil med valfritt namn och sparar arraylisten objects där, 
-	}																//object till den har addats ovan
+	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
 	//	loadWorld("world1");	
 		loadWorld("world2"); //laddar arraylisten ur en fil
