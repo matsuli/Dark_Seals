@@ -128,8 +128,8 @@ public class SimpleGameEngine extends JFrame {
 		offgc.translate(px, py);			//TRANSLATER med px, py, dvs. sätter px o py som kordinatsystemets 0,0 o gör att allt annat än player rör sig runt player
 		//draw a circle for orientation		//OBS! Eter denna translate ska bara saker som inte rör sig ritas, annars hamnar deras position ur synk med var de ritas
 		offgc.setColor(Color.BLACK);
-		offgc.drawOval(200, 200, 150, 150);
-		offgc.drawRect(50, 50, 150, 150);
+	//	offgc.drawOval(200, 200, 150, 150);
+	//	offgc.drawRect(50, 50, 150, 150);
 		//world
 		space.drawWorld (offgc);
 		

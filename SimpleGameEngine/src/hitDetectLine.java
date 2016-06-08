@@ -22,13 +22,16 @@ public class hitDetectLine extends hitDetObj {
 	public hitDetectLine(double x, double y, double x2, double y2) {
 		if(x<=x2){		
 		this.ox=x;
-		this.ox2=x2;}
+		this.ox2=x2;
+		this.oy=y;
+		this.oy2=y2;}
 		else{
 		this.ox=x2;
 		this.ox2=x;
+		this.oy=y2;
+		this.oy2=y;
 		}		
-		this.oy=y;
-		this.oy2=y2;
+
 		line = new Line2D.Double(ox, oy, ox2, oy2);
 		lineLenght=Math.sqrt((ox-ox2)*(ox-ox2) + (oy-oy2)*(oy-oy2));
 		k = (oy2-oy);
