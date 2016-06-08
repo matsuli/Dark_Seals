@@ -37,12 +37,15 @@ public class world {
 //		addhitDetLine(objects, 100, 250, 125, 450);
 //		addhitDetLine(objects, 50, 500, 0, 0);
 //		addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
-//		saveWorld("world2");		
-																	//skapar en fil med valfritt namn och sparar arraylisten objects där, 
+//		saveWorld("world2");	
+		
+		addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
+		saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
-	//	loadWorld("world1");	
-		loadWorld("world2"); //laddar arraylisten ur en fil
+		loadWorld("world1");	
+	//	loadWorld("world2");
+	//	loadWorld("chicken"); //laddar arraylisten ur en fil
 	}
 		
 		
