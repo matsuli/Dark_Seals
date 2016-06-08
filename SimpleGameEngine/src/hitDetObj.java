@@ -1,5 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 public class hitDetObj implements Serializable {
@@ -15,7 +16,8 @@ public class hitDetObj implements Serializable {
 	int hitCorrectionRight;
 	int hitCorrectionUp;
 	int hitCorrectionDown;
-	
+	String texture;
+	BufferedImage textureImg;
 	
 	
 	public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){

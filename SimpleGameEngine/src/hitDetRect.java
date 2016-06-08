@@ -6,7 +6,7 @@ import java.awt.image.ImageObserver;
 
 public class hitDetRect extends hitDetObj {
 	
-	BufferedImage texture;
+
 	Rectangle2D rect;
 	int ow;
 	int oh;
@@ -74,7 +74,7 @@ public class hitDetRect extends hitDetObj {
 
 	public void draw(Graphics2D g){
 	g.drawRect(ox, oy, ow, oh);
-	g.drawImage(texture, ox, oy, ow, oh, null);
+	g.drawImage(textureImg, ox, oy, ow, oh, null);
 	}
 			
 }

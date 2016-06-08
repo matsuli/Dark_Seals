@@ -39,13 +39,13 @@ public class world {
 //		addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
 //		saveWorld("world2");	
 		
-		addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
-		saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
+//		addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
+//		saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
-		loadWorld("world1");	
+	//	loadWorld("world1");	
 	//	loadWorld("world2");
-	//	loadWorld("chicken"); //laddar arraylisten ur en fil
+		loadWorld("chicken"); //laddar arraylisten ur en fil
 	}
 		
 		
@@ -100,18 +100,9 @@ public class world {
 	}
 	
 	public void addhitDetRect(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture){
-		BufferedImage img = null;
-		
-		if (texture == "none") {
-		} else {
-			try {
-			    img = ImageIO.read(new File(texture));
-			} catch (IOException e) {
-			}
-		}
 		
 		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
-		r.texture = img;
+		r.texture = texture;
 		objects.add(r);	
 	}
 	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
@@ -141,6 +132,7 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 		}	
 	}
 
+	
 	public void loadWorld(String world){
 		try {
 		FileInputStream fis = new FileInputStream(world);
@@ -151,8 +143,26 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 		} catch(Exception ex) {
 			    ex.printStackTrace();
 			}	
+		
+		
+		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
+		hitDetObj o = it.next();
+		BufferedImage img = null;
+		if (o.texture == null) {
+		} else {
+			try {
+			    img = ImageIO.read(new File(o.texture));
+			    o.textureImg=img;
+			} catch (IOException e) {
+			}
 		}
-	}
+		
+	  }
+    }
+	
+	
+	
+}
 
 
 	
