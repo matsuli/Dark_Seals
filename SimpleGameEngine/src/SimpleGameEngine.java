@@ -144,8 +144,6 @@ public class SimpleGameEngine extends JFrame {
 	}
 	
 	//to do
-	//bullets hitdetect
-	//trianglar
 	//texture funktion
 	//save function
 	//interaction
