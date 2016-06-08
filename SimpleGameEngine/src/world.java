@@ -18,8 +18,8 @@ public class world {
 	
 	public void initialize () {
 		
-		addhitDetRect(objects, 20, 40, 100, 100);			//Adda hitdetect objects här
-		addhitDetRect(objects, 320, 100, 100, 100);
+	addhitDetRect(objects, 20, 40, 100, 100, "images/chicken.gif");			//Adda hitdetect objects här
+//	addhitDetRect(objects, 320, 100, 100, 100);
 		addhitDetCircle(objects, 320, 300, 50, 50);		
 		addhitDetLine(objects, 374, 250, 500, 400);
 		addhitDetLine(objects, 360, 400, 0, 125);
@@ -83,6 +83,7 @@ public class world {
 		}
 		
 		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
+		r.texture = img;
 		objects.add(r);	
 	}
 	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){

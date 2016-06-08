@@ -1,10 +1,12 @@
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 
 public class hitDetRect extends hitDetObj {
 	
-	
+	BufferedImage texture;
 	Rectangle2D rect;
 	int ow;
 	int oh;
@@ -15,6 +17,7 @@ public class hitDetRect extends hitDetObj {
 		this.ow=ow;
 		this.oh=oh;
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
+		texture = null;
 	}
 	
 	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius, Ellipse2D unused){
@@ -72,6 +75,7 @@ public class hitDetRect extends hitDetObj {
 
 	public void draw(Graphics2D g){
 		g.drawRect(ox, oy, ow, oh);
+//		g.drawImage(texture, ox, oy, ????);
 	}
 			
 }
