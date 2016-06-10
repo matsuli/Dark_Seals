@@ -1,15 +1,7 @@
 import java.awt.*;
-import java.awt.RenderingHints.Key;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Vector;
-
 import javax.swing.JFrame;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
 
 public class SimpleGameEngine extends JFrame {
 	
@@ -44,6 +36,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	public static void main (String [] args) throws IOException {
 		SimpleGameEngine game = new SimpleGameEngine ();
+		
 		game.run ();
 		System.exit(0);
 	}
@@ -61,6 +54,7 @@ public class SimpleGameEngine extends JFrame {
 			//delay for each frame - time it took for one frame
 			time = (1000/fps)-(System.currentTimeMillis()-time);
 			
+			
 			if (time > 0) {
 				try {
 					Thread.sleep(time);
@@ -73,7 +67,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	
 	//initial setup
-	void initialize () throws IOException {
+	void initialize () {
 		setTitle ("SimpleGameEngine");
 		setSize(windowWidth, windowHeight);
 		setResizable (true);
