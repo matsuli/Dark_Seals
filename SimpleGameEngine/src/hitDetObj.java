@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-public class hitDetObj implements Serializable {
+public class hitDetObj extends object {
 
 	int ox;
 	int oy;
@@ -19,9 +19,7 @@ public class hitDetObj implements Serializable {
 	int hitCorrectionRight;
 	int hitCorrectionUp;
 	int hitCorrectionDown;
-	String texture;
-	//BufferedImage textureImg;
-	Image textureImg2;
+
 	
 	
 	public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){

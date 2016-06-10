@@ -22,7 +22,7 @@ import java.net.URL;
 public class world {
 	
 	ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
-	ArrayList <noHitObj> noHitobjects = new ArrayList <noHitObj>();
+	ArrayList <noHitObj> noHitObjects = new ArrayList <noHitObj>();
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
@@ -39,14 +39,15 @@ public class world {
 //		addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
 //		saveWorld("world1");						
 		
-//		addhitDetCircle(objects, 225, 100, 50, 50);		
-//		addhitDetLine(objects, 100, 250, 125, 450);
-//		addhitDetLine(objects, 50, 500, 0, 0);
-//		addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
-//		saveWorld("world2");	
+//	addhitDetCircle(objects, 225, 100, 50, 50);		
+//	addhitDetLine(objects, 100, 250, 125, 450);
+//	addhitDetLine(objects, 50, 500, 0, 0);
+//	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
+//	saveWorld("world2");	
 		
-		addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
-		saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
+//	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
+//	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
+//	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
 	//	loadWorld("world1");	
@@ -101,6 +102,11 @@ public class world {
 			hitDetObj o = it.next();
 			o.draw(g);
 		}
+		g.setColor(Color.green);	
+		for (Iterator<noHitObj> it = this.noHitObjects.iterator(); it.hasNext(); ) {
+			noHitObj o = it.next();
+			o.draw(g);
+		}
 		this.Bullet(g);
 		
 	}
@@ -126,12 +132,30 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 		hitDetectLine l = new hitDetectLine (ox, oy, ox2, oy2);
 		objects.add(l);	
 	}
+public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture){
+	
+	 noHitRect r = new  noHitRect(ox, oy, ow, oh);
+	r.texture = texture;
+	 noHitObjects.add(r);	
+}
 
 	public void saveWorld(String world){
 		try {
-			FileOutputStream fos = new FileOutputStream(world);
+			new File(world).mkdirs();
+			
+			FileOutputStream fos = new FileOutputStream(world+"/hitDet");
 			ObjectOutputStream	oos = new ObjectOutputStream(fos);
 			oos.writeObject(objects);
+			oos.close();
+		} catch(Exception ex) {
+		    ex.printStackTrace();
+		}	
+		try {
+			
+		
+			FileOutputStream fos = new FileOutputStream(world+"/noHitObj");
+			ObjectOutputStream	oos = new ObjectOutputStream(fos);
+			oos.writeObject(noHitObjects);
 			oos.close();
 		} catch(Exception ex) {
 		    ex.printStackTrace();
@@ -141,7 +165,7 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 	
 	public void loadWorld(String world){
 		try {
-		FileInputStream fis = new FileInputStream(world);
+		FileInputStream fis = new FileInputStream(world+"/hitDet");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		objects = (ArrayList <hitDetObj>)ois.readObject();
 		ois.close();
@@ -173,9 +197,39 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 		}
 		
 	  }
-    }
+		try {
+			FileInputStream fis = new FileInputStream(world+"/noHitObj");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			noHitObjects = (ArrayList <noHitObj>)ois.readObject();
+			ois.close();
+			
+			} catch(Exception ex) {
+				    ex.printStackTrace();
+				}	
+		
+		for (Iterator<noHitObj> it = this.noHitObjects.iterator(); it.hasNext(); ) {
+			noHitObj o = it.next();
+			//BufferedImage img = null;
+			Image img2 = null;
+			if (o.texture == null) {
+			} else {
+				img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
+				o.textureImg2=img2;
+				//try {
+				//	img2 = new ImageIcon (new URL(o.texture)).getImage();
+				//	o.textureImg2=img2;
+				//} catch (MalformedURLException e) {
+				//	e.printStackTrace();
+				//}
+				//try {
+				    //img = ImageIO.read(new File(o.texture));
+				    //o.textureImg=img;
+				//} catch (IOException e) {
+				//}
+			}
+		}
 	
-	
+	  }	
 	
 }
 
