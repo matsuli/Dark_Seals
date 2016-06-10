@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -155,12 +156,14 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 		Image img2 = null;
 		if (o.texture == null) {
 		} else {
-			try {
-				img2 = new ImageIcon (new URL(o.texture)).getImage();
-				o.textureImg2=img2;
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
+			img2 = Toolkit.getDefaultToolkit().createImage("o.texture");
+			o.textureImg2=img2;
+			//try {
+			//	img2 = new ImageIcon (new URL(o.texture)).getImage();
+			//	o.textureImg2=img2;
+			//} catch (MalformedURLException e) {
+			//	e.printStackTrace();
+			//}
 			//try {
 			    //img = ImageIO.read(new File(o.texture));
 			    //o.textureImg=img;
