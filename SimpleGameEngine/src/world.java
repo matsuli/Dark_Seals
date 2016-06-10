@@ -22,11 +22,12 @@ import java.net.URL;
 public class world {
 	
 	ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
+	ArrayList <noHitObj> noHitobjects = new ArrayList <noHitObj>();
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
-//	boolean write =false;
-	boolean write =true;
+	boolean write =false;
+//	boolean write =true;
 	
 	public void initialize () {
 	
@@ -50,7 +51,7 @@ public class world {
 	else{
 	//	loadWorld("world1");	
 	//	loadWorld("world2");
-		//loadWorld("chicken"); //laddar arraylisten ur en fil
+		loadWorld("chicken"); //laddar arraylisten ur en fil
 	}
 		
 		
@@ -156,7 +157,7 @@ public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2,
 		Image img2 = null;
 		if (o.texture == null) {
 		} else {
-			img2 = Toolkit.getDefaultToolkit().createImage("o.texture");
+			img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
 			o.textureImg2=img2;
 			//try {
 			//	img2 = new ImageIcon (new URL(o.texture)).getImage();
