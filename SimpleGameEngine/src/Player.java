@@ -94,6 +94,9 @@ public class Player extends Actor {
 		}
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_SHIFT)) {
+			sprint = true;
+		} else {sprint = false;}
+		if (sprint == true) {
 			if (stamina >= 2) {
 				stamina =- 2;
 			} else {
@@ -106,8 +109,10 @@ public class Player extends Actor {
 				speed --;
 			}
 		}
-		if (speed > 5) {
-			speed --;
+		if (sprint == false) {
+			if (speed > 5) {
+				speed --;
+			}
 		}
 		if (stamina <= 1000) {
 			stamina = stamina + 10;
