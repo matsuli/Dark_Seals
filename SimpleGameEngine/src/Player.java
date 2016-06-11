@@ -85,9 +85,7 @@ public class Player extends Actor {
 			}
 		}
 		
-		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
-			System.exit(0);
-		}
+
 		
 		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px,location.y - SimpleGameEngine.py);

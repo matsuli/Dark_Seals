@@ -15,9 +15,11 @@ int stringDistance;
 ArrayList <menuBox> menuBoxes = new ArrayList <menuBox>();
 String returnString;
 BufferedImage unused;	
+String thisMenu;
 	
 
-	public menu(String...strings) {
+	public menu(String menuName, String...strings) {
+		this.thisMenu=menuName;
 		this.length=strings.length;
 		stringPosX=SimpleGameEngine.windowWidth/2;
 		stringDistance=SimpleGameEngine.windowHeight/(length+2);
@@ -50,24 +52,21 @@ BufferedImage unused;
 	
 	public void update(Graphics2D g){
 		
-		
-		SimpleGameEngine.mouse.poll();
-		float	mouseX = SimpleGameEngine.mouse.getPosition().x-SimpleGameEngine.px-SimpleGameEngine.insets.left;
-		float	mouseY = SimpleGameEngine.mouse.getPosition().y-SimpleGameEngine.py-SimpleGameEngine.insets.top;
+		SimpleGameEngine.currentMenu=thisMenu;
 		returnString=null;
 		
 		for(Iterator<menuBox> it = this.menuBoxes.iterator(); it.hasNext();) {
 		menuBox o = it.next();	
 		
-		o.draw(g, mouseX, mouseY);
+		o.draw(g, SimpleGameEngine.mouseX, SimpleGameEngine.mouseY);
 		
-		if(o.selected(mouseX, mouseY)){
+		if(o.selected( SimpleGameEngine.mouseX, SimpleGameEngine.mouseY)){
 			returnString=o.text;	
 		}
 		
 		}
-		
-		System.out.println(returnString);
+			
+	//	System.out.println(returnString);
 		
 	}
 	

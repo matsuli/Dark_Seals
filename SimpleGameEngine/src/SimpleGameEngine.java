@@ -18,8 +18,12 @@ public class SimpleGameEngine extends JFrame {
 	 //Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	Graphics2D bbg = backBuffer.createGraphics();
+	
+	//menuHandler
+	public static menuHandler menuHandler;
 	//the main menu	
-	menu mainMenu;
+	public static menu mainMenu;
+	
 	//new player
 	static Player player;
 	//Player variables
@@ -29,9 +33,12 @@ public class SimpleGameEngine extends JFrame {
 	static int px = 0;
 	static int py = 0;
 	//mouse coordinates
-	float mouseX, mouseY;
+	static float mouseX;
+	static float mouseY;
 	
-	boolean play=true;
+	static boolean play;
+	
+	static String currentMenu;
 	
 	 world space = new world ();
 	
@@ -89,7 +96,9 @@ public class SimpleGameEngine extends JFrame {
 		mouse = new mouseInput ();
 		addMouseListener( mouse );
 		addMouseMotionListener( mouse );
-		mainMenu= new menu("New Game", "Load Game", "Settings", "Quit");
+		menuHandler = new menuHandler();
+		mainMenu= new menu("Main","New Game", "Load Game", "Settings", "Quit");
+		input.menus.add(mainMenu);
 		player = new Player ();
 		
 	}
@@ -98,17 +107,15 @@ public class SimpleGameEngine extends JFrame {
 	void update () {
 		
 		
-		player.Control(space);
+		if(play){
+		player.Control(space);}
 		mouse.poll();
 		mouseX = mouse.getPosition().x-px-insets.left;
 		mouseY = mouse.getPosition().y-py-insets.top;
+		input.handleInput();
+		paint(bbg);		
 		
-		paint(bbg);
-		
-		//shoot
-		if (SimpleGameEngine.mouse.buttonDown(1)) {
-			player.shoot (player,mouseX,mouseY);
-		}
+		//System.out.println(currentMenu);
 		
 	}
 	
