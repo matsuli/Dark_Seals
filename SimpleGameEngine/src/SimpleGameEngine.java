@@ -10,7 +10,7 @@ public class SimpleGameEngine extends JFrame {
 	static int windowHeight = 500;
 	boolean isRunning = true;
 	long fps = 60;
-	Insets insets;
+	public static Insets insets;
 	//used for input
 	public static InputHandler input;
 	public static mouseInput mouse;
@@ -18,7 +18,8 @@ public class SimpleGameEngine extends JFrame {
 	 //Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	Graphics2D bbg = backBuffer.createGraphics();
-	
+	//the main menu	
+	menu mainMenu;
 	//new player
 	static Player player;
 	//Player variables
@@ -30,7 +31,7 @@ public class SimpleGameEngine extends JFrame {
 	//mouse coordinates
 	float mouseX, mouseY;
 	
-	
+	boolean play=true;
 	
 	 world space = new world ();
 	
@@ -45,8 +46,15 @@ public class SimpleGameEngine extends JFrame {
 	public void run () throws IOException {
 		initialize ();
 		
+		
+		
+		
+		
+		
+		
 		while (isRunning) {
 			long time = System.currentTimeMillis ();
+			
 			
 			update ();
 			repaint ();
@@ -61,7 +69,8 @@ public class SimpleGameEngine extends JFrame {
 				}
 				catch (Exception e) {}
 			}
-		}
+				
+	}
 		setVisible (false);
 	}
 	
@@ -80,6 +89,7 @@ public class SimpleGameEngine extends JFrame {
 		mouse = new mouseInput ();
 		addMouseListener( mouse );
 		addMouseMotionListener( mouse );
+		mainMenu= new menu("New Game", "Load Game", "Settings", "Quit");
 		player = new Player ();
 		
 	}
@@ -87,21 +97,31 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		
+		
 		player.Control(space);
 		mouse.poll();
 		mouseX = mouse.getPosition().x-px-insets.left;
 		mouseY = mouse.getPosition().y-py-insets.top;
 		
 		paint(bbg);
+		
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
 			player.shoot (player,mouseX,mouseY);
 		}
+		
 	}
 	
 	//draw everything
 	public void paint (Graphics g) {
-		
+		if(play){
+		paintGame(g);}
+		else{
+		paintMenu(g);
+		}
+	}
+	
+	public void paintGame(Graphics g){
 		BufferedImage offscreen = null;
 		offscreen = new BufferedImage (SimpleGameEngine.windowWidth, SimpleGameEngine.windowHeight,BufferedImage.TYPE_INT_RGB);
 		Graphics2D offgc = offscreen.createGraphics();
@@ -131,6 +151,23 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		//should be last in the method
 		g.drawImage(offscreen, insets.left, insets.top, this);
+	}
+	public void paintMenu(Graphics g){
+		BufferedImage offscreen = null;
+		offscreen = new BufferedImage (SimpleGameEngine.windowWidth, SimpleGameEngine.windowHeight,BufferedImage.TYPE_INT_RGB);
+		Graphics2D offgc = offscreen.createGraphics();
+		
+		offgc.setColor(Color.WHITE);
+		offgc.fillRect(0, 0, windowWidth, windowHeight);
+		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		offgc.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
+		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+		
+		mainMenu.update(offgc);
+		
+		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+		g.drawImage(offscreen, SimpleGameEngine.insets.left, SimpleGameEngine.insets.top, this);
 	}
 	
 	//to do
