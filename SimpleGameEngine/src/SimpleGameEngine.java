@@ -98,7 +98,7 @@ public class SimpleGameEngine extends JFrame {
 		addMouseMotionListener( mouse );
 		menuHandler = new menuHandler();
 		mainMenu= new menu("Main","New Game", "Load Game", "Settings", "Quit");
-		input.menus.add(mainMenu);
+		menuHandler.menus.add(mainMenu);
 		player = new Player ();
 		
 	}

@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class InputHandler implements KeyListener {
 	
 	boolean [] keys = new boolean [256];
-	ArrayList<menu> menus = new ArrayList<menu>();
+	
 	
 	public InputHandler (Component c) {
 		c.addKeyListener(this);
@@ -39,7 +39,7 @@ public class InputHandler implements KeyListener {
 		
 	public void handleInput(){
 		
-		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE) && SimpleGameEngine.play==false) {
+		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
 		}
 		//shoot
@@ -50,19 +50,17 @@ public class InputHandler implements KeyListener {
 			
 				else if(SimpleGameEngine.currentMenu!=null){
 					
-					for(Iterator<menu> it = this.menus.iterator(); it.hasNext(); ) {
-					menu m = it.next();	
+					String menuString=SimpleGameEngine.menuHandler.getCurrentMenu().returnString;
 					
-					if(SimpleGameEngine.currentMenu==m.thisMenu){
-						if(m.returnString!=null){
-							SimpleGameEngine.menuHandler.menuClicked(m.returnString);
+						if(menuString!=null){
+							SimpleGameEngine.menuHandler.menuClicked(menuString);
 						}
 						
-						}				
-					}
-				}
-		}
+				}				
+			}
 		
+		}
+			
 	}
 	
-}
+
