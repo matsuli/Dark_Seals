@@ -115,7 +115,7 @@ public class SimpleGameEngine extends JFrame {
 		mouseY = mouse.getPosition().y-py-insets.top;
 		input.handleInput();
 		paint(bbg);		
-		
+		//System.out.print(currentMenu);
 		
 		
 	}

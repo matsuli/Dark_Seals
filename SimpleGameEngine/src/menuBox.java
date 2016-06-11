@@ -24,7 +24,7 @@ int height;
 
 public boolean selected(float mouseX, float mouseY){
 	
-	if(rect.contains(mouseX - SimpleGameEngine.px,  mouseY - SimpleGameEngine.py)){
+	if(rect.contains(mouseX + SimpleGameEngine.px,  mouseY + SimpleGameEngine.py)){
 		return true;
 	}
 	else {	
@@ -38,7 +38,7 @@ public void draw(Graphics2D g, float mouseX, float mouseY){
 	
 	rect.setRect(ox-1-width/2, oy-1, width+2, height+2);
 	
-	if(rect.contains(mouseX,  mouseY)){
+	if(selected(mouseX,  mouseY)){
 		g.setColor(Color.red);	
 	}
 	else {

@@ -4,9 +4,11 @@ import java.util.Iterator;
 
 public class menuHandler {
 	ArrayList<menu> menus = new ArrayList<menu>();
-
+	menu pauseMenu;
 	public menuHandler() {
 		
+		pauseMenu= new menu("Pause","Continue", "Save Game", "Settings", "Exit to main menu", "Quit");
+		menus.add(pauseMenu);
 	}
 	
 	menu getCurrentMenu(){
@@ -29,6 +31,11 @@ public class menuHandler {
 	void menuClicked(String clicked){
 		
 		if(clicked=="New Game"){
+			SimpleGameEngine.play=true;
+			SimpleGameEngine.currentMenu=null;
+		}
+
+		if(clicked=="Continue"){
 			SimpleGameEngine.play=true;
 			SimpleGameEngine.currentMenu=null;
 		}

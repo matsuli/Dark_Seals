@@ -6,7 +6,8 @@ import java.util.Iterator;
 public class InputHandler implements KeyListener {
 	
 	boolean [] keys = new boolean [256];
-	
+	boolean  pressed=false;
+	boolean firstPress=true;
 	
 	public InputHandler (Component c) {
 		c.addKeyListener(this);
@@ -23,6 +24,7 @@ public class InputHandler implements KeyListener {
 		if (e.getKeyCode() > 0 && e.getKeyCode() < 256) {
 			keys [e.getKeyCode()] = true;
 		}
+		
 	}
 	
 	public void keyReleased (KeyEvent e) {
@@ -34,21 +36,50 @@ public class InputHandler implements KeyListener {
 	public void keyTyped (KeyEvent e) {
 		
 	}
+	
+	public boolean keyPressed2 (int keyEvent){					//bootleg keyPressed. OBS kan bara callas för en key åt gången, annars buggar det då 
+																//pressed och firstpress är samma för alla keys. Vore bra om vi kunde fixa det...
+		
+		if (SimpleGameEngine.input.isKeyDown(keyEvent)){
+			if(pressed==false && firstPress==true){
+			pressed=true;
+			firstPress=false;}
+			
+			else if(pressed==true && firstPress==true){
+			pressed=false;
+			firstPress=false;	
+			}			
+				else{
+			pressed=false;
+				}		
+			}
+				else{
+					firstPress=true;
+					pressed=false;
+				}		
+		
+		return pressed;	
+	}
 		
 	
 		
 	public void handleInput(){
 		
-		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
-			if (SimpleGameEngine.play) {
-				SimpleGameEngine.play = false;
-				SimpleGameEngine.currentMenu=SimpleGameEngine.mainMenu.thisMenu;
-			}
-			else {
-				SimpleGameEngine.play=true;
-				SimpleGameEngine.currentMenu=null;
-			}
+
+		
+			if (keyPressed2(KeyEvent.VK_ESCAPE)) {
+							
+				if(SimpleGameEngine.play){
+					SimpleGameEngine.play = false;
+					SimpleGameEngine.currentMenu=SimpleGameEngine.menuHandler.pauseMenu.thisMenu;
+				}
+				else {
+					SimpleGameEngine.play=true;
+					SimpleGameEngine.currentMenu=null;
+				}
 		}
+			
+			
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
 			
