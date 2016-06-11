@@ -12,6 +12,9 @@ public class Player extends Actor {
 	int left = 5;
 	int down = 5;
 	int up = 5;
+	int speed = 5;
+	int stamina = 100;
+	boolean sprint, sneak;
 	boolean hit;
 	boolean hitLeft;
 	boolean hitRight;
@@ -43,6 +46,11 @@ public class Player extends Actor {
 	public void Control (world space) {
 		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		prevHitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+		
+		right = speed;
+		left = speed;
+		down = speed;
+		up = speed;
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
 						
@@ -83,6 +91,26 @@ public class Player extends Actor {
 				SimpleGameEngine.py -= hitCorrectionUp;
 				
 			}
+		}
+		
+		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_SHIFT)) {
+			if (stamina >= 2) {
+				stamina =- 2;
+			} else {
+				stamina --;
+			}
+			if (speed < 10) {
+				speed ++;
+			}
+			if (stamina == 0 && speed > 5) {
+				speed --;
+			}
+		}
+		if (speed > 5) {
+			speed --;
+		}
+		if (stamina <= 1000) {
+			stamina ++;
 		}
 		
 
