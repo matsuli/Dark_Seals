@@ -115,7 +115,7 @@ public class Player extends Actor {
 			}
 		}
 		if (stamina <= 1000) {
-			stamina = stamina + 10;
+			stamina = stamina ++;
 		}
 		
 
