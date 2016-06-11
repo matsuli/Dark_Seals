@@ -9,12 +9,16 @@ String text;
 Rectangle2D rect;
 int ox;
 int oy;
+int width;
+int height;
 	
-	public menuBox(int ox, int oy, String text) {
+	public menuBox(int ox, int oy, int width, int height, String text) {
 	
 	this.text=text;
 	this.ox=ox;
 	this.oy=oy;
+	this.width=width;
+	this.height=height;
 	rect= new Rectangle2D.Double();
 	}
 
@@ -30,11 +34,8 @@ public boolean selected(float mouseX, float mouseY){
 	
 public void draw(Graphics2D g, float mouseX, float mouseY){
 	
-	FontMetrics metrics = g.getFontMetrics();
-	int hgt = metrics.getHeight();
-	int adv = metrics.stringWidth(text);
 	
-	rect.setRect(ox, oy, adv+2, hgt+2);
+	rect.setRect(ox-1-width/2, oy-1, width+2, height+2);
 	
 	if(rect.contains(mouseX,  mouseY)){
 	g.setColor(Color.red);	
@@ -42,7 +43,7 @@ public void draw(Graphics2D g, float mouseX, float mouseY){
 	else{
 	g.setColor(Color.black);}
 	g.draw(rect);
-	g.drawString(text, ox+2, oy+(3*hgt/4)+1);	
+	g.drawString(text, ox-width/2, oy+(3*height/4));	
 	}
 
 }
