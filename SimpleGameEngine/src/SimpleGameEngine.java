@@ -98,6 +98,7 @@ public class SimpleGameEngine extends JFrame {
 		addMouseMotionListener( mouse );
 		menuHandler = new menuHandler();
 		mainMenu= new menu("Main","New Game", "Load Game", "Settings", "Quit");
+		currentMenu=mainMenu.thisMenu;
 		menuHandler.menus.add(mainMenu);
 		player = new Player ();
 		
@@ -115,7 +116,7 @@ public class SimpleGameEngine extends JFrame {
 		input.handleInput();
 		paint(bbg);		
 		
-		//System.out.println(currentMenu);
+		
 		
 	}
 	
@@ -171,7 +172,8 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		
-		mainMenu.update(offgc);
+	
+		menuHandler.updateCurrentMenu(offgc);
 		
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		g.drawImage(offscreen, SimpleGameEngine.insets.left, SimpleGameEngine.insets.top, this);

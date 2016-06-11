@@ -23,7 +23,7 @@ public class menuHandler {
 	}
 	
 	void updateCurrentMenu(Graphics2D g){
-		
+		this.getCurrentMenu().update(g);
 	}
 	
 	void menuClicked(String clicked){
