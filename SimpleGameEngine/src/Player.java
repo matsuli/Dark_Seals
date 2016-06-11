@@ -110,7 +110,7 @@ public class Player extends Actor {
 			speed --;
 		}
 		if (stamina <= 1000) {
-			stamina ++;
+			stamina = stamina + 10;
 		}
 		
 
