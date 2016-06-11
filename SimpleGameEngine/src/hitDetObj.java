@@ -6,7 +6,10 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-public class hitDetObj extends object {
+public class hitDetObj implements Serializable {
+	String texture;
+	//BufferedImage textureImg;
+	Image textureImg2;
 
 	int ox;
 	int oy;
