@@ -15,8 +15,8 @@ public class menuHandler {
 		for(Iterator<menu> it = this.menus.iterator(); it.hasNext(); ) {
 		menu m = it.next();	
 		
-		if(SimpleGameEngine.currentMenu==m.thisMenu){
-			 returnMenu=m;
+			if(SimpleGameEngine.currentMenu==m.thisMenu){
+				returnMenu=m;
 			}
 		}
 		return returnMenu;
@@ -28,30 +28,17 @@ public class menuHandler {
 	
 	void menuClicked(String clicked){
 		
-	if(clicked=="New Game"){
-		SimpleGameEngine.play=true;
-		SimpleGameEngine.currentMenu=null;
-	}
+		if(clicked=="New Game"){
+			SimpleGameEngine.play=true;
+			SimpleGameEngine.currentMenu=null;
+		}
+		if(clicked == "Quit") {
+			System.exit(0);
+		}
 		
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	if(clicked==null){
-		
-	}	
+		if(clicked==null){
+			
+		}	
 	}
 
 }

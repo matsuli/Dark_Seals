@@ -143,15 +143,12 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		
 		
-		offgc.translate(px, py);			//TRANSLATER med px, py, dvs. sätter px o py som kordinatsystemets 0,0 o gör att allt annat än player rör sig runt player
-		//draw a circle for orientation		//OBS! Eter denna translate ska bara saker som inte rör sig ritas, annars hamnar deras position ur synk med var de ritas
+		offgc.translate(px, py);	//flyttar omvärlden i förhållande till player, (px,py) blir nya (0,0)
 		offgc.setColor(Color.BLACK);
-	//	offgc.drawOval(200, 200, 150, 150);
-	//	offgc.drawRect(50, 50, 150, 150);
 		//world
 		space.drawWorld (offgc);
 		
-		offgc.translate(-px, -py);			//sätter kordinatsystemet tillbaks till det vanliga, inte strictly necessary, men känns safer. NU kan positioner ändras igen.
+		offgc.translate(-px, -py);	//sätter kordinatsystemet tillbaks till det vanliga
 		
 		//player
 		player.drawPlayer(offgc,playerX, playerY, player.radius*2 );

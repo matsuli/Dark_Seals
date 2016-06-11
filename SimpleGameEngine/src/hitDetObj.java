@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 public class hitDetObj implements Serializable {
 	String texture;
-	//BufferedImage textureImg;
 	Image textureImg2;
 
 	int ox;

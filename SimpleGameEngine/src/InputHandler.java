@@ -40,7 +40,8 @@ public class InputHandler implements KeyListener {
 	public void handleInput(){
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_ESCAPE)) {
-			System.exit(0);
+			SimpleGameEngine.play = false;
+			SimpleGameEngine.currentMenu=SimpleGameEngine.mainMenu.thisMenu;;
 		}
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {

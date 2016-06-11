@@ -127,17 +127,17 @@ public class world {
 		hitDetTriangle t = new hitDetTriangle (ox, oy, ox2, oy2, ox3, oy3);
 		objects.add(t);	
 	}
-public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2){
+	public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2){
 		
 		hitDetectLine l = new hitDetectLine (ox, oy, ox2, oy2);
 		objects.add(l);	
 	}
-public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture){
+	public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture){
 	
 	 noHitRect r = new  noHitRect(ox, oy, ow, oh);
 	r.texture = texture;
 	 noHitObjects.add(r);	
-}
+	}
 
 	public void saveWorld(String world){
 		try {
@@ -177,7 +177,6 @@ public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int o
 		
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
 		hitDetObj o = it.next();
-		//BufferedImage img = null;
 		Image img2 = null;
 		if (o.texture == null) {
 		} else {
@@ -188,11 +187,6 @@ public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int o
 			//	o.textureImg2=img2;
 			//} catch (MalformedURLException e) {
 			//	e.printStackTrace();
-			//}
-			//try {
-			    //img = ImageIO.read(new File(o.texture));
-			    //o.textureImg=img;
-			//} catch (IOException e) {
 			//}
 		}
 		
