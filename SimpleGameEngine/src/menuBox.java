@@ -24,7 +24,7 @@ int height;
 
 public boolean selected(float mouseX, float mouseY){
 	
-	if(rect.contains(mouseX,  mouseY)){
+	if(rect.contains(mouseX - SimpleGameEngine.px,  mouseY - SimpleGameEngine.py)){
 		return true;
 	}
 	else {	
