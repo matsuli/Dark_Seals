@@ -18,10 +18,10 @@ BufferedImage unused;
 String thisMenu;
 	
 
-	public menu(String menuName, String...strings) {
-		this.thisMenu=menuName;
-		this.length=strings.length;
-		stringPosX=SimpleGameEngine.windowWidth/2;
+	public menu(String menuName, String...strings) {		//Det fina med den här koden e att man kan sätta in hur många strings som helst, så gör det automatiskt
+		this.thisMenu=menuName;								//en menu av det. Stringen returnas alltid automatiskt till menuhandlers menuclicked metod då man trycker på den. 
+		this.length=strings.length;							//dvs. det enda som krävs för att skapa ny menu e att createa den o adda till menuHandlers menus arraylist.
+		stringPosX=SimpleGameEngine.windowWidth/2;			// Sen kan dess strings användas i menuclicked.
 		stringDistance=SimpleGameEngine.windowHeight/(length+2);
 		stringPosY=0;
 		int i2=0;
