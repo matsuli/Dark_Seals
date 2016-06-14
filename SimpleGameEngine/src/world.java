@@ -134,9 +134,15 @@ public class world {
 	}
 	public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture){
 	
-	 noHitRect r = new  noHitRect(ox, oy, ow, oh);
-	r.texture = texture;
-	 noHitObjects.add(r);	
+		noHitRect r = new  noHitRect(ox, oy, ow, oh);
+		r.texture = texture;
+		noHitObjects.add(r);	
+	}
+	
+	public void addInteractionArea (ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture) {
+		Interaction I = new Interaction (ox,oy,ow,oh);
+		I.texture = texture;
+		noHitObjects.add(I);
 	}
 
 	public void saveWorld(String world){

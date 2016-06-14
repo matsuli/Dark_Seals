@@ -1,3 +1,6 @@
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
@@ -7,6 +10,7 @@ public class Interaction extends noHitObj {
 	int ow;
 	int oh;
 	boolean interactionPossible;
+	Image interactSymbol = Toolkit.getDefaultToolkit().createImage("images/engage.png");
 	
 	public Interaction(int ox, int oy, int ow, int oh) {
 		this.ox=ox;
@@ -22,7 +26,16 @@ public class Interaction extends noHitObj {
 		if (hitDetCircle.intersects(rect)) {
 			interactionPossible = true;
 		}
-		
 		return interactionPossible;
+	}
+	
+	public void draw(Graphics2D g){
+		g.drawRect(ox, oy, ow, oh);
+		if(textureImg2!=null){
+			g.drawImage(textureImg2, ox, oy, ow, oh, null);
+		}
+		if (interactionPossible) {
+			g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - interactSymbol.getHeight(null) - 10, SimpleGameEngine.windowWidth/2 + interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - 10, null);
+		}
 	}
 }

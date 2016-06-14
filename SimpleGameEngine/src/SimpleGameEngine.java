@@ -43,11 +43,11 @@ public class SimpleGameEngine extends JFrame {
 	
 	static String currentWorld;
 	
-	 world space = new world ();
+	world space = new world ();
 	
+	//this is the game
 	public static void main (String [] args) throws IOException {
 		SimpleGameEngine game = new SimpleGameEngine ();
-		
 		game.run ();
 		System.exit(0);
 	}
@@ -56,15 +56,9 @@ public class SimpleGameEngine extends JFrame {
 	public void run () throws IOException {
 		initialize ();
 		
-		
-		
-		
-		
-		
-		
+		//game loop
 		while (isRunning) {
 			long time = System.currentTimeMillis ();
-			
 			
 			update ();
 			repaint ();
@@ -72,23 +66,21 @@ public class SimpleGameEngine extends JFrame {
 			//delay for each frame - time it took for one frame
 			time = (1000/fps)-(System.currentTimeMillis()-time);
 			
-			
 			if (time > 0) {
 				try {
 					Thread.sleep(time);
 				}
 				catch (Exception e) {}
 			}
-				
-	}
+		}
 		setVisible (false);
 	}
 	
 	
 	//initial setup
 	void initialize () {
-		setTitle ("SimpleGameEngine");
-		setSize(windowWidth, windowHeight);
+		setTitle ("SimpleGameEngine");	//name on window
+		setSize(windowWidth, windowHeight);	//window size
 		setResizable (true);
 		setDefaultCloseOperation (EXIT_ON_CLOSE);
 		setVisible (true);
@@ -111,7 +103,6 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		
-		
 		if(play){
 		player.Control(space);}
 		mouse.poll();
@@ -120,8 +111,6 @@ public class SimpleGameEngine extends JFrame {
 		input.handleInput();
 		paint(bbg);		
 		//System.out.print(currentMenu);
-		
-		
 	}
 	
 	//draw everything
@@ -163,6 +152,7 @@ public class SimpleGameEngine extends JFrame {
 		//should be last in the method
 		g.drawImage(offscreen, insets.left, insets.top, this);
 	}
+	
 	public void paintMenu(Graphics g){
 		BufferedImage offscreen = null;
 		offscreen = new BufferedImage (SimpleGameEngine.windowWidth, SimpleGameEngine.windowHeight,BufferedImage.TYPE_INT_RGB);
@@ -175,7 +165,6 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		
-	
 		menuHandler.updateCurrentMenu(offgc);
 		
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
