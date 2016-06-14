@@ -18,7 +18,8 @@ public class SimpleGameEngine extends JFrame {
 	 //Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	Graphics2D bbg = backBuffer.createGraphics();
-	
+	//saving/loading
+	public static savingSystem savingSystem;
 	//menuHandler
 	public static menuHandler menuHandler;
 	//the main menu	
@@ -39,6 +40,8 @@ public class SimpleGameEngine extends JFrame {
 	static boolean play;
 	
 	static String currentMenu;
+	
+	static String currentWorld;
 	
 	 world space = new world ();
 	
@@ -96,6 +99,7 @@ public class SimpleGameEngine extends JFrame {
 		mouse = new mouseInput ();
 		addMouseListener( mouse );
 		addMouseMotionListener( mouse );
+		savingSystem= new savingSystem();
 		menuHandler = new menuHandler();
 		mainMenu= new menu("Main","New Game", "Load Game", "Settings", "Quit");
 		currentMenu=mainMenu.thisMenu;
