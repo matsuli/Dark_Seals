@@ -22,9 +22,10 @@ public class Interaction extends noHitObj {
 	
 	public boolean interact (Ellipse2D hitDetCircle, int radius, Ellipse2D unused) {
 		hitDetCircle = SimpleGameEngine.player.hitDetCircle;
-		interactionPossible = false;
 		if (hitDetCircle.intersects(rect)) {
 			interactionPossible = true;
+		} else {
+			interactionPossible = false;
 		}
 		return interactionPossible;
 	}
@@ -35,7 +36,7 @@ public class Interaction extends noHitObj {
 			g.drawImage(textureImg2, ox, oy, ow, oh, null);
 		}
 		if (interactionPossible) {
-			g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - interactSymbol.getHeight(null) - 10, SimpleGameEngine.windowWidth/2 + interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - 10, null);
+			g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - interactSymbol.getHeight(null) - 10, interactSymbol.getWidth(null), SimpleGameEngine.windowHeight - 10, null);
 		}
 	}
 }
