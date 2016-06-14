@@ -6,7 +6,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class savingSystem {
-
+boolean save;
+boolean load;
 menu saveMenu;	
 File[] saves; 
 ArrayList <String> saveNames= new ArrayList<String>();
@@ -31,6 +32,13 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	}
 	
 	public void save(){
+		int i=saveMenu.getClickedMenuBox();
+	//	System.out.println(i);
+	}
+
+	public void load() {
+		int i=saveMenu.getClickedMenuBox();
+	//	System.out.println(i);
 		
 	}
 

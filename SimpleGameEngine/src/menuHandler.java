@@ -52,6 +52,15 @@ public class menuHandler {
 			prevMenu=this.getCurrentMenu();
 			SimpleGameEngine.play=false;
 			SimpleGameEngine.currentMenu="saveMenu";
+			SimpleGameEngine.savingSystem.save=true;
+			SimpleGameEngine.savingSystem.load=false;
+		}
+		if(clicked == "Load Game") {
+			prevMenu=this.getCurrentMenu();
+			SimpleGameEngine.play=false;
+			SimpleGameEngine.currentMenu="saveMenu";
+			SimpleGameEngine.savingSystem.save=false;
+			SimpleGameEngine.savingSystem.load=true;
 		}
 		if(clicked == "Quit") {
 			System.exit(0);
@@ -67,6 +76,15 @@ public class menuHandler {
 		}
 		if(clicked == "Cancel") {
 			SimpleGameEngine.currentMenu=prevMenu.thisMenu;
+		}
+		
+		if(clicked == "Empty slot" && SimpleGameEngine.currentMenu=="saveMenu") {
+			if(SimpleGameEngine.savingSystem.save){
+				SimpleGameEngine.savingSystem.save();
+			}
+			else{
+				SimpleGameEngine.savingSystem.load();	
+			}
 		}
 		
 		

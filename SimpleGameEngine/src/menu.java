@@ -69,7 +69,19 @@ String thisMenu;
 	//	System.out.println(returnString);
 		
 	}
+	public int getClickedMenuBox(){		//returnar hur måntte menuboxen, uppifrån räknat som klickats
+		menuBox returnBox=null;
+		for(Iterator<menuBox> it = this.menuBoxes.iterator(); it.hasNext();) {
+			menuBox o = it.next();	
+			
+			if(o.selected( SimpleGameEngine.mouseX, SimpleGameEngine.mouseY)){
+				returnBox=o;	
+			}
+		
+		
+	}
+		return menuBoxes.lastIndexOf(returnBox)+1;
 	
-	
+	}
 
 }
