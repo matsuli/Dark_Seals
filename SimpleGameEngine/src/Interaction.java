@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 
 public class Interaction extends noHitObj {
 	
@@ -10,7 +11,7 @@ public class Interaction extends noHitObj {
 	int ow;
 	int oh;
 	boolean interactionPossible;
-	Image interactSymbol;
+	BufferedImage interactSymbol;
 	
 	public Interaction(int ox, int oy, int ow, int oh) {
 		this.ox=ox;

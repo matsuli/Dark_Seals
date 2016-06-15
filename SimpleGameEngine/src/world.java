@@ -26,8 +26,8 @@ public class world {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
-//	boolean write =false;
-	boolean write =true;
+	boolean write =false;
+//	boolean write =true;
 	
 	public void initialize () {
 	
@@ -144,7 +144,12 @@ public class world {
 		Interaction I = new Interaction (ox,oy,ow,oh);
 		I.texture = texture;
 		noHitObjects.add(I);
-		I.interactSymbol = Toolkit.getDefaultToolkit().createImage("images/engage.gif");
+		BufferedImage img;
+		try {
+		    img = ImageIO.read(new File("images/engage.gif"));
+		    I.interactSymbol=img;
+		} catch (IOException e) {
+		}
 	}
 
 	public void saveWorld(String world){
@@ -211,7 +216,6 @@ public class world {
 		
 		for (Iterator<noHitObj> it = this.noHitObjects.iterator(); it.hasNext(); ) {
 			noHitObj o = it.next();
-			//BufferedImage img = null;
 			Image img2 = null;
 			if (o.texture == null) {
 			} else {
@@ -222,11 +226,6 @@ public class world {
 				//	o.textureImg2=img2;
 				//} catch (MalformedURLException e) {
 				//	e.printStackTrace();
-				//}
-				//try {
-				    //img = ImageIO.read(new File(o.texture));
-				    //o.textureImg=img;
-				//} catch (IOException e) {
 				//}
 			}
 		}
