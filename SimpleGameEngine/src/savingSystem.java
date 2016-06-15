@@ -51,7 +51,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 					    ex.printStackTrace();
 					}	
 		}
-		else if(saveNames.get(i-1).equals(saves[i-1])){
+		else if(saveNames.get(i-1).equals(saves[i-1].getName())){
 			System.out.println("wooo");
 		}
 	}
