@@ -37,7 +37,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	
 	public void save(){
 		int i=saveMenu.getClickedMenuBox();
-		System.out.println(i);
+		//System.out.println(i);
 		
 		if(saveNames.get(i-1).equals("Empty slot")){
 			try {
@@ -51,11 +51,14 @@ ArrayList <String> saveNames= new ArrayList<String>();
 					    ex.printStackTrace();
 					}	
 		}
+		else if(saveNames.get(i-1).equals(saves[i-1])){
+			System.out.println("wooo");
+		}
 	}
 
 	public void load() {
 		int i=saveMenu.getClickedMenuBox();
-		System.out.println(i);
+		//System.out.println(i);
 		
 	}
 

@@ -45,10 +45,10 @@ public class world {
 //	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
 //	saveWorld("world2");	
 	
-//	addInteractionArea (noHitObjects, 200,100,100,100, null);
-//	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
-//	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
-//	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
+	addInteractionArea (noHitObjects, 200,100,100,100, null);
+	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
+	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
+	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
 	//	loadWorld("world1");	

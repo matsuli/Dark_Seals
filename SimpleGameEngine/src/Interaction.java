@@ -10,7 +10,7 @@ public class Interaction extends noHitObj {
 	int ow;
 	int oh;
 	boolean interactionPossible;
-	Image interactSymbol = Toolkit.getDefaultToolkit().createImage("images/engage.png");
+	//Image interactSymbol = Toolkit.getDefaultToolkit().createImage("images/engage.png");
 	
 	public Interaction(int ox, int oy, int ow, int oh) {
 		this.ox=ox;
@@ -36,7 +36,7 @@ public class Interaction extends noHitObj {
 			g.drawImage(textureImg2, ox, oy, ow, oh, null);
 		}
 		if (interactionPossible) {
-			g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - interactSymbol.getHeight(null) - 10, interactSymbol.getWidth(null), SimpleGameEngine.windowHeight - 10, null);
+		//	g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - interactSymbol.getHeight(null) - 10, interactSymbol.getWidth(null), SimpleGameEngine.windowHeight - 10, null);
 		}
 	}
 }
