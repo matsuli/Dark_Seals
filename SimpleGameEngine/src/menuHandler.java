@@ -14,6 +14,7 @@ public class menuHandler {
 		warningMenu= new menu("Warning","HEADER 2 Unsaved progress will be lost", "Continue to main menu", "Cancel");	//En rubrik addas genom att sätta till 		
 		menus.add(warningMenu);							//HEADER i början av stringen och sedan en siffra. Siffran säger hur många gånger större font rubriken har.
 		menus.add(SimpleGameEngine.savingSystem.saveMenu);												//OBS! MÅste vara mellanrum som ovan. Se menuBox.
+		menus.add(SimpleGameEngine.savingSystem.overWriteWarning);	
 	}												
 	
 	menu getCurrentMenu(){
@@ -61,6 +62,11 @@ public class menuHandler {
 			SimpleGameEngine.currentMenu="saveMenu";
 			SimpleGameEngine.savingSystem.save=false;
 			SimpleGameEngine.savingSystem.load=true;
+		}
+		else if(clicked == "Return to pause menu") {
+			prevMenu=this.getCurrentMenu();
+			SimpleGameEngine.play = false;
+			SimpleGameEngine.currentMenu=pauseMenu.thisMenu;
 		}
 		else if(clicked == "Quit") {
 			System.exit(0);
