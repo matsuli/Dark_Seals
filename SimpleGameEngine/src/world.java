@@ -26,8 +26,8 @@ public class world {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
-	boolean write =false;
-//	boolean write =true;
+//	boolean write =false;
+	boolean write =true;
 	
 	public void initialize () {
 	
@@ -45,10 +45,10 @@ public class world {
 //	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
 //	saveWorld("world2");	
 	
-//	addInteractionArea (noHitObjects, 200,100,100,100, null);
-//	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
-//	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
-//	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
+	addInteractionArea (noHitObjects, 200,100,100,100, null);
+	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
+	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
+	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
 	//	loadWorld("world1");	
@@ -144,6 +144,7 @@ public class world {
 		Interaction I = new Interaction (ox,oy,ow,oh);
 		I.texture = texture;
 		noHitObjects.add(I);
+		I.interactSymbol = Toolkit.getDefaultToolkit().createImage("images/engage.gif");
 	}
 
 	public void saveWorld(String world){

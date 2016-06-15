@@ -15,9 +15,10 @@ public class noHitRect extends noHitObj {
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	public void draw(Graphics2D g){
-	g.drawRect(ox, oy, ow, oh);
-	if(textureImg2!=null){
-	g.drawImage(textureImg2, ox, oy, ow, oh, null);}
+		g.drawRect(ox, oy, ow, oh);
+		if(textureImg2!=null){
+			g.drawImage(textureImg2, ox, oy, ow, oh, null);
+		}
 	}
 
 }
