@@ -8,11 +8,11 @@ import java.awt.geom.Ellipse2D;
 public class Player extends Actor {
 	int radius = 10;
 	//used in movement
-	int right = 5;
-	int left = 5;
-	int down = 5;
-	int up = 5;
-	int speed = 5;
+	double right = 5;
+	double left = 5;
+	double down = 5;
+	double up = 5;
+	double speed = 5;
 	double stamina = 100;
 	boolean sprint, sneak;
 	boolean hit;
@@ -53,7 +53,7 @@ public class Player extends Actor {
 		up = speed;
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
-						
+			
 			SimpleGameEngine.px -= right;
 			space.HitDetect();
 			if(hitRight==true){
@@ -103,15 +103,15 @@ public class Player extends Actor {
 				stamina =stamina-(1.0/5);
 			}
 			if (speed < 10 && stamina>0) {
-				speed ++;
+				speed = speed + 1.0/20;
 			}
 			if (stamina <= 0 && speed > 5) {
-				speed --;
+				speed = speed - 1.0/20;
 			}
 		}
 		if (sprint == false) {
 			if (speed > 5) {
-				speed --;
+				speed = speed - 1.0/20;
 			}
 		}
 		if (stamina <= 100 && sprint==false) {
