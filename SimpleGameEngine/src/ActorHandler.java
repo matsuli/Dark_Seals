@@ -6,10 +6,7 @@ public class ActorHandler {
 		
 	}
 	
-	
 	public void update(){
-		
-		
 		
 	}	
 }

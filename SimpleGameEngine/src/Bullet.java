@@ -21,7 +21,6 @@ public class Bullet {
 		prevHitDetBullet = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 	    oldPosX = targetPosX;
 	    oldPosY = targetPosY;
-	    //rotation = Math.atan2(oldPosY - location.y, oldPosX - location.x) / Math.PI * 180;
 	    rotation = Math.toDegrees(Math.atan2((double)(oldPosY - location.y), (double)(oldPosX - location.x)));
 	    speed = 5;
 	  }
@@ -33,13 +32,15 @@ public class Bullet {
 	    location.x =  (location.x + Math.cos(Math.PI*rotation/180)*speed);
 	    location.y =  (location.y + Math.sin(Math.PI*rotation/180)*speed);
 	    
-	    
+	    //remove denna bullet om den hamnar utanför screen
 	    if (location.x > 0 - SimpleGameEngine.px && location.x < SimpleGameEngine.windowWidth - SimpleGameEngine.px && location.y > 0 - SimpleGameEngine.py && location.y < SimpleGameEngine.windowHeight - SimpleGameEngine.py && toRemove==false) {
 	    } else {
-	      world.bullets.remove(this);		//removar denna bullet
+	    	world.bullets.remove(this);
 	    }
+	    
 	    hitDetBullet.setFrame(location.x-radius, location.y-radius, radius*2, radius*2);
-	  }
+	}
+	
 	void draw(Graphics2D g){
 		g.fill(hitDetBullet);
 	}

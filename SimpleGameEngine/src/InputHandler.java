@@ -24,7 +24,6 @@ public class InputHandler implements KeyListener {
 		if (e.getKeyCode() > 0 && e.getKeyCode() < 256) {
 			keys [e.getKeyCode()] = true;
 		}
-		
 	}
 	
 	public void keyReleased (KeyEvent e) {
@@ -65,40 +64,37 @@ public class InputHandler implements KeyListener {
 		
 	public void handleInput(){
 		
-
-		
-			if (keyPressed2(KeyEvent.VK_ESCAPE)) {
-							
-				if(SimpleGameEngine.play){
-					SimpleGameEngine.play = false;
-					SimpleGameEngine.currentMenu=SimpleGameEngine.menuHandler.pauseMenu.thisMenu;
-				}
-				else {
-					SimpleGameEngine.play=true;
-					SimpleGameEngine.currentMenu=null;
-				}
+		if (keyPressed2(KeyEvent.VK_ESCAPE)) {
+			
+			if(SimpleGameEngine.play){
+				SimpleGameEngine.play = false;
+				SimpleGameEngine.currentMenu=SimpleGameEngine.menuHandler.pauseMenu.thisMenu;
+			}
+			else {
+				SimpleGameEngine.play=true;
+				SimpleGameEngine.currentMenu=null;
+			}
 		}
-			
-			
+		
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
 			
-				if(SimpleGameEngine.play){
-					SimpleGameEngine.player.shoot (SimpleGameEngine.player,SimpleGameEngine.mouseX,SimpleGameEngine.mouseY);}
+			if(SimpleGameEngine.play){
+				SimpleGameEngine.player.shoot (SimpleGameEngine.player,SimpleGameEngine.mouseX,SimpleGameEngine.mouseY);}
 			
-				else if(SimpleGameEngine.currentMenu!=null){
-					
-					String menuString=SimpleGameEngine.menuHandler.getCurrentMenu().returnString;
-					
-						if(menuString!=null){
-							SimpleGameEngine.menuHandler.menuClicked(menuString);
-						}
+			else if(SimpleGameEngine.currentMenu!=null){
+				
+				String menuString=SimpleGameEngine.menuHandler.getCurrentMenu().returnString;
+				
+				if(menuString!=null){
+					SimpleGameEngine.menuHandler.menuClicked(menuString);
+				}
 						
-				}				
-			}
-		
+			}				
 		}
-			
+		
 	}
+			
+}
 	
 
