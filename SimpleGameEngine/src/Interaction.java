@@ -11,7 +11,6 @@ public class Interaction extends noHitObj {
 	int ow;
 	int oh;
 	boolean interactionPossible;
-	BufferedImage interactSymbol;
 	
 	public Interaction(int ox, int oy, int ow, int oh) {
 		this.ox=ox;

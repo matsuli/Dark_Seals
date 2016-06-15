@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class noHitObj implements Serializable {
 	String texture;
 	Image textureImg2;
+	BufferedImage interactSymbol;
 	int ox;
 	int oy;	
 	

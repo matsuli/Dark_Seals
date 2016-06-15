@@ -144,12 +144,6 @@ public class world {
 		Interaction I = new Interaction (ox,oy,ow,oh);
 		I.texture = texture;
 		noHitObjects.add(I);
-		BufferedImage img;
-		try {
-		    img = ImageIO.read(new File("images/engage.gif"));
-		    I.interactSymbol=img;
-		} catch (IOException e) {
-		}
 	}
 
 	public void saveWorld(String world){
@@ -227,6 +221,12 @@ public class world {
 				//} catch (MalformedURLException e) {
 				//	e.printStackTrace();
 				//}
+			}
+			BufferedImage img;
+			try {
+			    img = ImageIO.read(new File("images/engage.gif"));
+			    o.interactSymbol=img;
+			} catch (IOException e) {
 			}
 		}
 	
