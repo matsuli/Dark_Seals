@@ -20,7 +20,7 @@ public class Interaction extends noHitObj {
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	
-	public boolean interact (Ellipse2D hitDetCircle, int radius, Ellipse2D unused) {
+	public boolean interact (Ellipse2D hitDetCircle) {
 		hitDetCircle = SimpleGameEngine.player.hitDetCircle;
 		if (hitDetCircle.intersects(rect)) {
 			interactionPossible = true;
@@ -35,8 +35,10 @@ public class Interaction extends noHitObj {
 		if(textureImg2!=null){
 			g.drawImage(textureImg2, ox, oy, ow, oh, null);
 		}
-		if (interactionPossible == true && interactSymbol != null) {
-			g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth(null)/2, SimpleGameEngine.windowHeight - interactSymbol.getHeight(null) - 10, interactSymbol.getWidth(null), SimpleGameEngine.windowHeight - 10, null);
+		if (interact (SimpleGameEngine.player.hitDetCircle) && interactSymbol != null) {
+			g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth()/2 - SimpleGameEngine.px, SimpleGameEngine.windowHeight - interactSymbol.getHeight() - 10 - SimpleGameEngine.py, interactSymbol.getWidth(), interactSymbol.getHeight() - 10, null);
 		}
+		System.out.println(interactionPossible);
+		System.out.println(interactSymbol);
 	}
 }

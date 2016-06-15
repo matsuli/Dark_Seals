@@ -45,9 +45,9 @@ public class world {
 //	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
 //	saveWorld("world2");	
 	
-	addInteractionArea (noHitObjects, 200,100,100,100, null);
 	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
 	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
+	addInteractionArea (noHitObjects, 200,100,100,100, null);
 	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
@@ -222,12 +222,12 @@ public class world {
 				//	e.printStackTrace();
 				//}
 			}
-			BufferedImage img;
+			BufferedImage img = null;
 			try {
-			    img = ImageIO.read(new File("images/engage.gif"));
-			    o.interactSymbol=img;
+			    img = ImageIO.read(new File("images/engage.png"));
 			} catch (IOException e) {
 			}
+			o.interactSymbol=img;
 		}
 	
 	  }	
