@@ -146,7 +146,7 @@ public class SimpleGameEngine extends JFrame {
 		//player
 		player.drawPlayer(offgc,playerX, playerY, player.radius*2 );
 		//stamina
-		offgc.drawRect(5, 5, player.stamina / 4, 10);
+		offgc.drawRect(5, 5, (int) (player.stamina*10 / 4), 10);
 		
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		//should be last in the method

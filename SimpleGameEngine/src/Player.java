@@ -13,7 +13,7 @@ public class Player extends Actor {
 	int down = 5;
 	int up = 5;
 	int speed = 5;
-	int stamina = 100;
+	double stamina = 100;
 	boolean sprint, sneak;
 	boolean hit;
 	boolean hitLeft;
@@ -97,15 +97,15 @@ public class Player extends Actor {
 			sprint = true;
 		} else {sprint = false;}
 		if (sprint == true) {
-			if (stamina >= 2) {
-				stamina =- 2;
-			} else {
-				stamina --;
+			if (stamina >= 2/60) {
+				stamina =stamina-(2.0/5);
+			} else if(stamina >= 0) {
+				stamina =stamina-(1.0/5);
 			}
-			if (speed < 10) {
+			if (speed < 10 && stamina>0) {
 				speed ++;
 			}
-			if (stamina == 0 && speed > 5) {
+			if (stamina <= 0 && speed > 5) {
 				speed --;
 			}
 		}
@@ -114,8 +114,8 @@ public class Player extends Actor {
 				speed --;
 			}
 		}
-		if (stamina <= 1000) {
-			stamina = stamina + 10;
+		if (stamina <= 100 && sprint==false) {
+			stamina = stamina + 1;
 		}
 		
 
