@@ -43,42 +43,42 @@ public class menuHandler {
 			SimpleGameEngine.currentMenu=null;
 		}
 
-		if(clicked=="Continue"){
+		else if(clicked=="Continue"){
 			prevMenu=this.getCurrentMenu();
 			SimpleGameEngine.play=true;
 			SimpleGameEngine.currentMenu=null;
 		}
-		if(clicked == "Save Game") {
+		else if(clicked == "Save Game") {
 			prevMenu=this.getCurrentMenu();
 			SimpleGameEngine.play=false;
 			SimpleGameEngine.currentMenu="saveMenu";
 			SimpleGameEngine.savingSystem.save=true;
 			SimpleGameEngine.savingSystem.load=false;
 		}
-		if(clicked == "Load Game") {
+		else if(clicked == "Load Game") {
 			prevMenu=this.getCurrentMenu();
 			SimpleGameEngine.play=false;
 			SimpleGameEngine.currentMenu="saveMenu";
 			SimpleGameEngine.savingSystem.save=false;
 			SimpleGameEngine.savingSystem.load=true;
 		}
-		if(clicked == "Quit") {
+		else if(clicked == "Quit") {
 			System.exit(0);
 		}
-		if(clicked == "Exit to main menu") {
+		else if(clicked == "Exit to main menu") {
 			prevMenu=this.getCurrentMenu();
 			SimpleGameEngine.play=false;
 			SimpleGameEngine.currentMenu="Warning";
 		}
-		if(clicked == "Continue to main menu") {
+		else if(clicked == "Continue to main menu") {
 			prevMenu=this.getCurrentMenu();
 			SimpleGameEngine.currentMenu="Main";
 		}
-		if(clicked == "Cancel") {
+		else if(clicked == "Cancel") {
 			SimpleGameEngine.currentMenu=prevMenu.thisMenu;
 		}
 		
-		if(clicked == "Empty slot" && SimpleGameEngine.currentMenu=="saveMenu") {
+		else if(clicked != "Cancel" && clicked != null && SimpleGameEngine.currentMenu=="saveMenu") {
 			if(SimpleGameEngine.savingSystem.save){
 				SimpleGameEngine.savingSystem.save();
 			}
@@ -89,7 +89,7 @@ public class menuHandler {
 		
 		
 		
-		if(clicked==null){
+		else if(clicked==null){
 			
 		}	
 	}

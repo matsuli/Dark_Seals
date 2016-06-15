@@ -176,7 +176,7 @@ public class world {
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		objects = (ArrayList <hitDetObj>)ois.readObject();
 		ois.close();
-		
+		SimpleGameEngine.currentWorld=world;
 		} catch(Exception ex) {
 			    ex.printStackTrace();
 			}	
