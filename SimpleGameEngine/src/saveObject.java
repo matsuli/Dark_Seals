@@ -7,12 +7,13 @@ int py;
 
 String currentWorld;
 String currentMenu;
+int saveSlot;
 
 //Player Player;
 	
 	
-	public saveObject() {		//Addar här alla variabler som ska sparas (all info)
-		
+	public saveObject(int saveSlot) {		//Addar här alla variabler som ska sparas (all info)
+		this.saveSlot=saveSlot;
 		this.px=SimpleGameEngine.px;
 		this.py=SimpleGameEngine.py;
 		//this.Player=SimpleGameEngine.player;
