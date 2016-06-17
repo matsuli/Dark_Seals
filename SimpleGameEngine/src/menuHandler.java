@@ -63,10 +63,9 @@ public class menuHandler {
 			SimpleGameEngine.savingSystem.save=false;
 			SimpleGameEngine.savingSystem.load=true;
 		}
-		else if(clicked == "Return to pause menu") {
-			prevMenu=this.getCurrentMenu();
+		else if(clicked == "No, cancel") {
 			SimpleGameEngine.play = false;
-			SimpleGameEngine.currentMenu=pauseMenu.thisMenu;
+			SimpleGameEngine.currentMenu=SimpleGameEngine.savingSystem.saveMenu.thisMenu;
 		}
 		else if(clicked == "Quit") {
 			System.exit(0);

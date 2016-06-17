@@ -52,8 +52,8 @@ ArrayList <String> saveNames= new ArrayList<String>();
 			}
 			Collections.reverse(saveNames);
 			System.out.println(saveNames); 
-			saveMenu= new menu("saveMenu", saveNames.get(0),saveNames.get(1),saveNames.get(2),saveNames.get(3),saveNames.get(4),saveNames.get(5), "Return to pause menu");
-			overWriteWarning= new menu("overWriteWarning", "HEADER 2 Overwrite existing save?", "Yes", "Cancel");
+			saveMenu= new menu("saveMenu", saveNames.get(0),saveNames.get(1),saveNames.get(2),saveNames.get(3),saveNames.get(4),saveNames.get(5), "Cancel");
+			overWriteWarning= new menu("overWriteWarning", "HEADER 2 Overwrite existing save?", "Yes", "No, cancel");
 	}
 	
 	public void save(){
@@ -76,7 +76,6 @@ ArrayList <String> saveNames= new ArrayList<String>();
 		}
 		else if(saveNames.get(i-1).equals(saves[i-1].getName())){
 			System.out.println("yayy");
-			SimpleGameEngine.menuHandler.prevMenu=SimpleGameEngine.menuHandler.getCurrentMenu();
 			SimpleGameEngine.currentMenu="overWriteWarning";
 			
 			try {
