@@ -82,6 +82,9 @@ public class menuHandler {
 		else if(clicked == "Cancel") {
 			SimpleGameEngine.currentMenu=prevMenu.thisMenu;
 		}
+		else if(clicked == "Yes" && SimpleGameEngine.currentMenu=="overWriteWarning") {
+			SimpleGameEngine.savingSystem.overWrite(SimpleGameEngine.savingSystem.currentSaveSlot);
+		}
 		
 		else if(clicked != "Cancel" && clicked != null && SimpleGameEngine.currentMenu=="saveMenu") {
 			if(SimpleGameEngine.savingSystem.save){

@@ -16,6 +16,7 @@ menu saveMenu;
 menu overWriteWarning;
 File file;
 int saveSlots=6;
+int currentSaveSlot;
 File[] saves = new File[6];
 ArrayList <String> saveNames= new ArrayList<String>();
 	public savingSystem() {
@@ -56,15 +57,15 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	}
 	
 	public void save(){
-		int i=saveMenu.getClickedMenuBox();
-		System.out.println(i);
+		currentSaveSlot=saveMenu.getClickedMenuBox();
+		System.out.println(currentSaveSlot);
 		
-		if(saveNames.get(i-1).equals("Empty slot")){			//om man clickar empty slot
+		if(saveNames.get(currentSaveSlot-1).equals("Empty slot")){			//om man clickar empty slot
 			System.out.println("wooo");
 			try {
-				FileOutputStream fis = new FileOutputStream("Saved games"+"/Save"+i+"-"+SimpleGameEngine.currentWorld);	//skapar filen i saved games
+				FileOutputStream fis = new FileOutputStream("Saved games"+"/Save"+currentSaveSlot+"-"+SimpleGameEngine.currentWorld);	//skapar filen i saved games
 				ObjectOutputStream oos = new ObjectOutputStream(fis);
-				saveObject save= new saveObject(i-1);		//skapar saveObject med saveslot=i-1
+				saveObject save= new saveObject(currentSaveSlot-1);		//skapar saveObject med saveslot=i-1
 				oos.writeObject(save);
 				oos.close();
 				
@@ -73,32 +74,19 @@ ArrayList <String> saveNames= new ArrayList<String>();
 					}
 			
 		}
-		else if(saveNames.get(i-1).equals(saves[i-1].getName())){		//om klickade namnet är samma som filens namn, ska overwrite
+		else if(saveNames.get(currentSaveSlot-1).equals(saves[currentSaveSlot-1].getName())){		//om klickade namnet är samma som filens namn, ska overwrite
 			System.out.println("yayy");
 			SimpleGameEngine.currentMenu="overWriteWarning";
 			
-			try {
-				saves[i-1].delete();						//deletar gamla
-				String replacementSave ="Saved games"+"/"+ saveNames.get(i-1).substring(0, saveNames.get(i-1).lastIndexOf("-"))+"-"+SimpleGameEngine.currentWorld;
-				FileOutputStream fis = new FileOutputStream(replacementSave);
-				ObjectOutputStream oos = new ObjectOutputStream(fis);
-				saveObject save= new saveObject(i-1);
-				oos.writeObject(save);
-				oos.close();
-				saves[i-1]=Paths.get(replacementSave).toFile();	//addar nya på gamlas plats i array
-				
-				} catch(Exception ex) {
-					    ex.printStackTrace();
-					}	
 		}
 		update();
 	}
 
 	public void load() {
-		int i=saveMenu.getClickedMenuBox();
+		currentSaveSlot=saveMenu.getClickedMenuBox();
 		//System.out.println(i);
 		try {
-			  FileInputStream fis = new FileInputStream(saves[i-1]);	//laddar input ur klickade saven
+			  FileInputStream fis = new FileInputStream(saves[currentSaveSlot-1]);	//laddar input ur klickade saven
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				saveObject save = (saveObject) ois.readObject();			//läser objektet	
 				ois.close();
@@ -113,6 +101,24 @@ ArrayList <String> saveNames= new ArrayList<String>();
 		
 		
 	}
+	public void overWrite(int i){
+		
+		try {
+			saves[i-1].delete();						//deletar gamla
+			String replacementSave ="Saved games"+"/"+ saveNames.get(i-1).substring(0, saveNames.get(i-1).lastIndexOf("-"))+"-"+SimpleGameEngine.currentWorld;
+			FileOutputStream fis = new FileOutputStream(replacementSave);
+			ObjectOutputStream oos = new ObjectOutputStream(fis);
+			saveObject save= new saveObject(i-1);
+			oos.writeObject(save);
+			oos.close();
+			saves[i-1]=Paths.get(replacementSave).toFile();	//addar nya på gamlas plats i array
+			
+			} catch(Exception ex) {
+				    ex.printStackTrace();
+				}	
+		SimpleGameEngine.currentMenu="saveMenu";
+	}
+	
 	public void update(){		//updaterar savemenu vid saving
 		
 		file = new File("Saved games");		//samma saker som i konstruktor
