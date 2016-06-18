@@ -38,7 +38,5 @@ public class Interaction extends noHitObj {
 		if (interact (SimpleGameEngine.player.hitDetCircle) && interactSymbol != null) {
 			g.drawImage(interactSymbol, SimpleGameEngine.windowWidth/2 - interactSymbol.getWidth()/2 - SimpleGameEngine.px, SimpleGameEngine.windowHeight - interactSymbol.getHeight() - 10 - SimpleGameEngine.py, interactSymbol.getWidth(), interactSymbol.getHeight() - 10, null);
 		}
-		System.out.println(interactionPossible);
-		System.out.println(interactSymbol);
 	}
 }

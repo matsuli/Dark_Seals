@@ -24,7 +24,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 		 if (!file.exists()) {
 	        file.mkdirs();
 	        }		 
-		  File[] savesNonSorted=file.listFiles();
+		  File[] savesNonSorted=file.listFiles();	//listar alla filer i saved games mappen, dvs.alla saves
 		  
 		  for(int i =savesNonSorted.length; i>0; i--){
 			
@@ -51,21 +51,20 @@ ArrayList <String> saveNames= new ArrayList<String>();
 				}
 			}
 			Collections.reverse(saveNames);
-			System.out.println(saveNames); 
 			saveMenu= new menu("saveMenu", saveNames.get(0),saveNames.get(1),saveNames.get(2),saveNames.get(3),saveNames.get(4),saveNames.get(5), "Cancel");
 			overWriteWarning= new menu("overWriteWarning", "HEADER 2 Overwrite existing save?", "Yes", "No, cancel");
 	}
 	
 	public void save(){
 		int i=saveMenu.getClickedMenuBox();
-		//System.out.println(i);
+		System.out.println(i);
 		
-		if(saveNames.get(i-1).equals("Empty slot")){
+		if(saveNames.get(i-1).equals("Empty slot")){			//om man clickar empty slot
 			System.out.println("wooo");
 			try {
-				FileOutputStream fis = new FileOutputStream("Saved games"+"/Save"+i+"-"+SimpleGameEngine.currentWorld);
+				FileOutputStream fis = new FileOutputStream("Saved games"+"/Save"+i+"-"+SimpleGameEngine.currentWorld);	//skapar filen i saved games
 				ObjectOutputStream oos = new ObjectOutputStream(fis);
-				saveObject save= new saveObject(i-1);
+				saveObject save= new saveObject(i-1);		//skapar saveObject med saveslot=i-1
 				oos.writeObject(save);
 				oos.close();
 				
@@ -74,36 +73,36 @@ ArrayList <String> saveNames= new ArrayList<String>();
 					}
 			
 		}
-		else if(saveNames.get(i-1).equals(saves[i-1].getName())){
+		else if(saveNames.get(i-1).equals(saves[i-1].getName())){		//om klickade namnet är samma som filens namn, ska overwrite
 			System.out.println("yayy");
 			SimpleGameEngine.currentMenu="overWriteWarning";
 			
 			try {
-				saves[i-1].delete();
+				saves[i-1].delete();						//deletar gamla
 				String replacementSave ="Saved games"+"/"+ saveNames.get(i-1).substring(0, saveNames.get(i-1).lastIndexOf("-"))+"-"+SimpleGameEngine.currentWorld;
 				FileOutputStream fis = new FileOutputStream(replacementSave);
 				ObjectOutputStream oos = new ObjectOutputStream(fis);
 				saveObject save= new saveObject(i-1);
 				oos.writeObject(save);
 				oos.close();
-				saves[i-1]=Paths.get(replacementSave).toFile();	
+				saves[i-1]=Paths.get(replacementSave).toFile();	//addar nya på gamlas plats i array
 				
 				} catch(Exception ex) {
 					    ex.printStackTrace();
 					}	
 		}
-		//update();
+		update();
 	}
 
 	public void load() {
 		int i=saveMenu.getClickedMenuBox();
 		//System.out.println(i);
 		try {
-			  FileInputStream fis = new FileInputStream(saves[i-1]);
+			  FileInputStream fis = new FileInputStream(saves[i-1]);	//laddar input ur klickade saven
 				ObjectInputStream ois = new ObjectInputStream(fis);
-				saveObject save = (saveObject) ois.readObject();				
+				saveObject save = (saveObject) ois.readObject();			//läser objektet	
 				ois.close();
-				SimpleGameEngine.px=save.px;
+				SimpleGameEngine.px=save.px;					//uppdaterar simplegameengines värden så de matchar objektet
 				SimpleGameEngine.py=save.py;				
 				SimpleGameEngine.currentWorld=save.currentWorld;
 				SimpleGameEngine.currentMenu=SimpleGameEngine.menuHandler.pauseMenu.thisMenu;
@@ -112,10 +111,11 @@ ArrayList <String> saveNames= new ArrayList<String>();
 				    ex.printStackTrace();
 				}
 		
-	}
-	public void update(){
 		
-		file = new File("Saved games");		
+	}
+	public void update(){		//updaterar savemenu vid saving
+		
+		file = new File("Saved games");		//samma saker som i konstruktor
 		 if (!file.exists()) {
 	        file.mkdirs();
 	        }		 
@@ -136,7 +136,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 											
 			}
 		  
-
+		  saveNames.clear();		//tar bort tidigare save names
 			
 			for(int i =saves.length; i>0; i--){
 				if(saves[i-1]!=null){
@@ -146,9 +146,10 @@ ArrayList <String> saveNames= new ArrayList<String>();
 				}
 			}
 			Collections.reverse(saveNames);
-			System.out.println(saveNames); 
+			saveMenu.menuBoxes.clear();
+			SimpleGameEngine.menuHandler.menus.remove(saveMenu);	//removar gamla menun ur menuhanlder
 			saveMenu= new menu("saveMenu", saveNames.get(0),saveNames.get(1),saveNames.get(2),saveNames.get(3),saveNames.get(4),saveNames.get(5), "Cancel");
-		
+			SimpleGameEngine.menuHandler.menus.add(saveMenu);	//addar nya menun till menuhandler
 	}
 
 }
