@@ -6,7 +6,6 @@ int px;
 int py;
 
 String currentWorld;
-String currentMenu;
 int saveSlot;
 
 //Player Player;
@@ -16,9 +15,9 @@ int saveSlot;
 		this.saveSlot=saveSlot;
 		this.px=SimpleGameEngine.px;
 		this.py=SimpleGameEngine.py;
-		//this.Player=SimpleGameEngine.player;
 		this.currentWorld=SimpleGameEngine.currentWorld;
-		this.currentMenu=SimpleGameEngine.currentMenu;
+		//this.Player=SimpleGameEngine.player;
+		
 	}
 
 }

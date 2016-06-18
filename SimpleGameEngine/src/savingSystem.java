@@ -98,24 +98,56 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	public void load() {
 		int i=saveMenu.getClickedMenuBox();
 		//System.out.println(i);
+		try {
+			  FileInputStream fis = new FileInputStream(saves[i-1]);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				saveObject save = (saveObject) ois.readObject();				
+				ois.close();
+				SimpleGameEngine.px=save.px;
+				SimpleGameEngine.py=save.py;				
+				SimpleGameEngine.currentWorld=save.currentWorld;
+				SimpleGameEngine.currentMenu=SimpleGameEngine.menuHandler.pauseMenu.thisMenu;
+				}
+				catch(Exception ex) {
+				    ex.printStackTrace();
+				}
 		
 	}
 	public void update(){
 		
-		saves=file.listFiles();
-		saveNames.clear();
-		for(int i =saves.length; i>0; i--){
-			saveNames.add(saves[i-1].getName());
-		}
-		Collections.reverse(saveNames);
-		
-		if(saveNames.size()<6){
-		
-			for(int i2=6-saveNames.size(); i2>0; i2--){
-				saveNames.add("Empty slot");
+		file = new File("Saved games");		
+		 if (!file.exists()) {
+	        file.mkdirs();
+	        }		 
+		  File[] savesNonSorted=file.listFiles();
+		  
+		  for(int i =savesNonSorted.length; i>0; i--){
+			
+				try {
+			  FileInputStream fis = new FileInputStream(savesNonSorted[i-1]);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				saveObject save = (saveObject) ois.readObject();
+				ois.close();
+				saves[save.saveSlot]=savesNonSorted[i-1];
+				}
+				catch(Exception ex) {
+				    ex.printStackTrace();
+				}
+											
 			}
-		}
-		saveMenu= new menu("saveMenu", saveNames.get(0),saveNames.get(1),saveNames.get(2),saveNames.get(3),saveNames.get(4),saveNames.get(5), "Return to pause menu");
+		  
+
+			
+			for(int i =saves.length; i>0; i--){
+				if(saves[i-1]!=null){
+				saveNames.add(saves[i-1].getName());}
+				else{
+				saveNames.add("Empty slot");
+				}
+			}
+			Collections.reverse(saveNames);
+			System.out.println(saveNames); 
+			saveMenu= new menu("saveMenu", saveNames.get(0),saveNames.get(1),saveNames.get(2),saveNames.get(3),saveNames.get(4),saveNames.get(5), "Cancel");
 		
 	}
 
