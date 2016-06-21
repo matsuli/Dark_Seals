@@ -57,7 +57,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	}
 	
 	public void save(){
-		currentSaveSlot=saveMenu.getClickedMenuBox();
+		currentSaveSlot=saveMenu.getSelectedMenuBox();
 		System.out.println(currentSaveSlot);
 		
 		if(saveNames.get(currentSaveSlot-1).equals("Empty slot")){			//om man clickar empty slot
@@ -83,7 +83,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	}
 
 	public void load() {
-		currentSaveSlot=saveMenu.getClickedMenuBox();
+		currentSaveSlot=saveMenu.getSelectedMenuBox();
 		//System.out.println(i);
 		try {
 			  FileInputStream fis = new FileInputStream(saves[currentSaveSlot-1]);	//laddar input ur klickade saven
@@ -101,22 +101,35 @@ ArrayList <String> saveNames= new ArrayList<String>();
 		
 		
 	}
-	public void overWrite(int i){
+	public void overWrite(){
 		
 		try {
-			saves[i-1].delete();						//deletar gamla
-			String replacementSave ="Saved games"+"/"+ saveNames.get(i-1).substring(0, saveNames.get(i-1).lastIndexOf("-"))+"-"+SimpleGameEngine.currentWorld;
+			saves[currentSaveSlot-1].delete();						//deletar gamla
+			String replacementSave ="Saved games"+"/"+ saveNames.get(currentSaveSlot-1).substring(0, saveNames.get(currentSaveSlot-1).lastIndexOf("-"))+"-"+SimpleGameEngine.currentWorld;
 			FileOutputStream fis = new FileOutputStream(replacementSave);
 			ObjectOutputStream oos = new ObjectOutputStream(fis);
-			saveObject save= new saveObject(i-1);
+			saveObject save= new saveObject(currentSaveSlot-1);
 			oos.writeObject(save);
 			oos.close();
-			saves[i-1]=Paths.get(replacementSave).toFile();	//addar nya på gamlas plats i array
+			saves[currentSaveSlot-1]=Paths.get(replacementSave).toFile();	//addar nya på gamlas plats i array
 			
 			} catch(Exception ex) {
 				    ex.printStackTrace();
 				}	
 		SimpleGameEngine.currentMenu="saveMenu";
+	}
+public void delete(){
+	currentSaveSlot=saveMenu.getSelectedMenuBox();
+	
+	if(currentSaveSlot!=-1 && currentSaveSlot!=7){
+		try {
+			saves[currentSaveSlot-1].delete();						//deletar gamla	
+			} catch(Exception ex) {
+				    ex.printStackTrace();
+				}	
+		SimpleGameEngine.currentMenu="saveMenu";		
+		}
+	update();
 	}
 	
 	public void update(){		//updaterar savemenu vid saving

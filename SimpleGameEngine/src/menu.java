@@ -69,7 +69,7 @@ String thisMenu;
 	//	System.out.println(returnString);
 		
 	}
-	public int getClickedMenuBox(){		//returnar hur måntte menuboxen, uppifrån räknat som klickats
+	public int getSelectedMenuBox(){		//returnar hur måntte menuboxen, uppifrån räknat som klickats
 		menuBox returnBox=null;
 		for(Iterator<menuBox> it = this.menuBoxes.iterator(); it.hasNext();) {
 			menuBox o = it.next();	
@@ -80,7 +80,7 @@ String thisMenu;
 		
 		
 	}
-		return menuBoxes.lastIndexOf(returnBox)+1;
+		return menuBoxes.lastIndexOf(returnBox)+1;		//returnar -1 om ingen är selected
 	
 	}
 

@@ -76,6 +76,14 @@ public class InputHandler implements KeyListener {
 			}
 		}
 		
+		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_DELETE)) {
+			
+			if(SimpleGameEngine.currentMenu=="saveMenu"){
+				SimpleGameEngine.savingSystem.delete();
+			}
+						
+		}
+		
 		//shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
 			
