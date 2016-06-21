@@ -120,8 +120,8 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	}
 public void delete(){
 	currentSaveSlot=saveMenu.getSelectedMenuBox();
-	
-	if(currentSaveSlot!=-1 && currentSaveSlot!=7){
+	System.out.println(currentSaveSlot);
+	if(currentSaveSlot!=0 && currentSaveSlot!=7){
 		try {
 			saves[currentSaveSlot-1].delete();						//deletar gamla	
 			} catch(Exception ex) {
