@@ -170,7 +170,7 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		g.drawImage(offscreen, SimpleGameEngine.insets.left, SimpleGameEngine.insets.top, this);
 	}
-	
+	//TESTAR FRÅN NY DATA
 	//to do
 	//texture funktion
 	//save function
