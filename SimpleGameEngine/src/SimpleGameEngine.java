@@ -166,14 +166,14 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		
 		menuHandler.updateCurrentMenu(offgc);
-		System.out.println(currentMenu);
+		//System.out.println(currentMenu);
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		g.drawImage(offscreen, SimpleGameEngine.insets.left, SimpleGameEngine.insets.top, this);
 	}
 	//TESTAR FRÅN NY DATA
 	//to do
 	//texture funktion
-	//save function
+	//save function (funkar, små saker att fixa in game info om delete, int hög prioritet)
 	//interaction
 	//settings
 	//stamina?

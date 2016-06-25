@@ -58,7 +58,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	
 	public void save(){
 		currentSaveSlot=saveMenu.getSelectedMenuBox();
-		System.out.println(currentSaveSlot);
+		//System.out.println(currentSaveSlot);
 		
 		if(saveNames.get(currentSaveSlot-1).equals("Empty slot")){			//om man clickar empty slot
 			System.out.println("wooo");
@@ -86,6 +86,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 		currentSaveSlot=saveMenu.getSelectedMenuBox();
 		//System.out.println(i);
 		try {
+			if(saves[currentSaveSlot-1]!=null){
 			  FileInputStream fis = new FileInputStream(saves[currentSaveSlot-1]);	//laddar input ur klickade saven
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				saveObject save = (saveObject) ois.readObject();			//läser objektet	
@@ -94,7 +95,8 @@ ArrayList <String> saveNames= new ArrayList<String>();
 				SimpleGameEngine.py=save.py;				
 				SimpleGameEngine.currentWorld=save.currentWorld;
 				SimpleGameEngine.currentMenu=SimpleGameEngine.menuHandler.pauseMenu.thisMenu;
-				}
+			}
+		}
 				catch(Exception ex) {
 				    ex.printStackTrace();
 				}
@@ -120,26 +122,28 @@ ArrayList <String> saveNames= new ArrayList<String>();
 	}
 public void delete(){
 	currentSaveSlot=saveMenu.getSelectedMenuBox();
-	System.out.println(currentSaveSlot);
+	
 	if(currentSaveSlot!=0 && currentSaveSlot!=7){
 		try {
-			saves[currentSaveSlot-1].delete();						//deletar gamla	
+			if(saves[currentSaveSlot-1]!=null){
+			saves[currentSaveSlot-1].delete();
+			saves[currentSaveSlot-1]=null;}		//deletar gamla	
 			} catch(Exception ex) {
 				    ex.printStackTrace();
 				}	
-		SimpleGameEngine.currentMenu="saveMenu";		
-		}
-	update();
+		SimpleGameEngine.currentMenu="saveMenu";
+		update();
+		}	
 	}
 	
 	public void update(){		//updaterar savemenu vid saving
-		
+		//System.out.println("ok");
 		file = new File("Saved games");		//samma saker som i konstruktor
 		 if (!file.exists()) {
 	        file.mkdirs();
 	        }		 
 		  File[] savesNonSorted=file.listFiles();
-		  
+		  //System.out.println(savesNonSorted.length);
 		  for(int i =savesNonSorted.length; i>0; i--){
 			
 				try {
