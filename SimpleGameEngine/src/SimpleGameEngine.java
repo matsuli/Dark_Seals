@@ -172,11 +172,9 @@ public class SimpleGameEngine extends JFrame {
 	}
 	//TESTAR FRÅN NY DATA
 	//to do
+	//rektangel hitdet bug
 	//texture funktion
-	//save function (funkar, små saker att fixa in game info om delete, int hög prioritet)
-	//interaction
 	//settings
-	//stamina?
 	//sneak?
 	//npcs, enemies
 	//AI
