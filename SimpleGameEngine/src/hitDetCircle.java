@@ -105,5 +105,8 @@ public class hitDetCircle extends hitDetObj {
 	
 	public void draw(Graphics2D g){
 		g.fill(circle);
+		if(textureImg!=null){
+			g.drawImage(textureImg, ox, oy, ow, oh, null);
+		}
 	}
 }

@@ -26,8 +26,8 @@ public class noHitCircle extends noHitObj {
 	public void draw(Graphics2D g){		
 		
 		g.fill(circle);
-		if(textureImg2!=null){
-			g.drawImage(textureImg2, ox, oy, ow, oh, null);
+		if(textureImg!=null){
+			g.drawImage(textureImg, ox, oy, ow, oh, null);
 		}
 	}
 

@@ -119,10 +119,11 @@ public class world {
 		r.texture = texture;
 		objects.add(r);	
 	}
-	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh){
+	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture){
 		
 			hitDetCircle c = new hitDetCircle (ox, oy, ow, oh);
 			objects.add(c);	
+			c.texture = texture;
 		}
 	public void addhitDetTriangle(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2, int ox3,int oy3){
 		
@@ -139,6 +140,13 @@ public class world {
 		noHitRect r = new  noHitRect(ox, oy, ow, oh);
 		r.texture = texture;
 		noHitObjects.add(r);	
+	}
+	
+	public void addNoHitCircle(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture){
+		
+		noHitCircle c = new  noHitCircle(ox, oy, ow, oh);
+		c.texture = texture;
+		noHitObjects.add(c);	
 	}
 	
 	public void addInteractionArea (ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture) {
@@ -185,19 +193,16 @@ public class world {
 		
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
 		hitDetObj o = it.next();
-		Image img2 = null;
+		BufferedImage img2;
 		if (o.texture == null) {
 		} else {
-			img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
-			o.textureImg2=img2;
-			//try {
-			//	img2 = new ImageIcon (new URL(o.texture)).getImage();
-			//	o.textureImg2=img2;
-			//} catch (MalformedURLException e) {
-			//	e.printStackTrace();
-			//}
+			try {
+			    img2 = ImageIO.read(new File(o.texture));
+				o.textureImg2 = o.addTransparency(img2, Color.white);
+				o.textureImg = o.imageToBufferedImage(o.textureImg2);
+			} catch (IOException e) {
+			}
 		}
-		
 	  }
 		try {
 			FileInputStream fis = new FileInputStream(world+"/noHitObj");
@@ -211,11 +216,18 @@ public class world {
 		
 		for (Iterator<noHitObj> it = this.noHitObjects.iterator(); it.hasNext(); ) {
 			noHitObj o = it.next();
-			Image img2 = null;
+			BufferedImage img2;
+			//Image img2 = null;
 			if (o.texture == null) {
 			} else {
-				img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
-				o.textureImg2=img2;
+				try {
+				    img2 = ImageIO.read(new File(o.texture));
+					o.textureImg2 = o.addTransparency(img2, Color.white);
+					o.textureImg = o.imageToBufferedImage(o.textureImg2);
+				} catch (IOException e) {
+				}
+				//img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
+				//o.textureImg2=img2;
 				//try {
 				//	img2 = new ImageIcon (new URL(o.texture)).getImage();
 				//	o.textureImg2=img2;
