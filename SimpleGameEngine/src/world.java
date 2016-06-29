@@ -33,14 +33,14 @@ public class world {
 	
 	if(write){	
 	objects.clear();		//Adda hitdetect objects här
-	addhitDetCircle(objects, 100, 100, 50, 50);
-	addhitDetCircle(objects, 320, 300, 50, 50);		
+	addhitDetCircle(objects, 100, 100, 50, 50, null);
+	addhitDetCircle(objects, 320, 300, 50, 50, null);		
 	addhitDetLine(objects, 374, 250, 500, 400);
 	addhitDetLine(objects, 360, 400, 0, 125);
 	addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
 	saveWorld("world1");	
 	objects.clear();	
-	addhitDetCircle(objects, 225, 100, 50, 50);		
+	addhitDetCircle(objects, 225, 100, 50, 50, null);		
 	addhitDetLine(objects, 100, 250, 125, 450);
 	addhitDetLine(objects, 50, 500, 0, 0);
 	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
