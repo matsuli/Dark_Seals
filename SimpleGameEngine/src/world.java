@@ -31,20 +31,21 @@ public class world {
 	
 	public void initialize () {
 	
-	if(write){														//Adda hitdetect objects här
-//		addhitDetCircle(objects, 100, 100, 50, 50);
-//		addhitDetCircle(objects, 320, 300, 50, 50);		
-//		addhitDetLine(objects, 374, 250, 500, 400);
-//		addhitDetLine(objects, 360, 400, 0, 125);
-//		addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
-//		saveWorld("world1");						
-		
-//	addhitDetCircle(objects, 225, 100, 50, 50);		
-//	addhitDetLine(objects, 100, 250, 125, 450);
-//	addhitDetLine(objects, 50, 500, 0, 0);
-//	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
-//	saveWorld("world2");	
-	
+	if(write){	
+	objects.clear();		//Adda hitdetect objects här
+	addhitDetCircle(objects, 100, 100, 50, 50);
+	addhitDetCircle(objects, 320, 300, 50, 50);		
+	addhitDetLine(objects, 374, 250, 500, 400);
+	addhitDetLine(objects, 360, 400, 0, 125);
+	addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
+	saveWorld("world1");	
+	objects.clear();	
+	addhitDetCircle(objects, 225, 100, 50, 50);		
+	addhitDetLine(objects, 100, 250, 125, 450);
+	addhitDetLine(objects, 50, 500, 0, 0);
+	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
+	saveWorld("world2");	
+	objects.clear();
 	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
 	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
 	addInteractionArea (noHitObjects, 200,100,100,100, null);

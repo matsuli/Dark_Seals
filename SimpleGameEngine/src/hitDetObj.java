@@ -17,10 +17,10 @@ public class hitDetObj implements Serializable {
 	boolean hitRight;
 	boolean hitUp;
 	boolean hitDown;	
-	int hitCorrectionLeft;
-	int hitCorrectionRight;
-	int hitCorrectionUp;
-	int hitCorrectionDown;
+	double hitCorrectionLeft;
+	double hitCorrectionRight;
+	double hitCorrectionUp;
+	double hitCorrectionDown;
 
 	
 	

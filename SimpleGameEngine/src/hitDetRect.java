@@ -28,19 +28,19 @@ public class hitDetRect extends hitDetObj {
 			if(ox >=(hitDetCircle.getCenterX())) {
 				hitRight=true;	
 				
-				hitCorrectionRight=(int) (hitDetCircle.getCenterX() + radius)-ox;
+				hitCorrectionRight= (hitDetCircle.getCenterX() + radius)-ox;
 			}
 			if(ox+ow <=(hitDetCircle.getCenterX())){
 				hitLeft=true;	
-				hitCorrectionLeft=(int) ((ox+ow)-(hitDetCircle.getCenterX()- radius));
+				hitCorrectionLeft= ((ox+ow)-(hitDetCircle.getCenterX()- radius));
 			}
 			if(oy >=(hitDetCircle.getCenterY()) ){
 				hitDown=true;
-				hitCorrectionDown=(int) ((hitDetCircle.getCenterY() + radius)-oy);
+				hitCorrectionDown= ((hitDetCircle.getCenterY() + radius)-oy);
 			}
 			if(oy+oh <=(hitDetCircle.getCenterY())){
 				hitUp=true;	
-				hitCorrectionUp=(int) ((oy+oh)-(hitDetCircle.getCenterY()- radius));
+				hitCorrectionUp= ((oy+oh)-(hitDetCircle.getCenterY()- radius));
 			}	
 		}
 	if(hitDetCircle==SimpleGameEngine.player.hitDetCircle){

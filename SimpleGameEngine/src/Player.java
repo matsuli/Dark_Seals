@@ -22,10 +22,10 @@ public class Player extends Actor {
 	boolean hitDown;
 	Ellipse2D hitDetCircle;
 	Ellipse2D prevHitDetCircle;
-	int hitCorrectionLeft;
-	int hitCorrectionRight;
-	int hitCorrectionUp;
-	int hitCorrectionDown;
+	double hitCorrectionLeft;
+	double hitCorrectionRight;
+	double hitCorrectionUp;
+	double hitCorrectionDown;
 	boolean hitCorrected;
 	
 	Player(){
