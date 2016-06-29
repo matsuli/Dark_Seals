@@ -19,26 +19,26 @@ public class hitDetRect extends hitDetObj {
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	
-	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius, Ellipse2D unused){
+	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){
 		
 		hit=false;
 		if (hitDetCircle.intersects(rect)) {
 		hit=true;
 		
-			if(ox >=(hitDetCircle.getCenterX())) {
+			if(ox >=(prevHitDetCircle.getCenterX())) {
 				hitRight=true;	
 				
 				hitCorrectionRight= (hitDetCircle.getCenterX() + radius)-ox;
 			}
-			if(ox+ow <=(hitDetCircle.getCenterX())){
+			if(ox+ow <=(prevHitDetCircle.getCenterX())){
 				hitLeft=true;	
 				hitCorrectionLeft= ((ox+ow)-(hitDetCircle.getCenterX()- radius));
 			}
-			if(oy >=(hitDetCircle.getCenterY()) ){
+			if(oy >=(prevHitDetCircle.getCenterY()) ){
 				hitDown=true;
 				hitCorrectionDown= ((hitDetCircle.getCenterY() + radius)-oy);
 			}
-			if(oy+oh <=(hitDetCircle.getCenterY())){
+			if(oy+oh <=(prevHitDetCircle.getCenterY())){
 				hitUp=true;	
 				hitCorrectionUp= ((oy+oh)-(hitDetCircle.getCenterY()- radius));
 			}	
