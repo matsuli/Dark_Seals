@@ -227,7 +227,8 @@ public class world {
 			    img = ImageIO.read(new File("images/engage.png"));
 			} catch (IOException e) {
 			}
-			o.interactSymbol=img;
+			o.intSymImg = o.addTransparency(img, Color.white);
+			o.interactSymbol = o.imageToBufferedImage(o.intSymImg);
 		}
 	
 	  }	
