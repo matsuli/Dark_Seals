@@ -140,7 +140,6 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setColor(Color.BLACK);
 		//world
 		space.drawWorld (offgc);
-		
 		offgc.translate(-px, -py);	//sätter kordinatsystemet tillbaks till det vanliga
 		
 		//player

@@ -19,6 +19,15 @@ public class hitDetRect extends hitDetObj {
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	
+	public double getCornerTangentX(int radius, double centerY,double cornerX, double cornerY){
+		//(ocornerX-targetX)pow2+(cornerY-centerY)pow2=radius*radius =Cirkelns ekvation, där targetX är det centerX för vilket rektangelns hörn är punkt på cirkeln
+		double i=(radius*radius)-((cornerY-centerY)*(cornerY-centerY));	
+		double targetX=(Math.sqrt(i)*(-1)-cornerX)*(-1);
+	//	System.out.println(i);	
+	//	System.out.println(targetX);		
+		return targetX;	
+		
+	}
 	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){
 		
 		hit=false;
@@ -32,7 +41,20 @@ public class hitDetRect extends hitDetObj {
 			}
 			if(ox+ow <=(prevHitDetCircle.getCenterX())){
 				hitLeft=true;	
-				hitCorrectionLeft= ((ox+ow)-(hitDetCircle.getCenterX()- radius));
+				
+				
+				if(oy<=hitDetCircle.getCenterY() && oy+ow>=hitDetCircle.getCenterY()){		//om player är på "yttre sidan" av rektangeln
+				hitCorrectionLeft= ((ox+ow)-(hitDetCircle.getCenterX()- radius));}
+				else{
+					if(!(oy<=hitDetCircle.getCenterY())){
+					double i=getCornerTangentX(radius, hitDetCircle.getCenterY(), ox+ow, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+					hitCorrectionLeft=i-hitDetCircle.getCenterX();
+					}
+					if(!(oy+ow>=hitDetCircle.getCenterY())){
+						double i=getCornerTangentX(radius, hitDetCircle.getCenterY(),ox+ow, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+						hitCorrectionLeft=i-hitDetCircle.getCenterX();
+						}
+				}
 			}
 			if(oy >=(prevHitDetCircle.getCenterY()) ){
 				hitDown=true;

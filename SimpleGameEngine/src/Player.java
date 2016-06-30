@@ -12,7 +12,7 @@ public class Player extends Actor {
 	double left = 5;
 	double down = 5;
 	double up = 5;
-	double speed = 5;
+	double speed = 1;
 	double stamina = 100;
 	boolean sprint, sneak;
 	boolean hit;
@@ -51,6 +51,12 @@ public class Player extends Actor {
 		left = speed;
 		down = speed;
 		up = speed;
+		
+		 hitLeft=false;
+		 hitRight=false;
+		 hitUp=false;
+		 hitDown=false;
+		 hit=false;
 		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
 			
@@ -110,7 +116,7 @@ public class Player extends Actor {
 			}
 		}
 		if (sprint == false) {
-			if (speed > 5) {
+			if (speed > 1) {
 				speed = speed - 1.0/20;
 			}
 		}

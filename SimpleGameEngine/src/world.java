@@ -26,8 +26,8 @@ public class world {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
-	boolean write =false;
-//	boolean write =true;
+//	boolean write =false;
+	boolean write =true;
 	
 	public void initialize () {
 	
@@ -78,7 +78,7 @@ public class world {
 			o.hitdetect(SimpleGameEngine.player.hitDetCircle, SimpleGameEngine.player.radius, SimpleGameEngine.player.prevHitDetCircle);
 			
 		}
-			
+		
 	}
 	
 	public void Bullet (Graphics2D g) {
