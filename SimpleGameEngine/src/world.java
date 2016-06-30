@@ -26,8 +26,8 @@ public class world {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
-//	boolean write =false;
-	boolean write =true;
+	boolean write =false;
+//	boolean write =true;
 	
 	public void initialize () {
 	
