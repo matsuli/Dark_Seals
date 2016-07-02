@@ -16,7 +16,7 @@ public class Animation {
 
     public Animation(BufferedImage[] frames, int frameDelay) {
         this.frameDelay = frameDelay;
-        this.stopped = true;
+        this.stopped = false;
 
         for (int i = 0; i < frames.length; i++) {
             addFrame(frames[i], frameDelay);
