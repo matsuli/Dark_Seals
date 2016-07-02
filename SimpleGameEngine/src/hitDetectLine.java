@@ -144,10 +144,12 @@ public class hitDetectLine extends hitDetObj {
 	  		hitCorrectionDown=(int) (py-ly);
 	  		hitCorrectionRight=(int) (px-lx);
 	  	}
-	  	
+	  
+	   
 	  	if((centerP.distance(ox, oy)<radius || centerP.distance(ox2, oy2)<radius) && (centerP.distance(ox, oy)>lineLenght || centerP.distance(ox2, oy2)>lineLenght)){
 	  		double centerX;
 	  		double centerY;
+			
 	  		if(centerP.distance(ox, oy)<radius ){
 	  			 centerX=ox;
 	  			 centerY=oy;
@@ -157,41 +159,45 @@ public class hitDetectLine extends hitDetObj {
 	  			centerY=oy2;
 	  		}
 	  		
-	  		
+	  		 
+	  		 
 			 if(centerX>px){
 				 hitRight=true;		
 				 
-				int x1=(int) (centerX-px);
-				int y=(int) (centerY-py);
-				int i2= (int) Math.sqrt(((radius) * (radius)));
-				int x2=(int)(Math.sqrt(i2*i2-y*y));
+				double x1= (centerX-px);
+				double y= (centerY-py);
+				double i2=  Math.sqrt(((radius) * (radius)));
+				double x2= (Math.sqrt(i2*i2-y*y));
 				hitCorrectionRight=x2-x1;
 				
 			 }
 			 if(centerX<px){
 				 hitLeft=true;	
 				 
-				int x1=(int) (-centerX+px);
-				int y=(int) (centerY-py);
-				int i2= (int) Math.sqrt(((radius) * (radius)));
-				int x2=(int)(Math.sqrt(i2*i2-y*y));
+				double x1= (-centerX+px);
+				double y= (centerY-py);
+				double i2=  Math.sqrt(((radius) * (radius)));
+				double x2=(Math.sqrt(i2*i2-y*y));
 				hitCorrectionLeft=x2-x1;
 				
 			 }
+			 System.out.println(centerY>py);
 			 if(centerY>py){
+				 
 				 hitDown=true;
-					int y1=(int) (centerY-py);
-					int x=(int) (centerX-px);
-					int i2= (int) Math.sqrt(((radius) * (radius)));
-					int y2=(int)(Math.sqrt(i2*i2-x*x));
+				 double y1= (centerY-py);
+				 double x= (centerX-px);
+				 double i2= Math.sqrt(((radius) * (radius)));
+				 double y2=(Math.sqrt(i2*i2-x*x));
 					hitCorrectionDown=y2-y1;
 			 }
 			 if(centerY<py){
+					
 				 hitUp=true;	
-					int y1=(int) (-centerY+py);
-					int x=(int) (centerX-px);
-					int i2= (int) Math.sqrt(((radius ) * (radius)));
-					int y2=(int)(Math.sqrt(i2*i2-x*x));
+				 double y1= (-centerY+py);
+				 double x= (centerX-px);
+				 double i2= Math.sqrt(((radius ) * (radius)));
+				 double y2=(Math.sqrt(i2*i2-x*x));
 					hitCorrectionUp=y2-y1;
 			 }	
 	  	}
