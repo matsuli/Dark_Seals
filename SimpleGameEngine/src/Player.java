@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 
 public class Player extends Actor {
-	int radius = 50;
+	int radius = 10;
 	//used in movement
 	double right = 5;
 	double left = 5;
@@ -30,7 +30,7 @@ public class Player extends Actor {
 	boolean hitCorrected;
 	
 	private BufferedImage[] walkingSprite = {Sprite.getSprite(0, 0),Sprite.getSprite(1, 0), Sprite.getSprite(2, 0)};
-	private Animation walking = new Animation(walkingSprite, 20);
+	private Animation walking = new Animation(walkingSprite, 20, false);
 	private Animation playerSprite = walking;
 	
 	Player(){

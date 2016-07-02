@@ -14,9 +14,9 @@ public class Animation {
 
     private List<Frame> frames = new ArrayList<Frame>();    // Arraylist of frames 
 
-    public Animation(BufferedImage[] frames, int frameDelay) {
+    public Animation(BufferedImage[] frames, int frameDelay, boolean stopped) {
         this.frameDelay = frameDelay;
-        this.stopped = false;
+        this.stopped = stopped;
 
         for (int i = 0; i < frames.length; i++) {
             addFrame(frames[i], frameDelay);
