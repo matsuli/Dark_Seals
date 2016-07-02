@@ -143,7 +143,7 @@ public class SimpleGameEngine extends JFrame {
 		offgc.translate(-px, -py);	//sätter kordinatsystemet tillbaks till det vanliga
 		
 		//player
-		player.drawPlayer(offgc,playerX, playerY, player.radius*2 );
+		player.drawPlayer(offgc,playerX, playerY);
 		//stamina
 		offgc.drawRect(5, 5, (int) (player.stamina*10 / 4), 10);
 		

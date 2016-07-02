@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 
 
 public class Player extends Actor {
@@ -28,6 +29,10 @@ public class Player extends Actor {
 	double hitCorrectionDown;
 	boolean hitCorrected;
 	
+	private BufferedImage[] walkingSprite = {Sprite.getSprite(0, 0),Sprite.getSprite(0, 2)};
+	private Animation walking = new Animation(walkingSprite, 10);
+	private Animation playerSprite = walking;
+	
 	Player(){
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;
@@ -36,11 +41,13 @@ public class Player extends Actor {
 		prevHitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 	}																										//location-radius innebär att location e cirkelns mitt
 	
-	public void drawPlayer (Graphics2D g, int x, int y, int d) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
+	public void drawPlayer (Graphics2D g, int x, int y) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
 			  g.setColor(Color.RED);
-			  x = x-(d/2);
-			  y = y-(d/2);
-			  g.fillOval(x,y,d,d);
+			  x = x-(radius);
+			  y = y-(radius);
+			  g.fillOval(x,y,radius*2,radius*2);
+			  
+			  g.drawImage(playerSprite.getSprite(), x, y, radius*2, radius*2, null);
 	}
 	
 	public void Control (world space) {
@@ -124,7 +131,7 @@ public class Player extends Actor {
 			stamina = stamina + 1;
 		}
 		
-
+		playerSprite.update();
 		
 		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px,location.y - SimpleGameEngine.py);
