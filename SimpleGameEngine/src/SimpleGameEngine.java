@@ -86,7 +86,6 @@ public class SimpleGameEngine extends JFrame {
 		setVisible (true);
 		insets = getInsets ();
 		setSize (insets.left+windowWidth+insets.right, insets.top+windowHeight+insets.bottom);
-		space.initialize();
 		input = new InputHandler (this);
 		mouse = new mouseInput ();
 		addMouseListener( mouse );
@@ -96,6 +95,7 @@ public class SimpleGameEngine extends JFrame {
 		mainMenu= new menu("Main","New Game", "Load Game", "Settings", "Quit");
 		currentMenu=mainMenu.thisMenu;
 		menuHandler.menus.add(mainMenu);
+		space.initialize();
 		player = new Player ();
 		
 	}
