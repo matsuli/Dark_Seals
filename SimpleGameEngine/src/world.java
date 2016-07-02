@@ -53,8 +53,8 @@ public class world {
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
 	//	loadWorld("world1");	
-		loadWorld("world2");
-	//	loadWorld("chicken"); //laddar arraylisten ur en fil
+	//	loadWorld("world2");
+		loadWorld("chicken"); //laddar arraylisten ur en fil
 	}
 		
 		

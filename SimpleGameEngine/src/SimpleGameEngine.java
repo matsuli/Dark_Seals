@@ -24,7 +24,7 @@ public class SimpleGameEngine extends JFrame {
 	public static menuHandler menuHandler;
 	//the main menu	
 	public static menu mainMenu;
-	
+	public static menu shouldWrite;
 	//new player
 	static Player player;
 	//Player variables
@@ -43,7 +43,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	static String currentWorld;
 	
-	world space = new world ();
+	static world space = new world ();
 	
 	//this is the game
 	public static void main (String [] args) throws IOException {
@@ -92,10 +92,11 @@ public class SimpleGameEngine extends JFrame {
 		addMouseMotionListener( mouse );
 		savingSystem= new savingSystem();
 		menuHandler = new menuHandler();
+		shouldWrite= new menu("shouldWrite","Read", "Write", "Quit");
 		mainMenu= new menu("Main","New Game", "Load Game", "Settings", "Quit");
-		currentMenu=mainMenu.thisMenu;
 		menuHandler.menus.add(mainMenu);
-		space.initialize();
+		menuHandler.menus.add(shouldWrite);
+		currentMenu=shouldWrite.thisMenu;
 		player = new Player ();
 		
 	}

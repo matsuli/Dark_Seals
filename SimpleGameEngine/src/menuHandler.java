@@ -94,9 +94,17 @@ public class menuHandler {
 				SimpleGameEngine.savingSystem.load();	
 			}
 		}
-		
-		
-		
+		else if(clicked == "Write") {
+			SimpleGameEngine.space.write=true;
+			SimpleGameEngine.space.initialize();
+			SimpleGameEngine.currentMenu="Main";
+		}
+		else if(clicked == "Read") {
+			SimpleGameEngine.space.write=false;
+			SimpleGameEngine.space.initialize();
+			SimpleGameEngine.currentMenu="Main";
+		}
+				
 		else if(clicked==null){
 			
 		}	
