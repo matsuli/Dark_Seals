@@ -48,7 +48,7 @@ public class world {
 	objects.clear();
 	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
 	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
-	addInteractionArea (noHitObjects, 200,100,100,100, null);
+	addInteractionArea (noHitObjects, 200,100,100,100, null, null);
 	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
 	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
 	else{
@@ -149,7 +149,7 @@ public class world {
 		noHitObjects.add(c);	
 	}
 	
-	public void addInteractionArea (ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture) {
+	public void addInteractionArea (ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String type, String texture) {
 		Interaction I = new Interaction (ox,oy,ow,oh);
 		I.texture = texture;
 		noHitObjects.add(I);
