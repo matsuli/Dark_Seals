@@ -9,20 +9,20 @@ public class Bullet {
 	Actor shooter;
 	boolean toRemove=false;
 	int radius = 5;
-	float oldPosX, oldPosY;
+	double oldPosX, oldPosY;
 	double rotation, speed;
 	Point2D.Double location;//bullet location
 	Ellipse2D hitDetBullet;
 	Ellipse2D prevHitDetBullet;
 	
-	Bullet (Actor shooter, float targetPosX, float targetPosY) {
+	Bullet (Actor shooter, double targetPosX, double targetPosY) {
 		this.shooter=shooter;
 	    location = new Point2D.Double ((shooter.shooterLocation.getX()), (shooter.shooterLocation.getY()));
 		hitDetBullet = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 		prevHitDetBullet = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
 	    oldPosX = targetPosX;
 	    oldPosY = targetPosY;
-	    rotation = Math.toDegrees(Math.atan2((double)(oldPosY - location.y), (double)(oldPosX - location.x)));
+	    rotation = Math.toDegrees(Math.atan2((oldPosY - location.y), (oldPosX - location.x)));
 	    speed = 5;
 	  }
 	

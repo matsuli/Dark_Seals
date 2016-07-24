@@ -27,6 +27,8 @@ public class world {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
+	ArrayList<enemy> enemies = new ArrayList<enemy>();	
+	
 	boolean write =false;
 //	boolean write =true;
 	
@@ -99,6 +101,23 @@ public class world {
 	}
 	
 	public void drawWorld (Graphics2D g) {
+		
+		if(enemies.size()<2){
+			 addEnemy(Math.random()*1000, Math.random()*1000); 	//addar enemies. När vi börjar med levels ska vi väl inte använda random utan ha dem att spawna på specifika ställen?
+		 }
+		
+		 for (Iterator<enemy> it = enemies.iterator(); it.hasNext(); ) {
+			    enemy e = it.next(); 
+			    e.update();
+			    e.drawEnemy(g);// uppdaterar enemies position och detection av player, drawar den
+			    
+				 if(e.ReloadTimer==120){
+					 e.shoot(e, e.targetActor.location.x, e.targetActor.location.y);
+					 e.ReloadTimer=0;
+				 }
+			    if (e.toRemove)
+			      it.remove();			//removar enemyn om toRemove=true
+			  }
 		
 		g.setColor(Color.blue);
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
@@ -246,6 +265,12 @@ public class world {
 		}
 	
 	  }	
+	 private void addEnemy(double d, double e) {				// addenemy metoden. skapar en ny enemy vid positionen som insätts i metoden
+			{			
+					enemy Enemy  = new enemy(d, e);
+					enemies.add(Enemy);
+				}
+	 }
 	
 }
 

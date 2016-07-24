@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 
 public class Player extends Actor {
-	int radius = 10;
+
 	//used in movement
 	double right = 5;
 	double left = 5;
@@ -22,8 +22,6 @@ public class Player extends Actor {
 	boolean hitRight;
 	boolean hitUp;
 	boolean hitDown;
-	Ellipse2D hitDetCircle;
-	Ellipse2D prevHitDetCircle;
 	double hitCorrectionLeft;
 	double hitCorrectionRight;
 	double hitCorrectionUp;
@@ -35,6 +33,7 @@ public class Player extends Actor {
 	private Animation playerSprite = walking;
 	
 	Player(){
+		radius=10;
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px,location.y - SimpleGameEngine.py);

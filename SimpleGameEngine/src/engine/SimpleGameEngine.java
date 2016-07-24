@@ -2,6 +2,8 @@ package engine;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 public class SimpleGameEngine extends JFrame {
@@ -45,6 +47,8 @@ public class SimpleGameEngine extends JFrame {
 	static String currentWorld;
 	
 	static world space = new world ();
+	
+	
 	
 	//this is the game
 	public static void main (String [] args) throws IOException {
@@ -105,7 +109,7 @@ public class SimpleGameEngine extends JFrame {
 	//check for input, move things, etc.
 	void update () {
 		
-		if(play){
+		if(play){		
 		player.Control(space);}
 		mouse.poll();
 		mouseX = mouse.getPosition().x-px-insets.left;
@@ -180,4 +184,5 @@ public class SimpleGameEngine extends JFrame {
 	//npcs, enemies
 	//AI
 }
+
 
