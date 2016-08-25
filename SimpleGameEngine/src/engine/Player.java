@@ -14,7 +14,7 @@ public class Player extends Actor {
 	double left = 5;
 	double down = 5;
 	double up = 5;
-	double speed = 1;
+	double speed = 10;
 	double stamina = 100;
 	boolean sprint, sneak;
 	boolean hit;
@@ -123,7 +123,7 @@ public class Player extends Actor {
 			}
 		}
 		if (sprint == false) {
-			if (speed > 1) {
+			if (speed > 10) {
 				speed = speed - 1.0/20;
 			}
 		}
