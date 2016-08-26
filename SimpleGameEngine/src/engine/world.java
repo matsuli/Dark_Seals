@@ -24,6 +24,7 @@ public class world {
 	
 	ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
 	ArrayList <noHitObj> noHitObjects = new ArrayList <noHitObj>();
+	ArrayList <noHitObj> foregroundStuff = new ArrayList <noHitObj>();
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
@@ -52,8 +53,10 @@ public class world {
 	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
 	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
 	addInteractionArea (noHitObjects, 200,100,100,100, null, null);
-	saveWorld("chicken");																//skapar en fil med valfritt namn och sparar arraylisten objects där, 
-	}																//object till den har addats ovan OBS! VArje gång saveworld runnar overwritas hela den tidigare arraylist-filen helt!
+	saveWorld("chicken");
+	addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
+	saveWorld("tree");
+	}									
 	else{
 	//	loadWorld("world1");	
 	//	loadWorld("world2");
@@ -133,6 +136,16 @@ public class world {
 		
 	}
 	
+public void drawForeground (Graphics2D g) {
+		
+		
+		g.setColor(Color.black);
+		for (Iterator<noHitObj> it = this.foregroundStuff.iterator(); it.hasNext(); ) {
+			noHitObj o = it.next();
+			o.draw(g);
+		}
+	}
+	
 	public void addhitDetRect(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture){
 		
 		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
@@ -173,6 +186,26 @@ public class world {
 		Interaction I = new Interaction (ox,oy,ow,oh);
 		I.texture = texture;
 		noHitObjects.add(I);
+	}
+	
+	public void addTree (ArrayList<noHitObj> noHitObjects, ArrayList<hitDetObj> objects, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown) {
+		//hitbox
+		hitDetCircle tc = new hitDetCircle (tx, ty, treeRadius*2, treeRadius*2);
+		objects.add(tc);	
+		tc.texture = null;
+		
+		//trädkrona
+		noHitRect tr = new  noHitRect(topX, topY, topW, topH);
+		tr.texture = crown;
+		foregroundStuff.add(tr);
+		
+		noHitRect tt = new  noHitRect(tx, ty, tw, th);
+		tt.texture = trunk;
+		if (SimpleGameEngine.playerX > tx && SimpleGameEngine.playerX < (tx+tw) && SimpleGameEngine.playerY > (ty+th)) {
+			noHitObjects.add(tt);
+		} else {
+			foregroundStuff.add(tt);
+		}
 	}
 
 	public void saveWorld(String world){
