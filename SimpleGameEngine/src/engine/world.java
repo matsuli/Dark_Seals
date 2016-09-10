@@ -36,31 +36,40 @@ public class world {
 	public void initialize () {
 	
 	if(write){	
-	objects.clear();		//Adda hitdetect objects här
+	objects.clear();
+	noHitObjects.clear();		//Adda hitdetect objects här
 	addhitDetCircle(objects, 100, 100, 50, 50, null);
 	addhitDetCircle(objects, 320, 300, 50, 50, null);		
 	addhitDetLine(objects, 374, 250, 500, 400);
 	addhitDetLine(objects, 360, 400, 0, 125);
 	addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
 	saveWorld("world1");	
-	objects.clear();	
+	objects.clear();
+	noHitObjects.clear();	
 	addhitDetCircle(objects, 225, 100, 50, 50, null);		
 	addhitDetLine(objects, 100, 250, 125, 450);
 	addhitDetLine(objects, 50, 500, 0, 0);
 	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
 	saveWorld("world2");	
 	objects.clear();
+	noHitObjects.clear();
 	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
 	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
 	addInteractionArea (noHitObjects, 200,100,100,100, null, null);
 	saveWorld("chicken");
+	objects.clear();
+	noHitObjects.clear();
 	addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
 	saveWorld("tree");
+	objects.clear();
+	noHitObjects.clear();
+	
 	}									
 	else{
 	//	loadWorld("world1");	
 	//	loadWorld("world2");
-		loadWorld("chicken"); //laddar arraylisten ur en fil
+	//	loadWorld("chicken");
+		loadWorld("tree"); //laddar arraylisten ur en fil
 	}
 		
 		
@@ -132,6 +141,7 @@ public class world {
 			noHitObj o = it.next();
 			o.draw(g);
 		}
+		
 		this.Bullet(g);
 		
 	}
@@ -194,11 +204,6 @@ public void drawForeground (Graphics2D g) {
 		objects.add(tc);	
 		tc.texture = null;
 		
-		//trädkrona
-		noHitRect tr = new  noHitRect(topX, topY, topW, topH);
-		tr.texture = crown;
-		foregroundStuff.add(tr);
-		
 		noHitRect tt = new  noHitRect(tx, ty, tw, th);
 		tt.texture = trunk;
 		if (SimpleGameEngine.playerX > tx && SimpleGameEngine.playerX < (tx+tw) && SimpleGameEngine.playerY > (ty+th)) {
@@ -206,6 +211,13 @@ public void drawForeground (Graphics2D g) {
 		} else {
 			foregroundStuff.add(tt);
 		}
+		
+		
+		//trädkrona
+		noHitRect tr = new  noHitRect(topX, topY, topW, topH);
+		tr.texture = crown;
+		foregroundStuff.add(tr);
+		
 	}
 
 	public void saveWorld(String world){
@@ -228,7 +240,16 @@ public void drawForeground (Graphics2D g) {
 			oos.close();
 		} catch(Exception ex) {
 		    ex.printStackTrace();
-		}	
+		}
+		
+	try {
+		FileOutputStream fos = new FileOutputStream(world+"/foreGround");
+		ObjectOutputStream	oos = new ObjectOutputStream(fos);
+		oos.writeObject(foregroundStuff);
+		oos.close();
+	} catch(Exception ex) {
+	    ex.printStackTrace();
+	}	
 	}
 
 	
@@ -296,7 +317,30 @@ public void drawForeground (Graphics2D g) {
 			o.intSymImg = o.addTransparency(img, Color.white);
 			o.interactSymbol = o.imageToBufferedImage(o.intSymImg);
 		}
-	
+		try {
+		FileInputStream fis = new FileInputStream(world+"/foreGround");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		foregroundStuff = (ArrayList <noHitObj>)ois.readObject();
+		ois.close();
+		SimpleGameEngine.currentWorld=world;
+		} catch(Exception ex) {
+			    ex.printStackTrace();
+			}	
+		
+		
+		for (Iterator<noHitObj> it = this.foregroundStuff.iterator(); it.hasNext(); ) {
+		noHitObj o = it.next();
+		BufferedImage img2;
+		if (o.texture == null) {
+		} else {
+			try {
+			    img2 = ImageIO.read(new File(o.texture));
+				o.textureImg2 = o.addTransparency(img2, Color.white);
+				o.textureImg = o.imageToBufferedImage(o.textureImg2);
+			} catch (IOException e) {
+			}
+		}
+	  }
 	  }	
 	 private void addEnemy(double d, double e) {				// addenemy metoden. skapar en ny enemy vid positionen som insätts i metoden
 			{			
