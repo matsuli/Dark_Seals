@@ -152,10 +152,11 @@ public class SimpleGameEngine extends JFrame {
 		player.drawPlayer(offgc,playerX, playerY);
 		//stamina
 		offgc.drawRect(5, 5, (int) (player.stamina*10 / 4), 10);
-		System.out.println(space.foregroundStuff.isEmpty());
+		//System.out.println(space.foregroundStuff.isEmpty());
 		//här går foreground, men måste ännu flyttas i förhållande till player
+		offgc.translate(px, py);
 		space.drawForeground(offgc);
-		
+		offgc.translate(-px, -py);
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		//should be last in the method
 		g.drawImage(offscreen, insets.left, insets.top, this);

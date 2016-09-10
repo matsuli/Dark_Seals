@@ -18,8 +18,8 @@ public class hitDetCircle extends hitDetObj {
 		this.ow=ow;
 		this.oh=oh;
 		r=ow/2;
-		ox = ox-(r/2);
-		oy = oy-(r/2);		
+		ox = ox-(r);
+		oy = oy-(r);		
 		circle = new Ellipse2D.Double(ox, oy, ow, oh);
 		centerX=circle.getCenterX();
 		centerY=circle.getCenterY();

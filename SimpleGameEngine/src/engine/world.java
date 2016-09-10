@@ -199,10 +199,10 @@ public void drawForeground (Graphics2D g) {
 	}
 	
 	public void addTree (ArrayList<noHitObj> noHitObjects, ArrayList<hitDetObj> objects, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown) {
-		//hitbox
-		hitDetCircle tc = new hitDetCircle (tx, ty, treeRadius*2, treeRadius*2);
-		objects.add(tc);	
-		tc.texture = null;
+		//hitbox		
+		hitDetRect tr = new hitDetRect (tx+tw/20, ty+th-tw/2, tw-tw/10, tw/2-tw/20);
+		objects.add(tr);	
+		tr.texture = null;
 		
 		noHitRect tt = new  noHitRect(tx, ty, tw, th);
 		tt.texture = trunk;
@@ -214,9 +214,9 @@ public void drawForeground (Graphics2D g) {
 		
 		
 		//trädkrona
-		noHitRect tr = new  noHitRect(topX, topY, topW, topH);
-		tr.texture = crown;
-		foregroundStuff.add(tr);
+		noHitRect tr2 = new  noHitRect(topX, topY, topW, topH);
+		tr2.texture = crown;
+		foregroundStuff.add(tr2);
 		
 	}
 
