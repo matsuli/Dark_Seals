@@ -6,6 +6,10 @@ import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import objects.BasicTree;
+import objects.enemy;
+import objects.Bullet;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -200,23 +204,7 @@ public void drawForeground (Graphics2D g) {
 	
 	public void addTree (ArrayList<noHitObj> noHitObjects, ArrayList<hitDetObj> objects, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown) {
 		//hitbox		
-		hitDetRect tr = new hitDetRect (tx+tw/20, ty+th-tw/2, tw-tw/10, tw/2-tw/20);
-		objects.add(tr);	
-		tr.texture = null;
-		
-		noHitRect tt = new  noHitRect(tx, ty, tw, th);
-		tt.texture = trunk;
-		if (SimpleGameEngine.playerX > tx && SimpleGameEngine.playerX < (tx+tw) && SimpleGameEngine.playerY > (ty+th)) {
-			noHitObjects.add(tt);
-		} else {
-			foregroundStuff.add(tt);
-		}
-		
-		
-		//trädkrona
-		noHitRect tr2 = new  noHitRect(topX, topY, topW, topH);
-		tr2.texture = crown;
-		foregroundStuff.add(tr2);
+		BasicTree t= new BasicTree(noHitObjects, objects,foregroundStuff, treeRadius,tx, ty, tw, th, topX, topY, topW,topH, trunk, crown);
 		
 	}
 

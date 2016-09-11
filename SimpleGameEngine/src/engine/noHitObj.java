@@ -11,7 +11,7 @@ import java.awt.image.RGBImageFilter;
 import java.io.Serializable;
 
 public class noHitObj implements Serializable {
-	String texture;
+	public String texture;
 	BufferedImage textureImg;	//den bild som ritas
 	Image textureImg2;	//den bild vars bakgrund görs transparent i world
 	BufferedImage interactSymbol;	//den bild som ritas

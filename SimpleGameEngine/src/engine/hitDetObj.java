@@ -14,7 +14,7 @@ import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 public class hitDetObj implements Serializable {
-	String texture;
+	public String texture;
 	Image textureImg2;
 	BufferedImage textureImg;
 	int ox;

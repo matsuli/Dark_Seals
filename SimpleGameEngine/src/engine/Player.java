@@ -32,7 +32,7 @@ public class Player extends Actor {
 	private Animation walking = new Animation(walkingSprite, 20, false);
 	private Animation playerSprite = walking;
 	
-	Player(){
+	public Player(){
 		radius=10;
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;

@@ -6,11 +6,12 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+
 public class SimpleGameEngine extends JFrame {
 	
 	//basic variables
-	static int windowWidth = 500;
-	static int windowHeight = 500;
+	public static int windowWidth = 500;
+	public static int windowHeight = 500;
 	boolean isRunning = true;
 	long fps = 60;
 	public static Insets insets;
@@ -29,13 +30,13 @@ public class SimpleGameEngine extends JFrame {
 	public static menu mainMenu;
 	public static menu shouldWrite;
 	//new player
-	static Player player;
+	public static Player player;
 	//Player variables
-	static int playerX = windowWidth/2;
-	static int playerY = windowHeight/2;
+	public static int playerX = windowWidth/2;
+	public static int playerY = windowHeight/2;
 	//
-	static int px = 0;
-	static int py = 0;
+	public static int px = 0;
+	public static int py = 0;
 	//mouse coordinates
 	static float mouseX;
 	static float mouseY;

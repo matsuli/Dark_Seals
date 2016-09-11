@@ -3,16 +3,18 @@ import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
+import objects.Bullet;
+
 public class Actor {
-	Point2D.Double location = new Point2D.Double (); //actor location?
-	Point2D.Double shooterLocation = new Point2D.Double ();
-	boolean canShoot=true;
-	int canShootCounter = 0;
-	Ellipse2D hitDetCircle;
-	Ellipse2D prevHitDetCircle;
+	public Point2D.Double location = new Point2D.Double (); //actor location?
+	public Point2D.Double shooterLocation = new Point2D.Double ();
+	public boolean canShoot=true;
+	public int canShootCounter = 0;
+	public Ellipse2D hitDetCircle;
+	public Ellipse2D prevHitDetCircle;
 	public int radius;
 	
-	void shoot(Actor shooter, double targetPosX, double targetPosY) {	
+	public void shoot(Actor shooter, double targetPosX, double targetPosY) {	
 				
 		if (shooter.canShoot == false) {
 		      shooter.canShootCounter ++;
