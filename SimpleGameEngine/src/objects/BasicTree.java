@@ -3,10 +3,10 @@ package objects;
 import java.util.ArrayList;
 
 import engine.SimpleGameEngine;
-import engine.hitDetObj;
-import engine.hitDetRect;
-import engine.noHitObj;
-import engine.noHitRect;
+import world.hitDetObj;
+import world.hitDetRect;
+import world.noHitObj;
+import world.noHitRect;
 
 public class BasicTree {
 

@@ -1,4 +1,4 @@
-package engine;
+package world;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 

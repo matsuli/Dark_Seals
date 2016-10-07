@@ -1,4 +1,6 @@
-package engine;
+package world;
+
+import engine.SimpleGameEngine;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,9 +34,9 @@ public class world {
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
-	ArrayList<enemy> enemies = new ArrayList<enemy>();	
+	public ArrayList<enemy> enemies = new ArrayList<enemy>();	
 	
-	boolean write =false;
+	public boolean write =false;
 //	boolean write =true;
 	
 	public void initialize () {

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import world.world;
+
 
 public class SimpleGameEngine extends JFrame {
 	
@@ -45,7 +47,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	static String currentMenu;
 	
-	static String currentWorld;
+	public static String currentWorld;
 	
 	static world space = new world ();
 	

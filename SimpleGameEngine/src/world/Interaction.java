@@ -1,4 +1,5 @@
-package engine;
+package world;
+import engine.SimpleGameEngine;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;

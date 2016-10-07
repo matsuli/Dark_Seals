@@ -1,5 +1,5 @@
 package objects;
-
+import world.world;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
@@ -8,7 +8,7 @@ import java.awt.geom.Point2D.Double;
 
 import engine.Actor;
 import engine.SimpleGameEngine;
-import engine.world;
+
 
 public class Bullet {
 	Actor shooter;

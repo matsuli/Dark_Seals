@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
+import world.world;
+
 
 public class Player extends Actor {
 
@@ -17,16 +19,16 @@ public class Player extends Actor {
 	double speed = 10;
 	double stamina = 100;
 	boolean sprint, sneak;
-	boolean hit;
-	boolean hitLeft;
-	boolean hitRight;
-	boolean hitUp;
-	boolean hitDown;
-	double hitCorrectionLeft;
-	double hitCorrectionRight;
-	double hitCorrectionUp;
-	double hitCorrectionDown;
-	boolean hitCorrected;
+	public boolean hit;
+	public boolean hitLeft;
+	public boolean hitRight;
+	public boolean hitUp;
+	public boolean hitDown;
+	public double hitCorrectionLeft;
+	public double hitCorrectionRight;
+	public double hitCorrectionUp;
+	public double hitCorrectionDown;
+	public boolean hitCorrected;
 	
 	private BufferedImage[] walkingSprite = {Sprite.getSprite(0, 0),Sprite.getSprite(1, 0), Sprite.getSprite(2, 0)};
 	private Animation walking = new Animation(walkingSprite, 20, false);
