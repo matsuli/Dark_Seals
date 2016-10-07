@@ -106,7 +106,8 @@ public class SimpleGameEngine extends JFrame {
 		menuHandler.menus.add(shouldWrite);
 		currentMenu=shouldWrite.thisMenu;
 		player = new Player ();
-		
+		audioPlayer audio = new audioPlayer();
+		audio.play("sound/1.wav");
 	}
 	
 	//check for input, move things, etc.
