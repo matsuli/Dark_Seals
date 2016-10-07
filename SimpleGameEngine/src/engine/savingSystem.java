@@ -1,7 +1,11 @@
 package engine;
+import world.world;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,6 +13,12 @@ import java.lang.reflect.Array;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+
+import javax.imageio.ImageIO;
+
+import world.hitDetObj;
+import world.noHitObj;
 
 public class savingSystem {
 boolean save;
@@ -175,5 +185,128 @@ public void delete(){
 			saveMenu= new menu("saveMenu", saveNames.get(0),saveNames.get(1),saveNames.get(2),saveNames.get(3),saveNames.get(4),saveNames.get(5), "Cancel");
 			SimpleGameEngine.menuHandler.menus.add(saveMenu);	//addar nya menun till menuhandler
 	}
+	
+	public void saveWorld(String world, world w){
+		try {
+			new File(world).mkdirs();
+			
+			FileOutputStream fos = new FileOutputStream(world+"/hitDet");
+			ObjectOutputStream	oos = new ObjectOutputStream(fos);
+			oos.writeObject(w.objects);
+			oos.close();
+		} catch(Exception ex) {
+		    ex.printStackTrace();
+		}	
+		try {
+			
+		
+			FileOutputStream fos = new FileOutputStream(world+"/noHitObj");
+			ObjectOutputStream	oos = new ObjectOutputStream(fos);
+			oos.writeObject(w.noHitObjects);
+			oos.close();
+		} catch(Exception ex) {
+		    ex.printStackTrace();
+		}
+		
+	try {
+		FileOutputStream fos = new FileOutputStream(world+"/foreGround");
+		ObjectOutputStream	oos = new ObjectOutputStream(fos);
+		oos.writeObject(w.foregroundStuff);
+		oos.close();
+	} catch(Exception ex) {
+	    ex.printStackTrace();
+	}	
+	}
+
+	
+	public void loadWorld(String world, world w){
+		try {
+		FileInputStream fis = new FileInputStream(world+"/hitDet");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		w.objects = (ArrayList <hitDetObj>)ois.readObject();
+		ois.close();
+		SimpleGameEngine.currentWorld=world;
+		} catch(Exception ex) {
+			    ex.printStackTrace();
+			}	
+		
+		
+		for (Iterator<hitDetObj> it = w.objects.iterator(); it.hasNext(); ) {
+		hitDetObj o = it.next();
+		BufferedImage img2;
+		if (o.texture == null) {
+		} else {
+			try {
+			    img2 = ImageIO.read(new File(o.texture));
+				o.textureImg2 = o.addTransparency(img2, Color.white);
+				o.textureImg = o.imageToBufferedImage(o.textureImg2);
+			} catch (IOException e) {
+			}
+		}
+	  }
+		try {
+			FileInputStream fis = new FileInputStream(world+"/noHitObj");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			w.noHitObjects = (ArrayList <noHitObj>)ois.readObject();
+			ois.close();
+			
+			} catch(Exception ex) {
+				    ex.printStackTrace();
+				}	
+		
+		for (Iterator<noHitObj> it = w.noHitObjects.iterator(); it.hasNext(); ) {
+			noHitObj o = it.next();
+			BufferedImage img2;
+			//Image img2 = null;
+			if (o.texture == null) {
+			} else {
+				try {
+				    img2 = ImageIO.read(new File(o.texture));
+					o.textureImg2 = o.addTransparency(img2, Color.white);
+					o.textureImg = o.imageToBufferedImage(o.textureImg2);
+				} catch (IOException e) {
+				}
+				//img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
+				//o.textureImg2=img2;
+				//try {
+				//	img2 = new ImageIcon (new URL(o.texture)).getImage();
+				//	o.textureImg2=img2;
+				//} catch (MalformedURLException e) {
+				//	e.printStackTrace();
+				//}
+			}
+			BufferedImage img = null;
+			try {
+			    img = ImageIO.read(new File("images/engage.png"));
+			} catch (IOException e) {
+			}
+			o.intSymImg = o.addTransparency(img, Color.white);
+			o.interactSymbol = o.imageToBufferedImage(o.intSymImg);
+		}
+		try {
+		FileInputStream fis = new FileInputStream(world+"/foreGround");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		w.foregroundStuff = (ArrayList <noHitObj>)ois.readObject();
+		ois.close();
+		SimpleGameEngine.currentWorld=world;
+		} catch(Exception ex) {
+			    ex.printStackTrace();
+			}	
+		
+		
+		for (Iterator<noHitObj> it = w.foregroundStuff.iterator(); it.hasNext(); ) {
+		noHitObj o = it.next();
+		BufferedImage img2;
+		if (o.texture == null) {
+		} else {
+			try {
+			    img2 = ImageIO.read(new File(o.texture));
+				o.textureImg2 = o.addTransparency(img2, Color.white);
+				o.textureImg = o.imageToBufferedImage(o.textureImg2);
+			} catch (IOException e) {
+			}
+		}
+	  }
+	  }	
 
 }

@@ -28,9 +28,9 @@ import java.net.URL;
 
 public class world {
 	
-	ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
-	ArrayList <noHitObj> noHitObjects = new ArrayList <noHitObj>();
-	ArrayList <noHitObj> foregroundStuff = new ArrayList <noHitObj>();
+	public ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
+	public ArrayList <noHitObj> noHitObjects = new ArrayList <noHitObj>();
+	public ArrayList <noHitObj> foregroundStuff = new ArrayList <noHitObj>();
 	
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
 	
@@ -49,24 +49,24 @@ public class world {
 	addhitDetLine(objects, 374, 250, 500, 400);
 	addhitDetLine(objects, 360, 400, 0, 125);
 	addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
-	saveWorld("world1");	
+	SimpleGameEngine.savingSystem.saveWorld("world1", this);	
 	objects.clear();
 	noHitObjects.clear();	
 	addhitDetCircle(objects, 225, 100, 50, 50, null);		
 	addhitDetLine(objects, 100, 250, 125, 450);
 	addhitDetLine(objects, 50, 500, 0, 0);
 	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
-	saveWorld("world2");	
+	SimpleGameEngine.savingSystem.saveWorld("world2", this);		
 	objects.clear();
 	noHitObjects.clear();
 	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
 	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
 	addInteractionArea (noHitObjects, 200,100,100,100, null, null);
-	saveWorld("chicken");
+	SimpleGameEngine.savingSystem.saveWorld("world3", this);	
 	objects.clear();
 	noHitObjects.clear();
 	addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
-	saveWorld("tree");
+	SimpleGameEngine.savingSystem.saveWorld("tree", this);	
 	objects.clear();
 	noHitObjects.clear();
 	
@@ -75,7 +75,7 @@ public class world {
 	//	loadWorld("world1");	
 	//	loadWorld("world2");
 	//	loadWorld("chicken");
-		loadWorld("tree"); //laddar arraylisten ur en fil
+		SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
 	}
 		
 		
@@ -210,128 +210,6 @@ public void drawForeground (Graphics2D g) {
 		
 	}
 
-	public void saveWorld(String world){
-		try {
-			new File(world).mkdirs();
-			
-			FileOutputStream fos = new FileOutputStream(world+"/hitDet");
-			ObjectOutputStream	oos = new ObjectOutputStream(fos);
-			oos.writeObject(objects);
-			oos.close();
-		} catch(Exception ex) {
-		    ex.printStackTrace();
-		}	
-		try {
-			
-		
-			FileOutputStream fos = new FileOutputStream(world+"/noHitObj");
-			ObjectOutputStream	oos = new ObjectOutputStream(fos);
-			oos.writeObject(noHitObjects);
-			oos.close();
-		} catch(Exception ex) {
-		    ex.printStackTrace();
-		}
-		
-	try {
-		FileOutputStream fos = new FileOutputStream(world+"/foreGround");
-		ObjectOutputStream	oos = new ObjectOutputStream(fos);
-		oos.writeObject(foregroundStuff);
-		oos.close();
-	} catch(Exception ex) {
-	    ex.printStackTrace();
-	}	
-	}
-
-	
-	public void loadWorld(String world){
-		try {
-		FileInputStream fis = new FileInputStream(world+"/hitDet");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		objects = (ArrayList <hitDetObj>)ois.readObject();
-		ois.close();
-		SimpleGameEngine.currentWorld=world;
-		} catch(Exception ex) {
-			    ex.printStackTrace();
-			}	
-		
-		
-		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
-		hitDetObj o = it.next();
-		BufferedImage img2;
-		if (o.texture == null) {
-		} else {
-			try {
-			    img2 = ImageIO.read(new File(o.texture));
-				o.textureImg2 = o.addTransparency(img2, Color.white);
-				o.textureImg = o.imageToBufferedImage(o.textureImg2);
-			} catch (IOException e) {
-			}
-		}
-	  }
-		try {
-			FileInputStream fis = new FileInputStream(world+"/noHitObj");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			noHitObjects = (ArrayList <noHitObj>)ois.readObject();
-			ois.close();
-			
-			} catch(Exception ex) {
-				    ex.printStackTrace();
-				}	
-		
-		for (Iterator<noHitObj> it = this.noHitObjects.iterator(); it.hasNext(); ) {
-			noHitObj o = it.next();
-			BufferedImage img2;
-			//Image img2 = null;
-			if (o.texture == null) {
-			} else {
-				try {
-				    img2 = ImageIO.read(new File(o.texture));
-					o.textureImg2 = o.addTransparency(img2, Color.white);
-					o.textureImg = o.imageToBufferedImage(o.textureImg2);
-				} catch (IOException e) {
-				}
-				//img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
-				//o.textureImg2=img2;
-				//try {
-				//	img2 = new ImageIcon (new URL(o.texture)).getImage();
-				//	o.textureImg2=img2;
-				//} catch (MalformedURLException e) {
-				//	e.printStackTrace();
-				//}
-			}
-			BufferedImage img = null;
-			try {
-			    img = ImageIO.read(new File("images/engage.png"));
-			} catch (IOException e) {
-			}
-			o.intSymImg = o.addTransparency(img, Color.white);
-			o.interactSymbol = o.imageToBufferedImage(o.intSymImg);
-		}
-		try {
-		FileInputStream fis = new FileInputStream(world+"/foreGround");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		foregroundStuff = (ArrayList <noHitObj>)ois.readObject();
-		ois.close();
-		SimpleGameEngine.currentWorld=world;
-		} catch(Exception ex) {
-			    ex.printStackTrace();
-			}	
-		
-		
-		for (Iterator<noHitObj> it = this.foregroundStuff.iterator(); it.hasNext(); ) {
-		noHitObj o = it.next();
-		BufferedImage img2;
-		if (o.texture == null) {
-		} else {
-			try {
-			    img2 = ImageIO.read(new File(o.texture));
-				o.textureImg2 = o.addTransparency(img2, Color.white);
-				o.textureImg = o.imageToBufferedImage(o.textureImg2);
-			} catch (IOException e) {
-			}
-		}
-	  }
-	  }	
 	 private void addEnemy(double d, double e) {				// addenemy metoden. skapar en ny enemy vid positionen som insätts i metoden
 			{			
 					enemy Enemy  = new enemy(d, e);
