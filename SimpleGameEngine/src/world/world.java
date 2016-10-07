@@ -5,35 +5,19 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-
 import objects.BasicTree;
 import objects.enemy;
 import objects.Bullet;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 public class world {
 	
 	public ArrayList <hitDetObj> objects = new ArrayList <hitDetObj>();
 	public ArrayList <noHitObj> noHitObjects = new ArrayList <noHitObj>();
-	public ArrayList <noHitObj> foregroundStuff = new ArrayList <noHitObj>();
-	
-	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist
-	
+	public ArrayList <noHitObj> foregroundStuff = new ArrayList <noHitObj>();	
+	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();	//bullets arraylist	
 	public ArrayList<enemy> enemies = new ArrayList<enemy>();	
 	
 	public boolean write =false;
@@ -91,13 +75,18 @@ public class world {
 		SimpleGameEngine.player.hitLeft=false;
 		SimpleGameEngine.player.hitUp=false;
 		SimpleGameEngine.player.hitDown=false;
-		SimpleGameEngine.player.hitDetCircle.setFrame(SimpleGameEngine.player.location.x-SimpleGameEngine.player.radius-SimpleGameEngine.px, SimpleGameEngine.player.location.y-SimpleGameEngine.player.radius-SimpleGameEngine.py, SimpleGameEngine.player.radius*2, SimpleGameEngine.player.radius*2);
+		SimpleGameEngine.player.hitDetCircle.circle.setFrame(SimpleGameEngine.player.location.x-SimpleGameEngine.player.radius-SimpleGameEngine.px, SimpleGameEngine.player.location.y-SimpleGameEngine.player.radius-SimpleGameEngine.py, SimpleGameEngine.player.radius*2, SimpleGameEngine.player.radius*2);
 		
 		
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext(); ) {
 			hitDetObj o = it.next();
-			o.hitdetect(SimpleGameEngine.player.hitDetCircle, SimpleGameEngine.player.radius, SimpleGameEngine.player.prevHitDetCircle);
+			o.hitdetect(SimpleGameEngine.player.hitDetCircle, (int) SimpleGameEngine.player.radius, SimpleGameEngine.player.prevHitDetCircle);
 			
+		}
+		for (Iterator<enemy> it = this.enemies.iterator(); it.hasNext(); ) {
+			enemy e = it.next();
+			e.hitDetCircle.hitdetect(SimpleGameEngine.player.hitDetCircle, (int) SimpleGameEngine.player.radius, SimpleGameEngine.player.prevHitDetCircle);
+			//funkar inte...
 		}
 		
 	}

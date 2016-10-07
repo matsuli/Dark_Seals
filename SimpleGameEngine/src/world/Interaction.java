@@ -22,9 +22,9 @@ public class Interaction extends noHitObj {
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
 	
-	public boolean interact (Ellipse2D hitDetCircle) {
+	public boolean interact (hitDetCircle hitDetCircle) {
 		hitDetCircle = SimpleGameEngine.player.hitDetCircle;
-		if (hitDetCircle.intersects(rect)) {
+		if (hitDetCircle.circle.intersects(rect)) {
 			interactionPossible = true;
 		} else {
 			interactionPossible = false;

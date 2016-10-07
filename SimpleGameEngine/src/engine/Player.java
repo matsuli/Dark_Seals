@@ -7,7 +7,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 import world.world;
-
+import world.hitDetCircle;
 
 public class Player extends Actor {
 
@@ -39,22 +39,22 @@ public class Player extends Actor {
 		location.x=SimpleGameEngine.playerX;
 		location.y=SimpleGameEngine.playerY;
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px,location.y - SimpleGameEngine.py);
-		hitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);	//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten
-		prevHitDetCircle = new Ellipse2D.Double(location.x-radius, location.y-radius, radius*2, radius*2);
+		hitDetCircle = new hitDetCircle(location.x-radius, location.y-radius, radius*2, radius*2);	//Används för att hitdetecta player. Blir "translated" i hitdetect() med objekten
+		prevHitDetCircle = new hitDetCircle(location.x-radius, location.y-radius, radius*2, radius*2);
 	}																										//location-radius innebär att location e cirkelns mitt
 	
 	public void drawPlayer (Graphics2D g, int x, int y) {		//ritar player med x, y, (dvs. playerX, playerY) i mitten. (OBS! Filloval ritar som vänster övre hörn.)
 			  g.setColor(Color.RED);
-			  x = x-(radius);
-			  y = y-(radius);
-			  g.fillOval(x,y,radius*2,radius*2);
+			   x =  (int) (x-(radius));
+			   y =  (int) (y-(radius));
+			  g.fillOval( x,  y, (int) radius*2, (int) radius*2);
 			  
-			  g.drawImage(playerSprite.getSprite(), x, y, radius*2, radius*2, null);
+			  g.drawImage(playerSprite.getSprite(), x, y, (int) radius*2, (int) radius*2, null);
 	}
 	
 	public void Control (world space) {
-		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
-		prevHitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+		hitDetCircle.circle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+		prevHitDetCircle.circle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		
 		right = speed;
 		left = speed;
@@ -135,7 +135,7 @@ public class Player extends Actor {
 		
 		playerSprite.update();
 		
-		hitDetCircle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
+		hitDetCircle.circle.setFrame(location.x-radius-SimpleGameEngine.px, location.y-radius-SimpleGameEngine.py, radius*2, radius*2);
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px,location.y - SimpleGameEngine.py);
 	}
 	

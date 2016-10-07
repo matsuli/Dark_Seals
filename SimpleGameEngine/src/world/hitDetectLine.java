@@ -91,10 +91,10 @@ public class hitDetectLine extends hitDetObj {
 	
 
 
-	    public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle) {
+	    public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle) {
 	    	hit=false;
-	    	Point2D centerP = new Point2D.Double(hitDetCircle.getCenterX(), hitDetCircle.getCenterY());
-	    	Point2D prevCenterP = new Point2D.Double(prevHitDetCircle.getCenterX(), prevHitDetCircle.getCenterY());
+	    	Point2D centerP = new Point2D.Double(hitDetCircle.circle.getCenterX(), hitDetCircle.circle.getCenterY());
+	    	Point2D prevCenterP = new Point2D.Double(prevHitDetCircle.circle.getCenterX(), prevHitDetCircle.circle.getCenterY());
 	    	
 //	if((Math.sqrt((ox-hitDetCircle.getCenterX())*(ox-hitDetCircle.getCenterX()) + (oy-hitDetCircle.getCenterY())*(oy-hitDetCircle.getCenterY()))<radius)){
 //		hit=true;	

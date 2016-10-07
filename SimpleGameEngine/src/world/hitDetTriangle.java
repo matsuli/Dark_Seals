@@ -22,7 +22,7 @@ hitDetectLine line3;
 		line2= new hitDetectLine(ox2, oy2, ox3, oy3);
 		line3= new hitDetectLine(ox3, oy3, ox, oy);
 	}
-	public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle){
 		
 		line1.hitdetect(hitDetCircle, radius, prevHitDetCircle);
 		line2.hitdetect(hitDetCircle, radius, prevHitDetCircle);

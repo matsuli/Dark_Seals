@@ -47,72 +47,72 @@ public class hitDetRect extends hitDetObj {
 		return targetY;	
 		
 	}
-	public boolean hitdetect ( Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){
+	public boolean hitdetect ( hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle){
 		
 		hit=false;
-		if (hitDetCircle.intersects(rect)) {
+		if (hitDetCircle.circle.intersects(rect)) {
 		hit=true;
 		
-			if(ox >=(prevHitDetCircle.getCenterX())) {
+			if(ox >=(prevHitDetCircle.circle.getCenterX())) {
 				hitRight=true;	
-				if(oy<=hitDetCircle.getCenterY() && oy+oh>=hitDetCircle.getCenterY()){
-				hitCorrectionRight= (hitDetCircle.getCenterX() + radius)-ox;}
+				if(oy<=hitDetCircle.circle.getCenterY() && oy+oh>=hitDetCircle.circle.getCenterY()){
+				hitCorrectionRight= (hitDetCircle.circle.getCenterX() + radius)-ox;}
 				else{
-					if(!(oy<=hitDetCircle.getCenterY())){
-					double i=getCornerTangentX(radius, hitDetCircle.getCenterY(), ox, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-					hitCorrectionRight=hitDetCircle.getCenterX()-i;
+					if(!(oy<=hitDetCircle.circle.getCenterY())){
+					double i=getCornerTangentX(radius, hitDetCircle.circle.getCenterY(), ox, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+					hitCorrectionRight=hitDetCircle.circle.getCenterX()-i;
 					}
-					if(!(oy+oh>=hitDetCircle.getCenterY())){
-						double i=getCornerTangentX(radius, hitDetCircle.getCenterY(),ox, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-						hitCorrectionRight=hitDetCircle.getCenterX()-i;
+					if(!(oy+oh>=hitDetCircle.circle.getCenterY())){
+						double i=getCornerTangentX(radius, hitDetCircle.circle.getCenterY(),ox, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+						hitCorrectionRight=hitDetCircle.circle.getCenterX()-i;
 						}
 				}
 			}
-			if(ox+ow <=(prevHitDetCircle.getCenterX())){
+			if(ox+ow <=(prevHitDetCircle.circle.getCenterX())){
 				hitLeft=true;	
 				
-				if(oy<=hitDetCircle.getCenterY() && oy+oh>=hitDetCircle.getCenterY()){		//om player är på "yttre sidan" av rektangeln
-				hitCorrectionLeft= ((ox+ow)-(hitDetCircle.getCenterX()- radius));}
+				if(oy<=hitDetCircle.circle.getCenterY() && oy+oh>=hitDetCircle.circle.getCenterY()){		//om player är på "yttre sidan" av rektangeln
+				hitCorrectionLeft= ((ox+ow)-(hitDetCircle.circle.getCenterX()- radius));}
 				else{
-					if(!(oy<=hitDetCircle.getCenterY())){
-					double i=getCornerTangentX(radius, hitDetCircle.getCenterY(), ox+ow, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-					hitCorrectionLeft=i-hitDetCircle.getCenterX();
+					if(!(oy<=hitDetCircle.circle.getCenterY())){
+					double i=getCornerTangentX(radius, hitDetCircle.circle.getCenterY(), ox+ow, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+					hitCorrectionLeft=i-hitDetCircle.circle.getCenterX();
 					}
-					if(!(oy+oh>=hitDetCircle.getCenterY())){
-						double i=getCornerTangentX(radius, hitDetCircle.getCenterY(),ox+ow, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-						hitCorrectionLeft=i-hitDetCircle.getCenterX();
+					if(!(oy+oh>=hitDetCircle.circle.getCenterY())){
+						double i=getCornerTangentX(radius, hitDetCircle.circle.getCenterY(),ox+ow, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+						hitCorrectionLeft=i-hitDetCircle.circle.getCenterX();
 						}
 				}
 			}
-			if(oy >=(prevHitDetCircle.getCenterY()) ){
+			if(oy >=(prevHitDetCircle.circle.getCenterY()) ){
 				hitDown=true;
 				
-				if(ox<=hitDetCircle.getCenterX() && ox+ow>=hitDetCircle.getCenterX()){		//om player är på "yttre sidan" av rektangeln
-					hitCorrectionDown= ((hitDetCircle.getCenterY() + radius)-oy);}
+				if(ox<=hitDetCircle.circle.getCenterX() && ox+ow>=hitDetCircle.circle.getCenterX()){		//om player är på "yttre sidan" av rektangeln
+					hitCorrectionDown= ((hitDetCircle.circle.getCenterY() + radius)-oy);}
 				else{
-					if(!(ox<=hitDetCircle.getCenterX())){
-					double i=getCornerTangentY(radius, hitDetCircle.getCenterX(), ox, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-					hitCorrectionDown=-i+hitDetCircle.getCenterY();
+					if(!(ox<=hitDetCircle.circle.getCenterX())){
+					double i=getCornerTangentY(radius, hitDetCircle.circle.getCenterX(), ox, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+					hitCorrectionDown=-i+hitDetCircle.circle.getCenterY();
 					}
-					if(!(ox+ow>=hitDetCircle.getCenterX())){
-						double i=getCornerTangentY(radius, hitDetCircle.getCenterX(),ox+ow, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-						hitCorrectionDown=-i+hitDetCircle.getCenterY();
+					if(!(ox+ow>=hitDetCircle.circle.getCenterX())){
+						double i=getCornerTangentY(radius, hitDetCircle.circle.getCenterX(),ox+ow, oy);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+						hitCorrectionDown=-i+hitDetCircle.circle.getCenterY();
 						}
 				}
 				
 			}
-			if(oy+oh <=(prevHitDetCircle.getCenterY())){
+			if(oy+oh <=(prevHitDetCircle.circle.getCenterY())){
 				hitUp=true;	
-				if(ox<=hitDetCircle.getCenterX() && ox+ow>=hitDetCircle.getCenterX()){		//om player är på "yttre sidan" av rektangeln
-					hitCorrectionUp= ((oy+oh)-(hitDetCircle.getCenterY()- radius));}
+				if(ox<=hitDetCircle.circle.getCenterX() && ox+ow>=hitDetCircle.circle.getCenterX()){		//om player är på "yttre sidan" av rektangeln
+					hitCorrectionUp= ((oy+oh)-(hitDetCircle.circle.getCenterY()- radius));}
 				else{
-					if(!(ox<=hitDetCircle.getCenterX())){
-					double i=getCornerTangentY(radius, hitDetCircle.getCenterX(), ox, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-					hitCorrectionUp=i-hitDetCircle.getCenterY();
+					if(!(ox<=hitDetCircle.circle.getCenterX())){
+					double i=getCornerTangentY(radius, hitDetCircle.circle.getCenterX(), ox, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+					hitCorrectionUp=i-hitDetCircle.circle.getCenterY();
 					}
-					if(!(ox+ow>=hitDetCircle.getCenterX())){
-						double i=getCornerTangentY(radius, hitDetCircle.getCenterX(),ox+ow, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
-						hitCorrectionUp=i-hitDetCircle.getCenterY();
+					if(!(ox+ow>=hitDetCircle.circle.getCenterX())){
+						double i=getCornerTangentY(radius, hitDetCircle.circle.getCenterX(),ox+ow, oy+oh);	//denna är det centerX för player där cirkeln träffar hörnet (hörnet är punkt på cirkel)
+						hitCorrectionUp=i-hitDetCircle.circle.getCenterY();
 						}
 				}
 				
@@ -150,7 +150,7 @@ public class hitDetRect extends hitDetObj {
 	public void draw(Graphics2D g){
 	//g.fill(rect);	
 	if(textureImg2!=null){
-		g.drawImage(textureImg, ox, oy, ow, oh, null);}
+		g.drawImage(textureImg,(int) ox, (int) oy,(int) ow,(int) oh, null);}
 	}
 			
 }

@@ -1,5 +1,6 @@
 package engine;
 import world.world;
+import world.hitDetCircle;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -11,9 +12,9 @@ public class Actor {
 	public Point2D.Double shooterLocation = new Point2D.Double ();
 	public boolean canShoot=true;
 	public int canShootCounter = 0;
-	public Ellipse2D hitDetCircle;
-	public Ellipse2D prevHitDetCircle;
-	public int radius;
+	public hitDetCircle hitDetCircle;
+	public hitDetCircle prevHitDetCircle;
+	public double radius;
 	
 	public void shoot(Actor shooter, double targetPosX, double targetPosY) {	
 				
@@ -28,5 +29,9 @@ public class Actor {
 			world.bullets.add(new Bullet(shooter, targetPosX, targetPosY));
 			shooter.canShoot = false;
 		}
+	}
+	
+	public void hitDetect(){
+		
 	}
 }

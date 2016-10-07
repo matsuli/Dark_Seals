@@ -6,14 +6,14 @@ import java.awt.geom.Ellipse2D;
 
 public class hitDetCircle extends hitDetObj {
 
-	int r;
-	Ellipse2D circle;
+	double r;
+	public Ellipse2D circle;
 	double centerX;
 	double centerY;
-	int ow;
-	int oh;
+	double ow;
+	double oh;
 	
-	public hitDetCircle(int ox, int oy, int ow, int oh) {
+	public hitDetCircle(double ox, double oy, double ow, double oh) {
 		this.ox=ox;
 		this.oy=oy;
 		this.ow=ow;
@@ -26,10 +26,10 @@ public class hitDetCircle extends hitDetObj {
 		centerY=circle.getCenterY();
 	}
 
-	public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D unused){
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, Ellipse2D unused){
 	
-		double px=hitDetCircle.getCenterX();
-		double py=hitDetCircle.getCenterY();
+		double px=hitDetCircle.circle.getCenterX();
+		double py=hitDetCircle.circle.getCenterY();
 		hit=false;
 		
 		if ((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py) <= (radius + r) * (radius + r)){
@@ -108,7 +108,7 @@ public class hitDetCircle extends hitDetObj {
 	public void draw(Graphics2D g){
 		g.fill(circle);
 		if(textureImg!=null){
-			g.drawImage(textureImg, ox, oy, ow, oh, null);
+			g.drawImage(textureImg, (int) ox, (int) oy, (int) ow, (int) oh, null);
 		}
 	}
 }

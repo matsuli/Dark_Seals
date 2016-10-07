@@ -17,8 +17,8 @@ public class hitDetObj implements Serializable {
 	public String texture;
 	public Image textureImg2;
 	public BufferedImage textureImg;
-	int ox;
-	int oy;
+	double ox;
+	double oy;
 	boolean hit;
 	boolean hitLeft;
 	boolean hitRight;
@@ -57,7 +57,7 @@ public class hitDetObj implements Serializable {
     	return bufferedImage;
     }
 	
-	public boolean hitdetect(Ellipse2D hitDetCircle, int radius, Ellipse2D prevHitDetCircle){
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle){
 		return hit;
 		
 	}

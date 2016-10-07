@@ -1,5 +1,6 @@
 package objects;
 import world.world;
+import world.hitDetCircle;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -31,11 +32,10 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 		location.y = e;
 		elocationTest.x = d;
 		elocationTest.y = e;
-		hitDetCircle = new Ellipse2D.Double(location.x - radius, location.y - radius, radius * 2, radius * 2);
-		hitDetCircle = new Ellipse2D.Double(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		hitDetCircle = new hitDetCircle(location.x - radius, location.y - radius, radius * 2, radius * 2);
 		targetActor = SimpleGameEngine.player;
-		eoldPosX = targetActor.hitDetCircle.getX() + targetActor.radius - targetActor.radius;
-		eoldPosY = targetActor.hitDetCircle.getY() + targetActor.radius - targetActor.radius;
+		eoldPosX = targetActor.hitDetCircle.circle.getX() + targetActor.radius - targetActor.radius;
+		eoldPosY = targetActor.hitDetCircle.circle.getY() + targetActor.radius - targetActor.radius;
 		erotation2 = Math.atan2(eoldPosY - location.y, eoldPosX - location.x) / Math.PI * 180;
 		espeed = 0.8;
 		ad = Math.atan2(eoldPosY - location.y, eoldPosX - location.x);
@@ -43,11 +43,11 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 
 	public void update() {
 
-		hitDetCircle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		hitDetCircle.circle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
 
 		if (enemyState == 1) {
-			eoldPosX = targetActor.hitDetCircle.getX() + targetActor.radius;
-			eoldPosY = targetActor.hitDetCircle.getY() + targetActor.radius;
+			eoldPosX = targetActor.hitDetCircle.circle.getX() + targetActor.radius;
+			eoldPosY = targetActor.hitDetCircle.circle.getY() + targetActor.radius;
 			erotation2 = Math.atan2(eoldPosY - elocationTest.y, eoldPosX - elocationTest.x) / Math.PI * 180;
 			elocationTest.x = elocationTest.x + Math.cos(erotation2 / 180 * Math.PI) * espeed;
 			elocationTest.y = elocationTest.y + Math.sin(erotation2 / 180 * Math.PI) * espeed;
@@ -72,13 +72,13 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 		// calculations wont work. They don´t always do, in that case they have
 		// to be compensated for.
 
-		double a = Math.atan2(targetActor.hitDetCircle.getY() + targetActor.radius - location.y,
-				targetActor.hitDetCircle.getX() + targetActor.radius - location.x); 
+		double a = Math.atan2(targetActor.hitDetCircle.circle.getY() + targetActor.radius - location.y,
+				targetActor.hitDetCircle.circle.getX() + targetActor.radius - location.x); 
 		// a är vinkeln mellan player, enemin o enemiens x-axel som startar från enemy. Inte 100%säker																				// på																			// hur															// det																			// funkar,
 		// tror det räknas som man sku transleita ti enemys position, sen räkna
 		//  vinkeln mellan player o origo o x-axel.
-		if (Math.sqrt(targetActor.hitDetCircle.getX() + targetActor.radius - location.x)
-				+ Math.sqrt(targetActor.hitDetCircle.getY() + targetActor.radius - location.y) <= Math
+		if (Math.sqrt(targetActor.hitDetCircle.circle.getX() + targetActor.radius - location.x)
+				+ Math.sqrt(targetActor.hitDetCircle.circle.getY() + targetActor.radius - location.y) <= Math
 						.sqrt(sightRadius)) // Nearcenter is true when player is
 											// inside sightradius
 		{
@@ -179,12 +179,12 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 			}
 		}
 
-		hitDetCircle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		hitDetCircle.circle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
 	}
 
 	public void drawEnemy(Graphics2D g) {
 		g.setColor(Color.BLACK);
-		g.fill(hitDetCircle);
+		g.fill(hitDetCircle.circle);
 		g.setColor(Color.YELLOW);
 		g.drawArc((int) location.x, (int) location.y, (int) sightRadius * 2, (int) sightRadius * 2, (int) a1, (int) a2); // ritar
 																															// enemyns
