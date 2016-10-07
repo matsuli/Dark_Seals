@@ -1,5 +1,6 @@
 package objects;
 import world.world;
+import world.hitDetCircle;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
@@ -17,14 +18,14 @@ public class Bullet {
 	double oldPosX, oldPosY;
 	double rotation, speed;
 	Point2D.Double location;// bullet location
-	public Ellipse2D hitDetBullet;
-	public Ellipse2D prevHitDetBullet;
+	public hitDetCircle hitDetBullet;
+	public hitDetCircle prevHitDetBullet;
 
 	public Bullet(Actor shooter, double targetPosX, double targetPosY) {
 		this.shooter = shooter;
 		location = new Point2D.Double((shooter.shooterLocation.getX()), (shooter.shooterLocation.getY()));
-		hitDetBullet = new Ellipse2D.Double(location.x - radius, location.y - radius, radius * 2, radius * 2);
-		prevHitDetBullet = new Ellipse2D.Double(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		hitDetBullet = new  hitDetCircle(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		prevHitDetBullet = new  hitDetCircle(location.x - radius, location.y - radius, radius * 2, radius * 2);
 		oldPosX = targetPosX;
 		oldPosY = targetPosY;
 		rotation = Math.toDegrees(Math.atan2((oldPosY - location.y), (oldPosX - location.x)));
@@ -33,7 +34,7 @@ public class Bullet {
 
 	public void update() {
 
-		prevHitDetBullet.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		prevHitDetBullet.circle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
 
 		location.x = (location.x + Math.cos(Math.PI * rotation / 180) * speed);
 		location.y = (location.y + Math.sin(Math.PI * rotation / 180) * speed);
@@ -46,11 +47,11 @@ public class Bullet {
 			world.bullets.remove(this);
 		}
 
-		hitDetBullet.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		hitDetBullet.circle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
 	}
 
 	public void draw(Graphics2D g) {
-		g.fill(hitDetBullet);
+		g.fill(hitDetBullet.circle);
 	}
 
 }
