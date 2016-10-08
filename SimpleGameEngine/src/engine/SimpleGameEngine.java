@@ -51,7 +51,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	static world space = new world ();
 	
-	
+	static audioPlayer audio1 = new audioPlayer();
 	
 	//this is the game
 	public static void main (String [] args) throws IOException {

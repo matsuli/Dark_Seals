@@ -28,6 +28,7 @@ public class Actor {
 		if (shooter.canShoot == true) {
 			world.bullets.add(new Bullet(shooter, targetPosX, targetPosY));
 			shooter.canShoot = false;
+			SimpleGameEngine.audio1.play("sound/shot.wav");
 		}
 	}
 	
