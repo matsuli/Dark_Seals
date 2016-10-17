@@ -91,7 +91,7 @@ public class InputHandler implements KeyListener {
 			if(SimpleGameEngine.play){
 				SimpleGameEngine.player.shoot (SimpleGameEngine.player,SimpleGameEngine.mouseX,SimpleGameEngine.mouseY);
 				audioPlayer shootAudio = new audioPlayer();
-				shootAudio.play("sound/shot.wav");}
+				}
 			
 			
 		}			
