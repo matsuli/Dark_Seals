@@ -1,6 +1,7 @@
 package world;
 
 import engine.SimpleGameEngine;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,7 +11,7 @@ import objects.enemy;
 import objects.Bullet;
 
 import java.awt.Graphics2D;
-
+import java.util.concurrent.ThreadLocalRandom;
 
 public class world {
 	
@@ -52,13 +53,20 @@ public class world {
 			SimpleGameEngine.savingSystem.saveWorld("tree", this);	
 			objects.clear();
 			noHitObjects.clear();
+			foregroundStuff.clear();
+			addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80, 60, 60, "images/tree_trunk.png", "images/tree_crown.png",-500,-500,1500,1500);
+			SimpleGameEngine.savingSystem.saveWorld("multipleTrees", this);
+			objects.clear();
+			noHitObjects.clear();
+			foregroundStuff.clear();
 			
 		}									
 		else {
 		//	loadWorld("world1");	
 		//	loadWorld("world2");
 		//	loadWorld("chicken");
-			SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
+		//	SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
+			SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
 		}
 		
 	}
@@ -194,10 +202,20 @@ public class world {
 		
 	}
 	
-	public void addMultipleTrees (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> fgs, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown, int ax, int ay, int aw, int ah){
-		for (int i = ax; i < aw; i += 60) {
-			for (int j = ay; j < ah; j += 60) {
-				addTree(nho,obj,fgs,treeRadius,i,j,60,80,i,j-30,60,60,trunk,crown);
+	public void addMultipleTrees (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> fgs, int treeRadius, int tw, int th, int topW, int topH, String trunk, String crown, int ax, int ay, int aw, int ah){
+		for (int i = ax; i < aw; i += treeRadius*3) {
+			for (int j = ay; j < ah; j += treeRadius*3) {
+				int dx = ThreadLocalRandom.current().nextInt(0, 30 + 1);
+				int dy = ThreadLocalRandom.current().nextInt(0, 30 + 1);
+				int PosOrNeg1 = ThreadLocalRandom.current().nextInt(0, 1 + 1);
+				if (PosOrNeg1 == 0){
+					dx = -dx;
+				}
+				int PosOrNeg2 = ThreadLocalRandom.current().nextInt(0, 1 + 1);
+				if (PosOrNeg2 == 0){
+					dy = -dy;
+				}
+				addTree(nho,obj,fgs,treeRadius,i+dx,j+dy,60,80,i+dx,j-dy-30,60,60,trunk,crown);
 			}
 		}
 	}
