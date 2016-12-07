@@ -114,12 +114,13 @@ public class SimpleGameEngine extends JFrame {
 	void update () {
 		
 		if(play){		
-		player.Control(space);}
+			player.Control(space);
+		}
 		mouse.poll();
 		mouseX = mouse.getPosition().x-px-insets.left;
 		mouseY = mouse.getPosition().y-py-insets.top;
 		input.handleInput();
-		paint(bbg);		
+		paint(bbg);
 		//System.out.print(currentMenu);
 	}
 	

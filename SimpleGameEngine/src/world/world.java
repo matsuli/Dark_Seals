@@ -24,47 +24,42 @@ public class world {
 //	boolean write =true;
 	
 	public void initialize () {
-	
-	if(write){	
-	objects.clear();
-	noHitObjects.clear();		//Adda hitdetect objects här
-	addhitDetCircle(objects, 100, 100, 50, 50, null);
-	addhitDetCircle(objects, 320, 300, 50, 50, null);		
-	addhitDetLine(objects, 374, 250, 500, 400);
-	addhitDetLine(objects, 360, 400, 0, 125);
-	addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
-	SimpleGameEngine.savingSystem.saveWorld("world1", this);	
-	objects.clear();
-	noHitObjects.clear();	
-	addhitDetCircle(objects, 225, 100, 50, 50, null);		
-	addhitDetLine(objects, 100, 250, 125, 450);
-	addhitDetLine(objects, 50, 500, 0, 0);
-	addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
-	SimpleGameEngine.savingSystem.saveWorld("world2", this);		
-	objects.clear();
-	noHitObjects.clear();
-	addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
-	addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
-	addInteractionArea (noHitObjects, 200,100,100,100, null, null);
-	SimpleGameEngine.savingSystem.saveWorld("world3", this);	
-	objects.clear();
-	noHitObjects.clear();
-	addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
-	SimpleGameEngine.savingSystem.saveWorld("tree", this);	
-	objects.clear();
-	noHitObjects.clear();
-	
-	}									
-	else{
-	//	loadWorld("world1");	
-	//	loadWorld("world2");
-	//	loadWorld("chicken");
-		SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
-	}
-		
-		
-		
-
+		if(write){	
+			objects.clear();
+			noHitObjects.clear();		//Adda hitdetect objects här
+			addhitDetCircle(objects, 100, 100, 50, 50, null);
+			addhitDetCircle(objects, 320, 300, 50, 50, null);		
+			addhitDetLine(objects, 374, 250, 500, 400);
+			addhitDetLine(objects, 360, 400, 0, 125);
+			addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
+			SimpleGameEngine.savingSystem.saveWorld("world1", this);	
+			objects.clear();
+			noHitObjects.clear();	
+			addhitDetCircle(objects, 225, 100, 50, 50, null);		
+			addhitDetLine(objects, 100, 250, 125, 450);
+			addhitDetLine(objects, 50, 500, 0, 0);
+			addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);				
+			SimpleGameEngine.savingSystem.saveWorld("world2", this);		
+			objects.clear();
+			noHitObjects.clear();
+			addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
+			addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
+			addInteractionArea (noHitObjects, 200,100,100,100, null, null);
+			SimpleGameEngine.savingSystem.saveWorld("world3", this);	
+			objects.clear();
+			noHitObjects.clear();
+			addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
+			SimpleGameEngine.savingSystem.saveWorld("tree", this);	
+			objects.clear();
+			noHitObjects.clear();
+			
+		}									
+		else {
+		//	loadWorld("world1");	
+		//	loadWorld("world2");
+		//	loadWorld("chicken");
+			SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
+		}
 		
 	}
 	
@@ -141,7 +136,7 @@ public class world {
 		
 	}
 	
-public void drawForeground (Graphics2D g) {
+	public void drawForeground (Graphics2D g) {
 		
 		
 		g.setColor(Color.black);
@@ -197,6 +192,14 @@ public void drawForeground (Graphics2D g) {
 		//hitbox		
 		BasicTree t= new BasicTree(noHitObjects, objects,foregroundStuff, treeRadius,tx, ty, tw, th, topX, topY, topW,topH, trunk, crown);
 		
+	}
+	
+	public void addMultipleTrees (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> fgs, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown, int ax, int ay, int aw, int ah){
+		for (int i = ax; i < aw; i += 60) {
+			for (int j = ay; j < ah; j += 60) {
+				addTree(nho,obj,fgs,treeRadius,i,j,60,80,i,j-30,60,60,trunk,crown);
+			}
+		}
 	}
 
 	 private void addEnemy(double d, double e) {				// addenemy metoden. skapar en ny enemy vid positionen som insätts i metoden
