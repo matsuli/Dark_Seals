@@ -22,11 +22,7 @@ public class BasicTree {
 		
 		tt = new  noHitRect(tx, ty, tw, th);
 		tt.texture = trunk;
-		if (SimpleGameEngine.playerX > tx && SimpleGameEngine.playerX < (tx+tw) && SimpleGameEngine.playerY > (ty+th)) {
-			noHitObjects.add(tt);
-		} else {
-			foregroundStuff.add(tt);
-		}
+		foregroundStuff.add(tt);
 		
 		
 		//trädkrona

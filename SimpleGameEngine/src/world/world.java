@@ -196,9 +196,9 @@ public class world {
 		noHitObjects.add(I);
 	}
 	
-	public void addTree (ArrayList<noHitObj> noHitObjects, ArrayList<hitDetObj> objects, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown) {
+	public void addTree (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown) {
 		//hitbox		
-		BasicTree t= new BasicTree(noHitObjects, objects,foregroundStuff, treeRadius,tx, ty, tw, th, topX, topY, topW,topH, trunk, crown);
+		BasicTree t= new BasicTree(nho, obj,foregroundStuff, treeRadius,tx, ty, tw, th, topX, topY, topW,topH, trunk, crown);
 		
 	}
 	

@@ -21,7 +21,7 @@ public class SimpleGameEngine extends JFrame {
 	public static InputHandler input;
 	public static mouseInput mouse;
 	public static ActorHandler ActorHandler;
-	 //Buffering
+	//Buffering
 	BufferedImage backBuffer = new BufferedImage (windowWidth,windowHeight,BufferedImage.TYPE_INT_RGB);
 	Graphics2D bbg = backBuffer.createGraphics();
 	//saving/loading
