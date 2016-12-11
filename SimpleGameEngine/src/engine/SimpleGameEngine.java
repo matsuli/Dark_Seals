@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import world.WorldAssembler;
 import world.world;
 
 
@@ -49,7 +50,9 @@ public class SimpleGameEngine extends JFrame {
 	
 	public static String currentWorld;
 	
-	static world space = new world ();
+	static WorldAssembler space = new WorldAssembler();
+	
+	//static world space = new world ();
 	
 	static audioPlayer audio1 = new audioPlayer();
 	
@@ -108,6 +111,7 @@ public class SimpleGameEngine extends JFrame {
 		player = new Player ();
 		audioPlayer audio = new audioPlayer();
 		audio.play("sound/1.wav");
+		space.assemble();
 	}
 	
 	//check for input, move things, etc.

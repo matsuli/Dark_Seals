@@ -1,5 +1,6 @@
 package objects;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import engine.SimpleGameEngine;
@@ -14,7 +15,7 @@ public class BasicTree {
 	noHitRect tt;
 	noHitRect tr2;
 	
-	public BasicTree(ArrayList<noHitObj> noHitObjects, ArrayList<hitDetObj> objects, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown){
+	public BasicTree(ArrayList<noHitObj> noHitObjects, ArrayList<hitDetObj> objects, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, BufferedImage trunk, BufferedImage crown){
 		
 		tr = new hitDetRect (tx+tw/20, ty+th-tw/2, tw-tw/6, tw/2-tw/20);
 		objects.add(tr);	

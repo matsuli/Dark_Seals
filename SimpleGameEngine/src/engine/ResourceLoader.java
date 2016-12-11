@@ -13,12 +13,9 @@ import java.util.HashMap;
 
 public class ResourceLoader {
 	
-	Map <String, BufferedImage> resources = new HashMap<String, BufferedImage>();
+	public Map <String, BufferedImage> resources = new HashMap<String, BufferedImage>();
 	
-	public ResourceLoader (){
-		
-	}
-	void addResource (String name, String type, String source){
+	public void addResource (String name, String type, String source){
 		if (type=="image"){
 			BufferedImage img;
 			try{
