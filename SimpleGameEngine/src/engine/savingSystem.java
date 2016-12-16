@@ -260,12 +260,9 @@ public void delete(){
 			//Image img2 = null;
 			if (o.texture == null) {
 			} else {
-				try {
-				    img2 = ImageIO.read(new File(o.texture));
+				    img2 = o.texture;
 					o.textureImg2 = o.addTransparency(img2, Color.white);
 					o.textureImg = o.imageToBufferedImage(o.textureImg2);
-				} catch (IOException e) {
-				}
 				//img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
 				//o.textureImg2=img2;
 				//try {
@@ -299,12 +296,9 @@ public void delete(){
 		BufferedImage img2;
 		if (o.texture == null) {
 		} else {
-			try {
-			    img2 = ImageIO.read(new File(o.texture));
+			    img2 = o.texture;
 				o.textureImg2 = o.addTransparency(img2, Color.white);
 				o.textureImg = o.imageToBufferedImage(o.textureImg2);
-			} catch (IOException e) {
-			}
 		}
 	  }
 	  }	
