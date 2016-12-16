@@ -233,15 +233,10 @@ public void delete(){
 		
 		for (Iterator<hitDetObj> it = w.objects.iterator(); it.hasNext(); ) {
 		hitDetObj o = it.next();
-		BufferedImage img2;
 		if (o.texture == null) {
 		} else {
-			try {
-			    img2 = ImageIO.read(new File(o.texture));
-				o.textureImg2 = o.addTransparency(img2, Color.white);
-				o.textureImg = o.imageToBufferedImage(o.textureImg2);
-			} catch (IOException e) {
-			}
+			o.textureImg  =SimpleGameEngine.space.r.resources.get(o.texture);
+			
 		}
 	  }
 		try {
@@ -256,24 +251,10 @@ public void delete(){
 		
 		for (Iterator<noHitObj> it = w.noHitObjects.iterator(); it.hasNext(); ) {
 			noHitObj o = it.next();
-			BufferedImage img2;
 			//Image img2 = null;
-			if (o.texture == null) {
+			if (o.textureName == null) {
 			} else {
-				try {
-				    img2 = ImageIO.read(new File(o.texture));
-					o.textureImg2 = o.addTransparency(img2, Color.white);
-					o.textureImg = o.imageToBufferedImage(o.textureImg2);
-				} catch (IOException e) {
-				}
-				//img2 = Toolkit.getDefaultToolkit().createImage(o.texture);
-				//o.textureImg2=img2;
-				//try {
-				//	img2 = new ImageIcon (new URL(o.texture)).getImage();
-				//	o.textureImg2=img2;
-				//} catch (MalformedURLException e) {
-				//	e.printStackTrace();
-				//}
+				o.textureImg  =SimpleGameEngine.space.r.resources.get(o.textureName);
 			}
 			BufferedImage img = null;
 			try {
@@ -297,10 +278,10 @@ public void delete(){
 		for (Iterator<noHitObj> it = w.foregroundStuff.iterator(); it.hasNext(); ) {
 		noHitObj o = it.next();
 		BufferedImage img2;
-		if (o.texture == null) {
+		if (o.textureName == null) {
 		} else {
 			try {
-			    img2 = ImageIO.read(new File(o.texture));
+			    img2 = ImageIO.read(new File(o.textureName));
 				o.textureImg2 = o.addTransparency(img2, Color.white);
 				o.textureImg = o.imageToBufferedImage(o.textureImg2);
 			} catch (IOException e) {

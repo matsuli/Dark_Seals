@@ -26,9 +26,9 @@ public class world {
 //	boolean write =true;
 	
 	public void initialize () {
-		/*
+		
 		if(write){	
-			objects.clear();
+			/*	objects.clear();
 			noHitObjects.clear();		//Adda hitdetect objects här
 			addhitDetCircle(objects, 100, 100, 50, 50, null);
 			addhitDetCircle(objects, 320, 300, 50, 50, null);		
@@ -61,7 +61,7 @@ public class world {
 			objects.clear();
 			noHitObjects.clear();
 			foregroundStuff.clear();
-			
+		*/	
 		}									
 		else {
 		//	loadWorld("world1");	
@@ -70,7 +70,7 @@ public class world {
 		//	SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
 			SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
 		}
-		*/
+		
 	}
 	
 	public void HitDetect () {
@@ -181,30 +181,30 @@ public class world {
 	public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, BufferedImage texture){
 	
 		noHitRect r = new  noHitRect(ox, oy, ow, oh);
-		r.texture = texture;
+		r.textureImg = texture;
 		noHitObjects.add(r);	
 	}
 	
 	public void addNoHitCircle(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, BufferedImage texture){
 		
 		noHitCircle c = new  noHitCircle(ox, oy, ow, oh);
-		c.texture = texture;
+		c.textureImg = texture;
 		noHitObjects.add(c);	
 	}
 	
 	public void addInteractionArea (ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, BufferedImage type, BufferedImage texture) {
 		Interaction I = new Interaction (ox,oy,ow,oh);
-		I.texture = texture;
+		I.textureImg = texture;
 		noHitObjects.add(I);
 	}
 	
-	public void addTree (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, BufferedImage trunk, BufferedImage crown) {
+	public void addTree (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> foregroundStuff, int treeRadius, int tx, int ty, int tw, int th, int topX, int topY, int topW, int topH, String trunk, String crown) {
 		//hitbox		
 		BasicTree t= new BasicTree(nho, obj,foregroundStuff, treeRadius,tx, ty, tw, th, topX, topY, topW,topH, trunk, crown);
 		
 	}
 	
-	public void addMultipleTrees (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> fgs, int treeRadius, int tw, int th, int topW, int topH, BufferedImage trunk, BufferedImage crown, int ax, int ay, int aw, int ah){
+	public void addMultipleTrees (ArrayList<noHitObj> nho, ArrayList<hitDetObj> obj, ArrayList<noHitObj> fgs, int treeRadius, int tw, int th, int topW, int topH, String trunk, String crown, int ax, int ay, int aw, int ah){
 		for (int i = ax; i < aw; i += treeRadius*3) {
 			for (int j = ay; j < ah; j += treeRadius*3) {
 				int dx = ThreadLocalRandom.current().nextInt(0, 30 + 1);

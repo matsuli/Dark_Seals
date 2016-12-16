@@ -1,9 +1,12 @@
 package world;
 
+import java.util.Iterator;
+
 import engine.ResourceLoader;
+import engine.SimpleGameEngine;
 
 public class WorldAssembler extends world {
-	ResourceLoader r = new ResourceLoader();
+public ResourceLoader r = new ResourceLoader();
 	
 	public WorldAssembler() {
 		//tree
@@ -13,13 +16,24 @@ public class WorldAssembler extends world {
 	
 	public void assemble() {
 		treeWorld();
+		
 	}
 	public void treeWorld() {
 		//world with many trees
-		addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80, 60, 60, r.resources.get("trunk"), r.resources.get("crown"),-500,-500,1500,1500);
-		engine.SimpleGameEngine.savingSystem.saveWorld("multipleTrees", this);
-		objects.clear();
-		noHitObjects.clear();
-		foregroundStuff.clear();
+		addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80, 60, 60, "trunk", "crown",-500,-500,1500,1500);
+		for (Iterator<noHitObj> it =  foregroundStuff.iterator(); it.hasNext(); ) {
+			noHitObj o = it.next();
+		
+			//Image img2 = null;
+			
+			if (o.textureName == null) {
+			} else {
+				o.textureImg  =SimpleGameEngine.space.r.resources.get(o.textureName);
+			}
+		}
+		engine.SimpleGameEngine.savingSystem.saveWorld("multipleTrees", this);	
+		
+	
 	}
-}
+}	
+	

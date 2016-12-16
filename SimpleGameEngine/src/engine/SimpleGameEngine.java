@@ -50,7 +50,7 @@ public class SimpleGameEngine extends JFrame {
 	
 	public static String currentWorld;
 	
-	static WorldAssembler space = new WorldAssembler();
+	public static WorldAssembler space = new WorldAssembler();
 	
 	//static world space = new world ();
 	
