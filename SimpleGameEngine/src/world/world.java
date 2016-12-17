@@ -51,8 +51,8 @@ public class world {
 			SimpleGameEngine.savingSystem.saveWorld("world3", this);	
 			objects.clear();
 			noHitObjects.clear();
-			addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
-			SimpleGameEngine.savingSystem.saveWorld("tree", this);	
+			*/	 addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
+			SimpleGameEngine.savingSystem.saveWorld("tree", this);	/*
 			objects.clear();
 			noHitObjects.clear();
 			foregroundStuff.clear();
@@ -68,7 +68,7 @@ public class world {
 		//	loadWorld("world2");
 		//	loadWorld("chicken");
 		//	SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
-			SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
+		//	SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
 		}
 		
 	}
@@ -217,7 +217,8 @@ public class world {
 				if (PosOrNeg2 == 0){
 					dy = -dy;
 				}
-				addTree(nho,obj,fgs,treeRadius,i+dx,j+dy,60,80,i+dx,j-dy-30,60,60,trunk,crown);
+				
+				addTree(nho,obj,fgs,treeRadius,i+dx,j+dy,60, 100,i+dx,j+dy-30,60, 60,trunk,crown);
 			}
 		}
 	}

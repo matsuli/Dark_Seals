@@ -251,11 +251,13 @@ public void delete(){
 		
 		for (Iterator<noHitObj> it = w.noHitObjects.iterator(); it.hasNext(); ) {
 			noHitObj o = it.next();
-			//Image img2 = null;
-			if (o.textureName == null) {
-			} else {
-				o.textureImg  =SimpleGameEngine.space.r.resources.get(o.textureName);
-			}
+		if (o.textureName == null) {
+		} else {
+			o.textureImg  =SimpleGameEngine.space.r.resources.get(o.textureName);
+			
+		}
+	  
+			
 			BufferedImage img = null;
 			try {
 			    img = ImageIO.read(new File("images/engage.png"));
@@ -277,15 +279,10 @@ public void delete(){
 		
 		for (Iterator<noHitObj> it = w.foregroundStuff.iterator(); it.hasNext(); ) {
 		noHitObj o = it.next();
-		BufferedImage img2;
 		if (o.textureName == null) {
 		} else {
-			try {
-			    img2 = ImageIO.read(new File(o.textureName));
-				o.textureImg2 = o.addTransparency(img2, Color.white);
-				o.textureImg = o.imageToBufferedImage(o.textureImg2);
-			} catch (IOException e) {
-			}
+			o.textureImg  =SimpleGameEngine.space.r.resources.get(o.textureName);
+			
 		}
 	  }
 	  }	
