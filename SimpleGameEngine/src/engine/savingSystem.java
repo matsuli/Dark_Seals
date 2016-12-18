@@ -130,6 +130,7 @@ ArrayList <String> saveNames= new ArrayList<String>();
 				    ex.printStackTrace();
 				}	
 		SimpleGameEngine.currentMenu="saveMenu";
+		update();
 	}
 public void delete(){
 	currentSaveSlot=saveMenu.getSelectedMenuBox();
