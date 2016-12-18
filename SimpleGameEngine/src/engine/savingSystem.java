@@ -233,9 +233,9 @@ public void delete(){
 		
 		for (Iterator<hitDetObj> it = w.objects.iterator(); it.hasNext(); ) {
 		hitDetObj o = it.next();
-		if (o.texture == null) {
+		if (o.textureName == null) {
 		} else {
-			o.textureImg  =SimpleGameEngine.space.r.resources.get(o.texture);
+			o.textureImg  =SimpleGameEngine.space.r.resources.get(o.textureName);
 			
 		}
 	  }
@@ -257,14 +257,7 @@ public void delete(){
 			
 		}
 	  
-			
-			BufferedImage img = null;
-			try {
-			    img = ImageIO.read(new File("images/engage.png"));
-			} catch (IOException e) {
-			}
-			o.intSymImg = o.addTransparency(img, Color.white);
-			o.interactSymbol = o.imageToBufferedImage(o.intSymImg);
+			o.interactSymbol = SimpleGameEngine.space.r.resources.get("engage");
 		}
 		try {
 		FileInputStream fis = new FileInputStream(world+"/foreGround");

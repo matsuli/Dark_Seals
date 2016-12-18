@@ -45,15 +45,10 @@ public class world {
 			SimpleGameEngine.savingSystem.saveWorld("world2", this);		
 			objects.clear();
 			noHitObjects.clear();
-			addhitDetRect(objects, 100, 100, 100, 100, "images/chicken.gif");
-			addNoHitRect(noHitObjects, 250, 250, 150, 150,"images/chicken.gif");
-			addInteractionArea (noHitObjects, 200,100,100,100, null, null);
-			SimpleGameEngine.savingSystem.saveWorld("world3", this);	
 			objects.clear();
 			noHitObjects.clear();
-			*/	 addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
-			SimpleGameEngine.savingSystem.saveWorld("tree", this);	/*
-			objects.clear();
+			 addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60, "images/tree_trunk.png", "images/tree_crown.png");
+			SimpleGameEngine.savingSystem.saveWorld("tree", this);	
 			noHitObjects.clear();
 			foregroundStuff.clear();
 			addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80, 60, 60, "images/tree_trunk.png", "images/tree_crown.png",-500,-500,1500,1500);
@@ -66,7 +61,7 @@ public class world {
 		else {
 		//	loadWorld("world1");	
 		//	loadWorld("world2");
-		//	loadWorld("chicken");
+		
 		//	SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar arraylisten ur en fil
 		//	SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
 		}
@@ -159,14 +154,14 @@ public class world {
 	public void addhitDetRect(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture){
 		
 		hitDetRect r = new hitDetRect (ox, oy, ow, oh);
-		r.texture = texture;
+		r.textureName = texture;
 		objects.add(r);	
 	}
 	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture){
 		
 			hitDetCircle c = new hitDetCircle (ox, oy, ow, oh);
 			objects.add(c);	
-			c.texture = texture;
+			c.textureName = texture;
 		}
 	public void addhitDetTriangle(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2, int ox3,int oy3){
 		
@@ -178,23 +173,23 @@ public class world {
 		hitDetectLine l = new hitDetectLine (ox, oy, ox2, oy2);
 		objects.add(l);	
 	}
-	public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, BufferedImage texture){
+	public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture){
 	
 		noHitRect r = new  noHitRect(ox, oy, ow, oh);
-		r.textureImg = texture;
+		r.textureName = texture;
 		noHitObjects.add(r);	
 	}
 	
-	public void addNoHitCircle(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, BufferedImage texture){
+	public void addNoHitCircle(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture){
 		
 		noHitCircle c = new  noHitCircle(ox, oy, ow, oh);
-		c.textureImg = texture;
+		c.textureName = texture;
 		noHitObjects.add(c);	
 	}
 	
-	public void addInteractionArea (ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, BufferedImage type, BufferedImage texture) {
+	public void addInteractionArea (ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String type, String texture) {
 		Interaction I = new Interaction (ox,oy,ow,oh);
-		I.textureImg = texture;
+		I.textureName = texture;
 		noHitObjects.add(I);
 	}
 	
