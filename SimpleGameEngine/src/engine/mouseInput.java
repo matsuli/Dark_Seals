@@ -1,185 +1,160 @@
 package engine;
+
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class mouseInput implements MouseListener, MouseMotionListener {
-	
+
 	private static final int BUTTON_COUNT = 3;
 
-	  // Polled position of the mouse cursor
+	// Polled position of the mouse cursor
 
-	  private Point mousePos = null;
+	private Point mousePos = null;
 
-	  // Current position of the mouse cursor
+	// Current position of the mouse cursor
 
-	  private Point currentPos = null;
+	private Point currentPos = null;
 
-	  // Current state of mouse buttons
+	// Current state of mouse buttons
 
-	  private boolean[] state = null;
+	private boolean[] state = null;
 
-	  // Polled mouse buttons
+	// Polled mouse buttons
 
-	  private MouseState[] poll = null;
+	private MouseState[] poll = null;
 
-	        
+	private enum MouseState {
 
-	  private enum MouseState {
+		RELEASED, // Not down
 
-	    RELEASED, // Not down
+		PRESSED, // Down, but not the first time
 
-	    PRESSED,  // Down, but not the first time
+		ONCE // Down for the first time
 
-	    ONCE      // Down for the first time
+	}
 
-	  }
+	public mouseInput() {
 
-	        
+		// Create default mouse positions
 
-	  public mouseInput() {
+		mousePos = new Point(0, 0);
 
-	    // Create default mouse positions
+		currentPos = new Point(0, 0);
 
-	    mousePos = new Point( 0, 0 );
+		// Setup initial button states
 
-	    currentPos = new Point( 0, 0 );
+		state = new boolean[BUTTON_COUNT];
 
-	    // Setup initial button states
+		poll = new MouseState[BUTTON_COUNT];
 
-	    state = new boolean[ BUTTON_COUNT ];
+		for (int i = 0; i < BUTTON_COUNT; ++i) {
 
-	    poll = new MouseState[ BUTTON_COUNT ];
+			poll[i] = MouseState.RELEASED;
 
-	    for( int i = 0; i < BUTTON_COUNT; ++i ) {
+		}
 
-	      poll[ i ] = MouseState.RELEASED;
+	}
 
-	    }
+	public synchronized void poll() {
 
-	  }
+		// Save the current location
 
-	        
+		mousePos = new Point(currentPos);
 
-	  public synchronized void poll() {
+		// Check each mouse button
 
-	    // Save the current location
+		for (int i = 0; i < BUTTON_COUNT; ++i) {
 
-	    mousePos = new Point( currentPos );
+			// If the button is down for the first
 
-	    // Check each mouse button
+			// time, it is ONCE, otherwise it is
 
-	    for( int i = 0; i < BUTTON_COUNT; ++i ) {
+			// PRESSED.
 
-	      // If the button is down for the first
+			if (state[i]) {
 
-	      // time, it is ONCE, otherwise it is
+				if (poll[i] == MouseState.RELEASED)
 
-	      // PRESSED.  
+					poll[i] = MouseState.ONCE;
 
-	      if( state[ i ] ) {
+				else
 
-	        if( poll[ i ] == MouseState.RELEASED )
+					poll[i] = MouseState.PRESSED;
 
-	          poll[ i ] = MouseState.ONCE;
+			} else {
 
-	        else
+				// button is not down
 
-	          poll[ i ] = MouseState.PRESSED;
+				poll[i] = MouseState.RELEASED;
 
-	      } else {
+			}
 
-	          // button is not down
+		}
 
-	          poll[ i ] = MouseState.RELEASED;
+	}
 
-	      }
+	public Point getPosition() {
 
-	    }
+		return mousePos;
 
-	  }
+	}
 
+	public boolean buttonDownOnce(int button) {
 
+		return poll[button - 1] == MouseState.ONCE;
 
-	  public Point getPosition() {
+	}
 
-	    return mousePos;
+	public boolean buttonDown(int button) {
 
-	  }
+		return poll[button - 1] == MouseState.ONCE ||
 
+				poll[button - 1] == MouseState.PRESSED;
 
+	}
 
-	  public boolean buttonDownOnce( int button ) {
+	public synchronized void mousePressed(MouseEvent e) {
 
-	    return poll[ button-1 ] == MouseState.ONCE;
+		state[e.getButton() - 1] = true;
 
-	  }
+	}
 
+	public synchronized void mouseReleased(MouseEvent e) {
 
+		state[e.getButton() - 1] = false;
 
-	  public boolean buttonDown( int button ) {
+	}
 
-	    return poll[ button-1 ] == MouseState.ONCE ||
+	public synchronized void mouseEntered(MouseEvent e) {
 
-	           poll[ button-1 ] == MouseState.PRESSED;
+		mouseMoved(e);
 
-	  }
+	}
 
-	  
+	public synchronized void mouseExited(MouseEvent e) {
 
-	  public synchronized void mousePressed( MouseEvent e ) {
+		mouseMoved(e);
 
-	    state[ e.getButton()-1 ] = true;
+	}
 
-	  }
+	public synchronized void mouseDragged(MouseEvent e) {
 
+		mouseMoved(e);
 
+	}
 
-	  public synchronized void mouseReleased( MouseEvent e ) {
+	public synchronized void mouseMoved(MouseEvent e) {
 
-	    state[ e.getButton()-1 ] = false;
+		currentPos = e.getPoint();
 
-	  }
+	}
 
+	public void mouseClicked(MouseEvent e) {
 
+		// Not needed
 
-	  public synchronized void mouseEntered( MouseEvent e ) {
-
-	    mouseMoved( e );
-
-	  }
-
-	  
-
-	  public synchronized void mouseExited( MouseEvent e ) {
-
-	    mouseMoved( e );
-
-	  }
-
-	  
-
-	  public synchronized void mouseDragged( MouseEvent e ) {
-
-	    mouseMoved( e );
-
-	  }
-
-
-
-	  public synchronized void mouseMoved( MouseEvent e ) {
-
-	    currentPos = e.getPoint();
-
-	  }
-
-	  
-
-	  public void mouseClicked( MouseEvent e ) {
-
-	    // Not needed
-
-	  }
+	}
 
 }

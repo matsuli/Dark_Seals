@@ -1,4 +1,5 @@
 package objects;
+
 import world.world;
 import world.hitDetCircle;
 import java.awt.Graphics2D;
@@ -9,7 +10,6 @@ import java.awt.geom.Point2D.Double;
 
 import engine.Actor;
 import engine.SimpleGameEngine;
-
 
 public class Bullet {
 	Actor shooter;
@@ -24,8 +24,8 @@ public class Bullet {
 	public Bullet(Actor shooter, double targetPosX, double targetPosY) {
 		this.shooter = shooter;
 		location = new Point2D.Double((shooter.shooterLocation.getX()), (shooter.shooterLocation.getY()));
-		hitDetBullet = new  hitDetCircle(location.x - radius, location.y - radius, radius * 2, radius * 2);
-		prevHitDetBullet = new  hitDetCircle(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		hitDetBullet = new hitDetCircle(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		prevHitDetBullet = new hitDetCircle(location.x - radius, location.y - radius, radius * 2, radius * 2);
 		oldPosX = targetPosX;
 		oldPosY = targetPosY;
 		rotation = Math.toDegrees(Math.atan2((oldPosY - location.y), (oldPosX - location.x)));

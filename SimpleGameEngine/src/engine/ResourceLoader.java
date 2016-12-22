@@ -20,50 +20,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ResourceLoader {
-	
-	public Map <String, BufferedImage> resources = new HashMap<String, BufferedImage>();
-	
-	public void addResource (String name, String type, String source){
-		if (type=="image"){
+
+	public Map<String, BufferedImage> resources = new HashMap<String, BufferedImage>();
+
+	public void addResource(String name, String type, String source) {
+		if (type == "image") {
 			BufferedImage img;
 			Image img2;
 			BufferedImage imgFinal;
-			try{
+			try {
 				img = ImageIO.read(new File(source));
 				img2 = addTransparency(img, Color.white);
 				imgFinal = imageToBufferedImage(img2);
-				resources.put(name,imgFinal);
+				resources.put(name, imgFinal);
 			} catch (IOException e) {
 				System.out.println("Failed to load image");
 			}
 		}
 	}
-	public Image addTransparency (BufferedImage image, Color color) {
+
+	public Image addTransparency(BufferedImage image, Color color) {
 		ImageFilter filter = new RGBImageFilter() {
 			public int markerRGB = color.getRGB() | 0xFF000000;
+
 			public final int filterRGB(int x, int y, int rgb) {
 				if ((rgb | 0xFF000000) == markerRGB) {
-    				// Mark the alpha bits as zero - transparent
-    				return 0x00FFFFFF & rgb;
-    			} else {
-    				// nothing to do
-    				return rgb;
-    			}
+					// Mark the alpha bits as zero - transparent
+					return 0x00FFFFFF & rgb;
+				} else {
+					// nothing to do
+					return rgb;
+				}
 			}
 		};
-		
+
 		ImageProducer ip = new FilteredImageSource(image.getSource(), filter);
-			return Toolkit.getDefaultToolkit().createImage(ip);
+		return Toolkit.getDefaultToolkit().createImage(ip);
 	}
-	
+
 	public static BufferedImage imageToBufferedImage(Image image) {
 
-    	BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-    	Graphics2D g2 = bufferedImage.createGraphics();
-    	g2.drawImage(image, 0, 0, null);
-    	g2.dispose();
+		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = bufferedImage.createGraphics();
+		g2.drawImage(image, 0, 0, null);
+		g2.dispose();
 
-    	return bufferedImage;
-    }
-	
+		return bufferedImage;
+	}
+
 }

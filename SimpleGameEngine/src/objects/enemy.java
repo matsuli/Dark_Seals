@@ -1,4 +1,5 @@
 package objects;
+
 import world.world;
 import world.hitDetCircle;
 import java.awt.Color;
@@ -8,7 +9,6 @@ import java.awt.geom.Point2D;
 
 import engine.Actor;
 import engine.SimpleGameEngine;
-
 
 public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 									// actor
@@ -73,10 +73,11 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 		// to be compensated for.
 
 		double a = Math.atan2(targetActor.hitDetCircle.circle.getY() + targetActor.radius - location.y,
-				targetActor.hitDetCircle.circle.getX() + targetActor.radius - location.x); 
-		// a är vinkeln mellan player, enemin o enemiens x-axel som startar från enemy. Inte 100%säker																				// på																			// hur															// det																			// funkar,
+				targetActor.hitDetCircle.circle.getX() + targetActor.radius - location.x);
+		// a är vinkeln mellan player, enemin o enemiens x-axel som startar från
+		// enemy. Inte 100%säker // på // hur // det // funkar,
 		// tror det räknas som man sku transleita ti enemys position, sen räkna
-		//  vinkeln mellan player o origo o x-axel.
+		// vinkeln mellan player o origo o x-axel.
 		if (Math.sqrt(targetActor.hitDetCircle.circle.getX() + targetActor.radius - location.x)
 				+ Math.sqrt(targetActor.hitDetCircle.circle.getY() + targetActor.radius - location.y) <= Math
 						.sqrt(sightRadius)) // Nearcenter is true when player is

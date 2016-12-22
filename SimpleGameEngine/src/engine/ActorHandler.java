@@ -1,13 +1,14 @@
 package engine;
+
 import java.awt.Component;
 
 public class ActorHandler {
 
-	public ActorHandler () {
-		
+	public ActorHandler() {
+
 	}
-	
-	public void update(){
-		
-	}	
+
+	public void update() {
+
+	}
 }

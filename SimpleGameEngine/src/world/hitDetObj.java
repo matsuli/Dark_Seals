@@ -1,4 +1,5 @@
 package world;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -22,50 +23,49 @@ public class hitDetObj implements Serializable {
 	boolean hitLeft;
 	boolean hitRight;
 	boolean hitUp;
-	boolean hitDown;	
+	boolean hitDown;
 	double hitCorrectionLeft;
 	double hitCorrectionRight;
 	double hitCorrectionUp;
 	double hitCorrectionDown;
 
-	public Image addTransparency (BufferedImage image, Color color) {
+	public Image addTransparency(BufferedImage image, Color color) {
 		ImageFilter filter = new RGBImageFilter() {
 			public int markerRGB = color.getRGB() | 0xFF000000;
+
 			public final int filterRGB(int x, int y, int rgb) {
 				if ((rgb | 0xFF000000) == markerRGB) {
-    				// Mark the alpha bits as zero - transparent
-    				return 0x00FFFFFF & rgb;
-    			} else {
-    				// nothing to do
-    				return rgb;
-    			}
+					// Mark the alpha bits as zero - transparent
+					return 0x00FFFFFF & rgb;
+				} else {
+					// nothing to do
+					return rgb;
+				}
 			}
 		};
-		
+
 		ImageProducer ip = new FilteredImageSource(image.getSource(), filter);
-			return Toolkit.getDefaultToolkit().createImage(ip);
+		return Toolkit.getDefaultToolkit().createImage(ip);
 	}
-	
+
 	public static BufferedImage imageToBufferedImage(Image image) {
 
-    	BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-    	Graphics2D g2 = bufferedImage.createGraphics();
-    	g2.drawImage(image, 0, 0, null);
-    	g2.dispose();
+		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = bufferedImage.createGraphics();
+		g2.drawImage(image, 0, 0, null);
+		g2.dispose();
 
-    	return bufferedImage;
-    }
-	
-	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle){
+		return bufferedImage;
+	}
+
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle) {
 		return hit;
-		
-	}
-	
-	public void draw(Graphics2D g){
-		
-	}
-	
-}
-	
-	
 
+	}
+
+	public void draw(Graphics2D g) {
+
+	}
+
+}
