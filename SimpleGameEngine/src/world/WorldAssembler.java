@@ -24,10 +24,10 @@ public class WorldAssembler extends world {
 	public void AssembleWorld() {
 		// world with many trees
 
-		// addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80,
-		// 60, 60, "trunk", "crown",-500,-500,1500,1500);
-		// engine.SimpleGameEngine.savingSystem.saveWorld("multipleTrees",
-		// this);
+		addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80,
+		60, 60, "trunk", "crown",-500,-500,1500,1500);
+		engine.SimpleGameEngine.savingSystem.saveWorld("multipleTrees",
+		this);
 
 		SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
 

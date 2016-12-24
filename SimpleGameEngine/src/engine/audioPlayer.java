@@ -23,4 +23,15 @@ public class audioPlayer {
 			ex.printStackTrace();
 		}
 	}
+	public void loopSound(String file) {
+		try {
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(file).getAbsoluteFile());
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch (Exception ex) {
+			System.out.println("Error with playing sound.");
+			ex.printStackTrace();
+		}
+	}
 }

@@ -109,7 +109,7 @@ public class SimpleGameEngine extends JFrame {
 		currentMenu = shouldWrite.thisMenu;
 		player = new Player();
 		audioPlayer audio = new audioPlayer();
-		audio.play("sound/1.wav");
+		audio.loopSound("sound/1.wav");
 		space.assemble();
 	}
 
