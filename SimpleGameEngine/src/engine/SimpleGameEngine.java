@@ -111,7 +111,8 @@ public class SimpleGameEngine extends JFrame {
 		player = new Player();
 		audioPlayer audio = new audioPlayer();
 		audio.loopSound("sound/1.wav");
-		space.assemble();
+		space.AssembleWorld();
+		space.assemble("multipleTrees");
 	}
 
 	// check for input, move things, etc.

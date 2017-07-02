@@ -39,6 +39,8 @@ public class ResourceLoader {
 		}
 	}
 
+	
+	//this function does not "add transparency", it only deletes the color specified in the parameters
 	public Image addTransparency(BufferedImage image, Color color) {
 		ImageFilter filter = new RGBImageFilter() {
 			public int markerRGB = color.getRGB() | 0xFF000000;

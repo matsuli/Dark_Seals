@@ -8,6 +8,7 @@ import engine.SimpleGameEngine;
 public class WorldAssembler extends world {
 	public ResourceLoader r = new ResourceLoader();
 
+	//all resources should be added here, but to avoid spaghetti, try adding parameters in a document and reading it from there, maybe with "for"
 	public WorldAssembler() {
 		// tree
 		r.addResource("trunk", "image", "images/tree_trunk.png");
@@ -16,9 +17,11 @@ public class WorldAssembler extends world {
 		r.addResource("engage", "image", "images/engage.png");
 	}
 
-	public void assemble() {
-		AssembleWorld();
-
+	//I think the point with this is to be able to load a specific world where needed, whereas AssembleWorld would create and save the worlds (levels)
+	//needs work
+	//nevermind, done
+	public void assemble(String levelName) {
+		SimpleGameEngine.savingSystem.loadWorld(levelName, this);
 	}
 
 	public void AssembleWorld() {
@@ -26,10 +29,7 @@ public class WorldAssembler extends world {
 
 		addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80,
 		60, 60, "trunk", "crown",-500,-500,1500,1500);
-		engine.SimpleGameEngine.savingSystem.saveWorld("multipleTrees",
-		this);
-
-		SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
+		engine.SimpleGameEngine.savingSystem.saveWorld("multipleTrees", this);
 
 		/*
 		 * 
