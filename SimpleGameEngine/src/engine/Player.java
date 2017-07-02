@@ -30,8 +30,10 @@ public class Player extends Actor {
 	public double hitCorrectionUp;
 	public double hitCorrectionDown;
 	public boolean hitCorrected;
+	//walking animation spritesheet
+	String src = "spritesheet";
 
-	private BufferedImage[] walkingSprite = { Sprite.getSprite(0, 0), Sprite.getSprite(1, 0), Sprite.getSprite(2, 0) };
+	private BufferedImage[] walkingSprite = { Sprite.getSprite(0, 0, src), Sprite.getSprite(1, 0, src), Sprite.getSprite(2, 0, src) };
 	private Animation walking = new Animation(walkingSprite, 20, false);
 	private Animation playerSprite = walking;
 

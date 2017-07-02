@@ -24,10 +24,10 @@ public class Sprite {
 		return sprite;
 	}
 
-	public static BufferedImage getSprite(int xGrid, int yGrid) {
+	public static BufferedImage getSprite(int xGrid, int yGrid, String source) {
 
 		if (spriteSheet == null) {
-			spriteSheet = loadSprite("spritesheet");
+			spriteSheet = loadSprite(source);
 		}
 
 		return spriteSheet.getSubimage(xGrid * TILE_SIZE, yGrid * TILE_SIZE, TILE_SIZE, TILE_SIZE);
