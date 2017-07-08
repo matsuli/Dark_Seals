@@ -30,12 +30,20 @@ public class Player extends Actor {
 	public double hitCorrectionUp;
 	public double hitCorrectionDown;
 	public boolean hitCorrected;
-	//walking animation spritesheet
-	String src = "spritesheet";
+	//player animation spritesheet
+	String src = "PlayerSpritesheet";
 
-	private BufferedImage[] walkingSprite = { Sprite.getSprite(0, 0, src), Sprite.getSprite(1, 0, src), Sprite.getSprite(2, 0, src) };
-	private Animation walking = new Animation(walkingSprite, 20, false);
-	private Animation playerSprite = walking;
+	private BufferedImage[] WalkingBackSprite = { Sprite.getSprite(0, 0, src), Sprite.getSprite(1, 0, src), Sprite.getSprite(2, 0, src) };
+	private Animation WalkingBack = new Animation(WalkingBackSprite, 10, false);
+	private BufferedImage[] WalkingForwardSprite = { Sprite.getSprite(0, 1, src), Sprite.getSprite(1, 1, src), Sprite.getSprite(2, 1, src) };
+	private Animation WalkingForward = new Animation(WalkingForwardSprite, 10, false);
+	private BufferedImage[] WalkingRightSprite = { Sprite.getSprite(0, 2, src), Sprite.getSprite(1, 2, src), Sprite.getSprite(2, 2, src) };
+	private Animation WalkingRight = new Animation(WalkingRightSprite, 10, false);
+	private BufferedImage[] WalkingLeftSprite = { Sprite.getSprite(0, 3, src), Sprite.getSprite(1, 3, src), Sprite.getSprite(2, 3, src) };
+	private Animation WalkingLeft = new Animation(WalkingLeftSprite, 10, false);
+	private BufferedImage[] CrouchSprite = { Sprite.getSprite(0, 5, src) };
+	private Animation Crouching = new Animation(CrouchSprite, 10, false);
+	private Animation playerSprite = Crouching;
 
 	public Player() {
 		radius = 10;
@@ -89,7 +97,7 @@ public class Player extends Actor {
 		hit = false;
 
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
-
+			playerSprite = WalkingRight;
 			SimpleGameEngine.px -= right;
 			space.HitDetect();
 			if (hitRight == true) {
@@ -98,7 +106,7 @@ public class Player extends Actor {
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_A)) {
-
+			playerSprite = WalkingLeft;
 			SimpleGameEngine.px += left;
 			space.HitDetect();
 			if (hitLeft == true) {
@@ -107,7 +115,7 @@ public class Player extends Actor {
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_S)) {
-
+			playerSprite = WalkingBack;
 			SimpleGameEngine.py -= down;
 			space.HitDetect();
 			if (hitDown == true) {
@@ -117,7 +125,7 @@ public class Player extends Actor {
 		}
 
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_W)) {
-
+			playerSprite = WalkingForward;
 			SimpleGameEngine.py += up;
 			space.HitDetect();
 			if (hitUp == true) {
