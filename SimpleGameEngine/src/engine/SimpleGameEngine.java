@@ -163,8 +163,6 @@ public class SimpleGameEngine extends JFrame {
 
 		// player
 		player.drawPlayer(offgc, playerX, playerY);
-		// stamina
-		offgc.drawRect(5, 5, (int) (player.stamina * 10 / 4), 10);
 		// System.out.println(space.foregroundStuff.isEmpty());
 		// här går foreground, men måste ännu flyttas i förhållande till player
 		offgc.translate(px, py);

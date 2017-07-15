@@ -18,8 +18,8 @@ public class Player extends Actor {
 	double down = 5;
 	double up = 5;
 	double speed = 10;
-	double stamina = 100;
-	boolean sprint, sneak;
+	boolean sneak;
+	//sealcode, used for hit detection
 	public boolean hit;
 	public boolean hitLeft;
 	public boolean hitRight;
@@ -32,18 +32,33 @@ public class Player extends Actor {
 	public boolean hitCorrected;
 	//player animation spritesheet
 	String src = "PlayerSpritesheet";
-
-	private BufferedImage[] WalkingBackSprite = { Sprite.getSprite(0, 0, src), Sprite.getSprite(1, 0, src), Sprite.getSprite(2, 0, src) };
-	private Animation WalkingBack = new Animation(WalkingBackSprite, 10, false);
-	private BufferedImage[] WalkingForwardSprite = { Sprite.getSprite(0, 1, src), Sprite.getSprite(1, 1, src), Sprite.getSprite(2, 1, src) };
-	private Animation WalkingForward = new Animation(WalkingForwardSprite, 10, false);
+	//used to determine which direction player is facing when standing still
+	String lastDir;
+	
+	//walking animations
+	private BufferedImage[] WalkingDownSprite = { Sprite.getSprite(0, 0, src), Sprite.getSprite(1, 0, src), Sprite.getSprite(2, 0, src) };
+	private Animation WalkingDown = new Animation(WalkingDownSprite, 10, false);
+	private BufferedImage[] WalkingUpSprite = { Sprite.getSprite(0, 1, src), Sprite.getSprite(1, 1, src), Sprite.getSprite(2, 1, src) };
+	private Animation WalkingUp = new Animation(WalkingUpSprite, 10, false);
 	private BufferedImage[] WalkingRightSprite = { Sprite.getSprite(0, 2, src), Sprite.getSprite(1, 2, src), Sprite.getSprite(2, 2, src) };
 	private Animation WalkingRight = new Animation(WalkingRightSprite, 10, false);
 	private BufferedImage[] WalkingLeftSprite = { Sprite.getSprite(0, 3, src), Sprite.getSprite(1, 3, src), Sprite.getSprite(2, 3, src) };
 	private Animation WalkingLeft = new Animation(WalkingLeftSprite, 10, false);
+	//sneak animation
 	private BufferedImage[] CrouchSprite = { Sprite.getSprite(0, 5, src) };
 	private Animation Crouching = new Animation(CrouchSprite, 10, false);
+	//idle animations
+	private BufferedImage[] IdleDownSprite = { Sprite.getSprite(0, 4, src)};
+	private Animation IdleDown = new Animation(IdleDownSprite, 10, false);
+	private BufferedImage[] IdleUpSprite = { Sprite.getSprite(1, 4, src)};
+	private Animation IdleUp = new Animation(IdleUpSprite, 10, false);
+	private BufferedImage[] IdleRightSprite = { Sprite.getSprite(2, 4, src)};
+	private Animation IdleRight = new Animation(IdleRightSprite, 10, false);
+	private BufferedImage[] IdleLeftSprite = { Sprite.getSprite(3, 4, src)};
+	private Animation IdleLeft = new Animation(IdleLeftSprite, 10, false);
+	//player current animation
 	private Animation playerSprite = Crouching;
+	
 
 	public Player() {
 		radius = 10;
@@ -85,6 +100,10 @@ public class Player extends Actor {
 		prevHitDetCircle.circle.setFrame(location.x - radius - SimpleGameEngine.px,
 				location.y - radius - SimpleGameEngine.py, radius * 2, radius * 2);
 
+		speed = 10;
+		if (sneak) {
+			speed = 5;
+		}
 		right = speed;
 		left = speed;
 		down = speed;
@@ -95,9 +114,23 @@ public class Player extends Actor {
 		hitUp = false;
 		hitDown = false;
 		hit = false;
+		
+		if (lastDir == "right") {
+			playerSprite = IdleRight;
+		}
+		if (lastDir == "left") {
+			playerSprite = IdleLeft;
+		}
+		if (lastDir == "down") {
+			playerSprite = IdleDown;
+		}
+		if (lastDir == "up") {
+			playerSprite = IdleUp;
+		}
 
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_D)) {
 			playerSprite = WalkingRight;
+			lastDir = "right";
 			SimpleGameEngine.px -= right;
 			space.HitDetect();
 			if (hitRight == true) {
@@ -107,6 +140,7 @@ public class Player extends Actor {
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_A)) {
 			playerSprite = WalkingLeft;
+			lastDir = "left";
 			SimpleGameEngine.px += left;
 			space.HitDetect();
 			if (hitLeft == true) {
@@ -115,7 +149,8 @@ public class Player extends Actor {
 			}
 		}
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_S)) {
-			playerSprite = WalkingBack;
+			playerSprite = WalkingDown;
+			lastDir = "down";
 			SimpleGameEngine.py -= down;
 			space.HitDetect();
 			if (hitDown == true) {
@@ -125,7 +160,8 @@ public class Player extends Actor {
 		}
 
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_W)) {
-			playerSprite = WalkingForward;
+			playerSprite = WalkingUp;
+			lastDir = "up";
 			SimpleGameEngine.py += up;
 			space.HitDetect();
 			if (hitUp == true) {
@@ -133,32 +169,13 @@ public class Player extends Actor {
 
 			}
 		}
-
+		
+		
 		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_SHIFT)) {
-			sprint = true;
+			sneak = true;
+			playerSprite = Crouching;
 		} else {
-			sprint = false;
-		}
-		if (sprint == true) {
-			if (stamina >= 2 / 60) {
-				stamina = stamina - (2.0 / 5);
-			} else if (stamina >= 0) {
-				stamina = stamina - (1.0 / 5);
-			}
-			if (speed < 10 && stamina > 0) {
-				speed = speed + 1.0 / 20;
-			}
-			if (stamina <= 0 && speed > 5) {
-				speed = speed - 1.0 / 20;
-			}
-		}
-		if (sprint == false) {
-			if (speed > 10) {
-				speed = speed - 1.0 / 20;
-			}
-		}
-		if (stamina <= 100 && sprint == false) {
-			stamina = stamina + 1;
+			sneak = false;
 		}
 
 		playerSprite.update();
