@@ -29,38 +29,8 @@ public class world {
 	public void initialize() {
 
 		if (write) {
-			/*
-			 * objects.clear(); noHitObjects.clear(); //Adda hitdetect objects
-			 * här addhitDetCircle(objects, 100, 100, 50, 50, null);
-			 * addhitDetCircle(objects, 320, 300, 50, 50, null);
-			 * addhitDetLine(objects, 374, 250, 500, 400);
-			 * addhitDetLine(objects, 360, 400, 0, 125);
-			 * addhitDetTriangle(objects, -80, 0, 0, 125, -40, 200);
-			 * SimpleGameEngine.savingSystem.saveWorld("world1", this);
-			 * objects.clear(); noHitObjects.clear(); addhitDetCircle(objects,
-			 * 225, 100, 50, 50, null); addhitDetLine(objects, 100, 250, 125,
-			 * 450); addhitDetLine(objects, 50, 500, 0, 0);
-			 * addhitDetTriangle(objects, 500, 330, 470, 490, 300, 200);
-			 * SimpleGameEngine.savingSystem.saveWorld("world2", this);
-			 * objects.clear(); noHitObjects.clear(); objects.clear();
-			 * noHitObjects.clear(); addTree (noHitObjects, objects,
-			 * foregroundStuff, 30, 200, 200, 60, 80, 200, 170, 60, 60,
-			 * "images/tree_trunk.png", "images/tree_crown.png");
-			 * SimpleGameEngine.savingSystem.saveWorld("tree", this);
-			 * noHitObjects.clear(); foregroundStuff.clear();
-			 * addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60,
-			 * 80, 60, 60, "images/tree_trunk.png",
-			 * "images/tree_crown.png",-500,-500,1500,1500);
-			 * SimpleGameEngine.savingSystem.saveWorld("multipleTrees", this);
-			 * objects.clear(); noHitObjects.clear(); foregroundStuff.clear();
-			 */
+			
 		} else {
-			// loadWorld("world1");
-			// loadWorld("world2");
-
-			// SimpleGameEngine.savingSystem.loadWorld("tree", this); //laddar
-			// arraylisten ur en fil
-			// SimpleGameEngine.savingSystem.loadWorld("multipleTrees", this);
 		}
 
 	}
