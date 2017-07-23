@@ -110,7 +110,7 @@ public class SimpleGameEngine extends JFrame {
 		currentMenu = shouldWrite.thisMenu;
 		player = new Player();
 		audioPlayer audio = new audioPlayer();
-		audio.loopSound("sound/1.wav");
+		//audio.loopSound("sound/1.wav");
 		space.AssembleWorld();
 		space.assemble("multipleTrees");
 	}
@@ -124,6 +124,7 @@ public class SimpleGameEngine extends JFrame {
 		mouse.poll();
 		mouseX = mouse.getPosition().x - px - insets.left;
 		mouseY = mouse.getPosition().y - py - insets.top;
+		player.PossibleShot(player);
 		input.handleInput();
 		paint(bbg);
 		// System.out.print(currentMenu);

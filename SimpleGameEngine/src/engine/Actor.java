@@ -18,18 +18,20 @@ public class Actor {
 	public double radius;
 
 	public void shoot(Actor shooter, double targetPosX, double targetPosY) {
-
-		if (shooter.canShoot == false) {
-			shooter.canShootCounter++;
-			if (shooter.canShootCounter == 20) {
-				shooter.canShoot = true;
-				shooter.canShootCounter = 0;
-			}
-		}
 		if (shooter.canShoot == true) {
 			world.bullets.add(new Bullet(shooter, targetPosX, targetPosY));
 			shooter.canShoot = false;
+			shooter.canShootCounter = 0;
 			SimpleGameEngine.audio1.play("sound/shot.wav");
+		}
+	}
+	
+	public void PossibleShot (Actor shooter) {
+		if (shooter.canShoot == false) {
+			shooter.canShootCounter++;
+		}
+		if (shooter.canShootCounter == 20) {
+			shooter.canShoot = true;
 		}
 	}
 
