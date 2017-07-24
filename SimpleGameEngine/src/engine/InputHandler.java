@@ -88,7 +88,6 @@ public class InputHandler implements KeyListener {
 
 		// shoot
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
-
 			if (SimpleGameEngine.play) {
 				SimpleGameEngine.player.shoot(SimpleGameEngine.player, SimpleGameEngine.mouseX, SimpleGameEngine.mouseY);
 			
