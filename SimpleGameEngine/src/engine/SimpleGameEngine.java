@@ -67,7 +67,6 @@ public class SimpleGameEngine extends JFrame {
 	// starts game, loops game
 	public void run() throws IOException {
 		initialize();
-
 		// game loop
 		while (isRunning) {
 			long time = System.currentTimeMillis();
@@ -189,7 +188,6 @@ public class SimpleGameEngine extends JFrame {
 				RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 
 		menuHandler.updateCurrentMenu(offgc);
-		// System.out.println(currentMenu);
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		g.drawImage(offscreen, SimpleGameEngine.insets.left, SimpleGameEngine.insets.top, this);
 	}
