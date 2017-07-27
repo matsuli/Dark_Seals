@@ -110,8 +110,8 @@ public class SimpleGameEngine extends JFrame {
 		player = new Player();
 		audioPlayer audio = new audioPlayer();
 		//audio.loopSound("sound/1.wav");
-		space.AssembleWorld();
-		space.assemble("multipleTrees");
+	//	space.LoadWorld();
+
 	}
 
 	// check for input, move things, etc.
@@ -135,6 +135,7 @@ public class SimpleGameEngine extends JFrame {
 			paintGame(g);
 		} else {
 			paintMenu(g);
+			
 		}
 	}
 
@@ -157,6 +158,10 @@ public class SimpleGameEngine extends JFrame {
 									// (px,py) blir nya (0,0)
 		offgc.setColor(Color.BLACK);
 		
+		//level editor
+		if(space.editor!=null){
+			space.editor.update(offgc);
+		}
 		// world
 		space.drawWorld(offgc);
 		offgc.translate(-px, -py); // sätter kordinatsystemet tillbaks till det

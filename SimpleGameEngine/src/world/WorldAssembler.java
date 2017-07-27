@@ -2,11 +2,14 @@ package world;
 
 import java.util.Iterator;
 
+import editor.levelEditor;
 import engine.ResourceLoader;
 import engine.SimpleGameEngine;
 
 public class WorldAssembler extends world {
 	public ResourceLoader r = new ResourceLoader();
+	public levelEditor editor; //level editor
+
 
 	//all resources should be added here, but to avoid spaghetti, try adding parameters in a document and reading it from there, maybe with "for"
 	public WorldAssembler() {
@@ -17,6 +20,14 @@ public class WorldAssembler extends world {
 		r.addResource("engage", "image", "images/engage.png");
 	}
 
+	public void LoadWorld(){
+		if(write==false){
+			assemble("multipleTrees");}
+			else{
+			AssembleNewWorld();	
+			}
+	}
+	
 	//I think the point with this is to be able to load a specific world where needed, whereas AssembleWorld would create and save the worlds (levels)
 	//needs work
 	//nevermind, done
@@ -24,13 +35,9 @@ public class WorldAssembler extends world {
 		SimpleGameEngine.savingSystem.loadWorld(levelName, this);
 	}
 
-	public void AssembleWorld() {
+	public void AssembleNewWorld() {
 		// world with many trees
-
-		addMultipleTrees(noHitObjects, objects, foregroundStuff, 30, 60, 80,
-		60, 60, "trunk", "crown",-500,-500,1500,1500);
-		engine.SimpleGameEngine.savingSystem.saveWorld("multipleTrees", this);
-
+		editor= new levelEditor();
 		/*
 		 * 
 		 * addTree (noHitObjects, objects, foregroundStuff, 30, 200, 200, 60,
@@ -42,8 +49,8 @@ public class WorldAssembler extends world {
 		 * 
 		 * //chicken
 		 * 
-		 * addhitDetRect(objects, 100, 100, 100, 100, "chicken");
-		 * addNoHitRect(noHitObjects, 250, 250, 150, 150,"chicken");
+		  addhitDetRect(objects, 100, 100, 100, 100, "chicken");
+		 *addNoHitRect(noHitObjects, 250, 250, 150, 150,"chicken");
 		 * addInteractionArea (noHitObjects, 200,100,100,100, null, null);
 		 * SimpleGameEngine.savingSystem.saveWorld("world3", this);
 		 * SimpleGameEngine.savingSystem.loadWorld("world3", this);
