@@ -42,8 +42,8 @@ public class SimpleGameEngine extends JFrame {
 	public static int px = 0;
 	public static int py = 0;
 	// mouse coordinates
-	static float mouseX;
-	static float mouseY;
+	public static float mouseX;
+	public static float mouseY;
 
 	static boolean play;
 
@@ -152,15 +152,16 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
 				RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-
+		
 		offgc.translate(px, py); // flyttar omvärlden i förhållande till player,
 									// (px,py) blir nya (0,0)
 		offgc.setColor(Color.BLACK);
+		
 		// world
 		space.drawWorld(offgc);
 		offgc.translate(-px, -py); // sätter kordinatsystemet tillbaks till det
 									// vanliga
-
+		
 		// player
 		player.drawPlayer(offgc, playerX, playerY);
 		// System.out.println(space.foregroundStuff.isEmpty());
