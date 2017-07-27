@@ -109,6 +109,7 @@ public class world {
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext();) {
 			hitDetObj o = it.next();
 			o.draw(g);
+			
 		}
 		g.setColor(Color.green);
 		for (Iterator<noHitObj> it = this.noHitObjects.iterator(); it.hasNext();) {

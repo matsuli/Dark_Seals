@@ -22,13 +22,13 @@ public int p2;
 public String mode; //this determines what the object created is
 						// R=rect, L= line, Circle
 	public void update(Graphics2D g){
-		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_R)) {
+		if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_R)) {	//press R to create a rectangle
 			mode="R";
 		}
-		else if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_L)) {
+		else if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_L)) {	//press L to create a line
 			mode="L";
 		}
-		else if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_C)) {
+		else if (SimpleGameEngine.input.isKeyDown(KeyEvent.VK_C)) {	//press C to create a circle
 			mode="C";
 		}
 		
@@ -50,34 +50,42 @@ public String mode; //this determines what the object created is
 	}
 
 	public void addingRect(Graphics2D g, noHitRect r){
-		int ow;
-		int oh;
+		int ow=0;
+		int oh=0;
 		int oxNew=0;
 		int oyNew=0;
-		if(SimpleGameEngine.mouse.buttonDownOnce(1) && create==false){
+		if(SimpleGameEngine.mouse.buttonDownOnce(1) && create==false){ 	//press mouse1 to start creating a rectangle
+			
 			ox=(int) SimpleGameEngine.mouseX;		//OBS! Vet inte om detta kommer att funka. Måste jag 
 			oy=(int) SimpleGameEngine.mouseY;		// kompensera för px o py?		
-			create=true;		
-			System.out.println("hoh");
-
+			create=true;		//this code runs once, ox and oy never change
+								//they are used to calculate the width and height
+								//oxNew and oyNew change, they are used for drawing and for the final rect
+			
 		}
 		
-		else if(create==true){
-			if((int)SimpleGameEngine.mouseX>ox){
-				ow=(int)SimpleGameEngine.mouseX-ox;
-				oxNew=ox;
+		else if(SimpleGameEngine.mouse.buttonDownOnce(3) && create==true){	//press mouse2 to save the rectangle
+			SimpleGameEngine.space.addhitDetRect(SimpleGameEngine.space.objects, oxNew, oyNew, ow, oh, "chicken");
+			create=false;
+			System.out.println(SimpleGameEngine.space.objects);
 			}
+		
+		else if(create==true){
+			if((int)SimpleGameEngine.mouseX>ox){		
+				ow=(int)SimpleGameEngine.mouseX-ox;	//ow=width 
+				oxNew=ox;							//oxNew=ox, since the cursor is on the right side 
+			}										//of the rect starting point=ox
 			else if((int)SimpleGameEngine.mouseX==ox){
 				ow=1;
 			}
 			else{
-				ow=ox-(int)SimpleGameEngine.mouseX;
-				oxNew=(int)SimpleGameEngine.mouseX;
-			}
+				ow=ox-(int)SimpleGameEngine.mouseX;	//if the cursor goes left of the starting point
+				oxNew=(int)SimpleGameEngine.mouseX;	//the width is changed and the cursor becomes oxNew
+			}										//ox isnt changed since it is used in the later frames too
 			
 			
 			if((int)SimpleGameEngine.mouseY>oy){
-				oh=(int)SimpleGameEngine.mouseY-oy;
+				oh=(int)SimpleGameEngine.mouseY-oy;		//oy and oyNew work with the same principle
 				oyNew=oy;
 			}
 			else if((int)SimpleGameEngine.mouseY==oy){
@@ -88,9 +96,9 @@ public String mode; //this determines what the object created is
 				oyNew=(int)SimpleGameEngine.mouseY;
 			}
 			
-			r.move(oxNew, oyNew, ow, oh);
+			r.move(oxNew, oyNew, ow, oh);		//edits the rectangle
 										
-			r.draw(g);
+			r.draw(g);							//draws the rectangle
 		}
 		
 		
