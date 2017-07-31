@@ -90,15 +90,11 @@ public class InputHandler implements KeyListener {
 		if (SimpleGameEngine.mouse.buttonDown(1)) {
 			if (SimpleGameEngine.play) {
 				SimpleGameEngine.player.shoot(SimpleGameEngine.player, SimpleGameEngine.mouseX, SimpleGameEngine.mouseY);
-			
-			}
-		} 
-		if (!SimpleGameEngine.play && SimpleGameEngine.mouse.buttonDownOnce(1)) {
-			
-			String menuString = SimpleGameEngine.menuHandler.getCurrentMenu().returnString;
-			
-			if (menuString != null) {
-				SimpleGameEngine.menuHandler.menuClicked(menuString);
+			} else if (!SimpleGameEngine.play) {
+				String menuString = SimpleGameEngine.menuHandler.getCurrentMenu().returnString;
+				if (menuString != null) {
+					SimpleGameEngine.menuHandler.menuClicked(menuString);
+				}
 			}
 		}
 	}
