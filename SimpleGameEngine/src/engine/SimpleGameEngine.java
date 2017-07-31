@@ -13,8 +13,10 @@ import world.world;
 public class SimpleGameEngine extends JFrame {
 
 	// basic variables
-	public static int windowWidth = 500;
-	public static int windowHeight = 500;
+	private static double screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+	private static double screenHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+	public static int windowWidth = (int) Math.floor(screenWidth);
+	public static int windowHeight = (int) Math.floor(screenHeight);
 	boolean isRunning = true;
 	long fps = 60;
 	public static Insets insets;
@@ -141,7 +143,7 @@ public class SimpleGameEngine extends JFrame {
 
 	public void paintGame(Graphics g) {
 		BufferedImage offscreen = null;
-		offscreen = new BufferedImage(SimpleGameEngine.windowWidth, SimpleGameEngine.windowHeight,
+		offscreen = new BufferedImage(windowWidth, windowHeight,
 				BufferedImage.TYPE_INT_RGB);
 		Graphics2D offgc = offscreen.createGraphics();
 
@@ -181,7 +183,7 @@ public class SimpleGameEngine extends JFrame {
 
 	public void paintMenu(Graphics g) {
 		BufferedImage offscreen = null;
-		offscreen = new BufferedImage(SimpleGameEngine.windowWidth, SimpleGameEngine.windowHeight,
+		offscreen = new BufferedImage(windowWidth, windowHeight,
 				BufferedImage.TYPE_INT_RGB);
 		Graphics2D offgc = offscreen.createGraphics();
 
