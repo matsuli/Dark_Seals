@@ -232,7 +232,14 @@ public class savingSystem {
 	public void saveWorld(String world, world w) {
 		try {
 			new File(world).mkdirs();
+			
+			for (Iterator<hitDetObj> it = w.objects.iterator(); it.hasNext();) {
+				hitDetObj o = it.next();
 
+				o.textureImg = null;
+
+			
+		}
 			FileOutputStream fos = new FileOutputStream(world + "/hitDet");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(w.objects);
@@ -240,6 +247,14 @@ public class savingSystem {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		for (Iterator<noHitObj> it = w.noHitObjects.iterator(); it.hasNext();) {
+			noHitObj o = it.next();
+
+			o.textureImg = null;
+
+			
+		}	
+			
 		try {
 
 			FileOutputStream fos = new FileOutputStream(world + "/noHitObj");
@@ -249,6 +264,16 @@ public class savingSystem {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		
+		
+		
+		for (Iterator<noHitObj> it = w.foregroundStuff.iterator(); it.hasNext();) {
+			noHitObj o = it.next();
+			
+				o.textureImg = null;
+
+			}
+		
 
 		try {
 			FileOutputStream fos = new FileOutputStream(world + "/foreGround");
@@ -258,6 +283,9 @@ public class savingSystem {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		
+	
+		
 	}
 
 	public void loadWorld(String world, world w) {

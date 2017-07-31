@@ -69,7 +69,9 @@ public String mode; //this determines what the object created is
 			create=false;
 			System.out.println(SimpleGameEngine.space.objects);
 			System.out.println(SimpleGameEngine.space.noHitObjects);
-			 SimpleGameEngine.savingSystem.saveWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
+			SimpleGameEngine.savingSystem.saveWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
+			System.out.println(SimpleGameEngine.space.objects);
+			System.out.println(SimpleGameEngine.space.noHitObjects);
 			}
 		
 		else if(create==true){
