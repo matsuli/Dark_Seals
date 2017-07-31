@@ -68,6 +68,8 @@ public String mode; //this determines what the object created is
 			SimpleGameEngine.space.addhitDetRect(SimpleGameEngine.space.objects, oxNew, oyNew, ow, oh, "chicken");
 			create=false;
 			System.out.println(SimpleGameEngine.space.objects);
+			System.out.println(SimpleGameEngine.space.noHitObjects);
+			 SimpleGameEngine.savingSystem.saveWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
 			}
 		
 		else if(create==true){
