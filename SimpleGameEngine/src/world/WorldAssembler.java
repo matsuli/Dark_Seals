@@ -47,11 +47,13 @@ public class WorldAssembler extends world {
 		 * 
 		 * 
 		 */ 
-		  addhitDetRect(objects, 100, 100, 100, 100, "chicken");
-		 addNoHitRect(noHitObjects, 250, 250, 150, 150,"chicken");
-		  addInteractionArea (noHitObjects, 200,100,100,100, null, null);
-		// SimpleGameEngine.savingSystem.saveWorld("world3", this);
-		 // SimpleGameEngine.savingSystem.loadWorld("world3", this);
+		// addhitDetCircle(objects, 100, 100, 100, 100, null);
+		addhitDetLine(objects, 0, 0, 79, 450);
+		addhitDetRect(objects, 100, 100, 100, 100, null);
+		addNoHitRect(noHitObjects, 250, 250, 150, 150,"chicken");
+		addInteractionArea (noHitObjects, 200,100,100,100, null, null);
+		 SimpleGameEngine.savingSystem.saveWorld("world3", this);
+			SimpleGameEngine.savingSystem.loadWorld("world3", this);
 		 
 
 	}

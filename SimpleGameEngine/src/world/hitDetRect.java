@@ -293,7 +293,7 @@ public class hitDetRect extends hitDetObj {
 	}
 
 	public void draw(Graphics2D g) {
-		// g.fill(rect);
+		 g.fill(rect);
 		if (textureImg != null) {
 			g.drawImage(textureImg, (int) ox, (int) oy, (int) ow, (int) oh, null);
 		}
