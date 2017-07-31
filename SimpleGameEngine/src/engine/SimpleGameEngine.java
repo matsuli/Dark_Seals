@@ -42,8 +42,8 @@ public class SimpleGameEngine extends JFrame {
 	public static int px = 0;
 	public static int py = 0;
 	// mouse coordinates
-	static float mouseX;
-	static float mouseY;
+	public static float mouseX;
+	public static float mouseY;
 
 	static boolean play;
 
@@ -67,7 +67,6 @@ public class SimpleGameEngine extends JFrame {
 	// starts game, loops game
 	public void run() throws IOException {
 		initialize();
-
 		// game loop
 		while (isRunning) {
 			long time = System.currentTimeMillis();
@@ -111,8 +110,8 @@ public class SimpleGameEngine extends JFrame {
 		player = new Player();
 		audioPlayer audio = new audioPlayer();
 		//audio.loopSound("sound/1.wav");
-		space.AssembleWorld();
-		space.assemble("multipleTrees");
+	//	space.LoadWorld();
+
 	}
 
 	// check for input, move things, etc.
@@ -136,6 +135,7 @@ public class SimpleGameEngine extends JFrame {
 			paintGame(g);
 		} else {
 			paintMenu(g);
+			
 		}
 	}
 
@@ -153,15 +153,20 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
 				RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-
+		
 		offgc.translate(px, py); // flyttar omvärlden i förhållande till player,
 									// (px,py) blir nya (0,0)
 		offgc.setColor(Color.BLACK);
+		
+		//level editor
+		if(space.editor!=null){
+			space.editor.update(offgc);
+		}
 		// world
 		space.drawWorld(offgc);
 		offgc.translate(-px, -py); // sätter kordinatsystemet tillbaks till det
 									// vanliga
-
+		
 		// player
 		player.drawPlayer(offgc, playerX, playerY);
 		// System.out.println(space.foregroundStuff.isEmpty());
@@ -187,9 +192,7 @@ public class SimpleGameEngine extends JFrame {
 		offgc.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
 		offgc.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
 				RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-
 		menuHandler.updateCurrentMenu(offgc);
-		// System.out.println(currentMenu);
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		g.drawImage(offscreen, SimpleGameEngine.insets.left, SimpleGameEngine.insets.top, this);
 	}

@@ -20,6 +20,13 @@ public class hitDetRect extends hitDetObj {
 		this.oh = oh;
 		rect = new Rectangle2D.Double(ox, oy, ow, oh);
 	}
+	public void move(int ox, int oy, int ow, int oh) {
+		this.ox = ox;
+		this.oy = oy;
+		this.ow = ow;
+		this.oh = oh;	
+		rect.setRect(ox, oy, ow, oh);
+	}
 
 	public double getCornerTangentX(int radius, double centerY, double cornerX, double cornerY) {
 		// (cornerX-targetX)pow2+(cornerY-centerY)pow2=radius*radius =Cirkelns

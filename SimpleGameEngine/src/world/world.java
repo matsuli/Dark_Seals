@@ -14,6 +14,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.ThreadLocalRandom;
 
+import editor.levelEditor;
+
 public class world {
 
 	public ArrayList<hitDetObj> objects = new ArrayList<hitDetObj>();
@@ -25,16 +27,7 @@ public class world {
 
 	public boolean write = false;
 	// boolean write =true;
-
-	public void initialize() {
-
-		if (write) {
-			
-		} else {
-		}
-
-	}
-
+	
 	public void HitDetect() {
 
 		SimpleGameEngine.player.hit = false;
@@ -116,6 +109,7 @@ public class world {
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext();) {
 			hitDetObj o = it.next();
 			o.draw(g);
+			
 		}
 		g.setColor(Color.green);
 		for (Iterator<noHitObj> it = this.noHitObjects.iterator(); it.hasNext();) {

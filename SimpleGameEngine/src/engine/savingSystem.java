@@ -50,10 +50,11 @@ public class savingSystem {
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				saveObject save = (saveObject) ois.readObject();
 				ois.close();
-				saves[save.saveSlot] = savesNonSorted[i - 1];
+				saves[save.saveSlot] = savesNonSorted[i - 1];	//addar save filerna till saves array
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
+			
 
 		}
 
@@ -61,13 +62,13 @@ public class savingSystem {
 
 		for (int i = saves.length; i > 0; i--) {
 			if (saves[i - 1] != null) {
-				saveNames.add(saves[i - 1].getName());
+				saveNames.add(saves[i - 1].getName());		//läser savernas namn, lägger till i savenames array
 			} else {
 				saveNames.add("Empty slot");
 			}
 		}
 		Collections.reverse(saveNames);
-		saveMenu = new menu("saveMenu", saveNames.get(0), saveNames.get(1), saveNames.get(2), saveNames.get(3),
+		saveMenu = new menu("saveMenu", saveNames.get(0), saveNames.get(1), saveNames.get(2), saveNames.get(3),	//skapar menun med saverna
 				saveNames.get(4), saveNames.get(5), "Cancel");
 		overWriteWarning = new menu("overWriteWarning", "HEADER 2 Overwrite existing save?", "Yes", "No, cancel");
 	}

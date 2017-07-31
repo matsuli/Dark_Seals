@@ -20,8 +20,14 @@ public class noHitRect extends noHitObj {
 	public void draw(Graphics2D g) {
 		g.drawRect(ox, oy, ow, oh);
 		if (textureImg != null) {
-			g.drawImage(textureImg, ox, oy, ow, oh, null);
+			g.drawImage(textureImg, ox, oy, ow, oh, null);}
 		}
+		public void move(int ox, int oy, int ow, int oh) {
+		this.ox = ox;
+		this.oy = oy;
+		this.ow = ow;
+		this.oh = oh;	
+		rect.setRect(ox, oy, ow, oh);
 	}
 
 }
