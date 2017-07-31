@@ -61,7 +61,7 @@ public class Player extends Actor {
 	
 
 	public Player() {
-		radius = 10;
+		radius = 50;
 		location.x = SimpleGameEngine.playerX;
 		location.y = SimpleGameEngine.playerY;
 		shooterLocation.setLocation(location.x - SimpleGameEngine.px, location.y - SimpleGameEngine.py);
