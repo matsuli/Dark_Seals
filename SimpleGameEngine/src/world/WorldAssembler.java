@@ -22,7 +22,7 @@ public class WorldAssembler extends world {
 
 	public void LoadWorld(){
 		if(write==false){
-			assemble("multipleTrees");}
+			assemble("world3");}
 			else{
 			AssembleNewWorld();	
 			}
