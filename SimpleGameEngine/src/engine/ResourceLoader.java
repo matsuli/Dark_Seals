@@ -1,6 +1,5 @@
 package engine;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -16,7 +15,6 @@ import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ResourceLoader {

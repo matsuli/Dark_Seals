@@ -2,10 +2,7 @@ package world;
 
 import engine.SimpleGameEngine;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 
 public class hitDetRect extends hitDetObj {
 

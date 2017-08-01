@@ -31,7 +31,7 @@ public class hitDetCircle extends hitDetObj {
 		double px = hitDetCircle.circle.getCenterX();
 		double py = hitDetCircle.circle.getCenterY();
 		hit = false;
-		System.out.println("yaah");
+		
 
 		if ((centerX - px) * (centerX - px) + (centerY - py) * (centerY - py) <= (radius + r) * (radius + r)) {
 			hit = true;

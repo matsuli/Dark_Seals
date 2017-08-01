@@ -1,7 +1,5 @@
 package world;
 
-import java.util.Iterator;
-
 import editor.levelEditor;
 import engine.ResourceLoader;
 import engine.SimpleGameEngine;

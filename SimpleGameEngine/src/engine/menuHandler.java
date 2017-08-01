@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import world.world;
+
 public class menuHandler {
 	ArrayList<menu> menus = new ArrayList<menu>();
 	menu pauseMenu;
@@ -58,7 +60,7 @@ public class menuHandler {
 			SimpleGameEngine.play = true;
 			SimpleGameEngine.currentMenu = null;
 			SimpleGameEngine.space.enemies.clear();
-			SimpleGameEngine.space.bullets.clear();
+			world.bullets.clear();
 		}
 
 		else if (clicked == "Continue") {
@@ -73,7 +75,7 @@ public class menuHandler {
 			SimpleGameEngine.savingSystem.load = false;
 		} else if (clicked == "Load Game") {
 			SimpleGameEngine.space.enemies.clear();
-			SimpleGameEngine.space.bullets.clear();
+			world.bullets.clear();
 			prevMenu = this.getCurrentMenu();
 			SimpleGameEngine.play = false;
 			SimpleGameEngine.currentMenu = "saveMenu";

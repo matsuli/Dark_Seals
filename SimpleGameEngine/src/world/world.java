@@ -11,10 +11,7 @@ import objects.enemy;
 import objects.Bullet;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.util.concurrent.ThreadLocalRandom;
-
-import editor.levelEditor;
 
 public class world {
 
