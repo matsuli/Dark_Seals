@@ -7,10 +7,10 @@ import java.io.Serializable;
 
 public class noHitObj implements Serializable {
 	public String textureName;
-	public BufferedImage textureImg; // den bild som ritas
-	public Image textureImg2; // den bild vars bakgrund görs transparent i world
-	public BufferedImage interactSymbol; // den bild som ritas
-	public Image intSymImg; // den bild vars bakgrund görs transparent i world
+	public transient BufferedImage textureImg; // den bild som ritas
+	public transient Image textureImg2; // den bild vars bakgrund görs transparent i world
+	public transient BufferedImage interactSymbol; // den bild som ritas
+	public transient Image intSymImg; // den bild vars bakgrund görs transparent i world
 	int ox;
 	int oy;
 

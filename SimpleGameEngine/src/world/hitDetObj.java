@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 public class hitDetObj implements Serializable {
 	public String textureName;
-	public BufferedImage textureImg;
+	public transient BufferedImage textureImg;
 	double ox;
 	double oy;
 	boolean hit;
