@@ -60,7 +60,7 @@ public class hitDetRect extends hitDetObj {
 	}
 
 	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle) {
-
+		
 		hit = false;
 		if (hitDetCircle.circle.intersects(rect)) {
 			hit = true;
