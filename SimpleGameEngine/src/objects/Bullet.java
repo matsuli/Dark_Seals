@@ -3,11 +3,7 @@ package objects;
 import world.world;
 import world.hitDetCircle;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
-
 import engine.Actor;
 import engine.SimpleGameEngine;
 

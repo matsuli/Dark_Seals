@@ -104,7 +104,6 @@ public class savingSystem {
 																										// namn,
 																										// ska
 																										// overwrite
-			System.out.println("yayy");
 			SimpleGameEngine.currentMenu = "overWriteWarning";
 
 		}

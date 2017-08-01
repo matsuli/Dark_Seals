@@ -1,9 +1,7 @@
 package objects;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import engine.SimpleGameEngine;
 import world.hitDetObj;
 import world.hitDetRect;
 import world.noHitObj;

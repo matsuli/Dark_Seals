@@ -3,12 +3,9 @@ package engine;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
 import world.WorldAssembler;
-import world.world;
 
 public class SimpleGameEngine extends JFrame {
 
