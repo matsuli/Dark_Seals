@@ -67,11 +67,12 @@ public String mode; //this determines what the object created is
 		else if(SimpleGameEngine.mouse.buttonDownOnce(3) && create==true){	//press mouse2 to save the rectangle
 			SimpleGameEngine.space.addhitDetRect(SimpleGameEngine.space.objects, oxNew, oyNew, ow, oh, "chicken");
 			create=false;
-			System.out.println(SimpleGameEngine.space.objects);
-			System.out.println(SimpleGameEngine.space.noHitObjects);
+			//System.out.println(SimpleGameEngine.space.objects);
+		//	System.out.println(SimpleGameEngine.space.noHitObjects);
 			SimpleGameEngine.savingSystem.saveWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
-			System.out.println(SimpleGameEngine.space.objects);
-			System.out.println(SimpleGameEngine.space.noHitObjects);
+			SimpleGameEngine.savingSystem.loadWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
+		//	System.out.println(SimpleGameEngine.space.objects);
+		//	System.out.println(SimpleGameEngine.space.noHitObjects);
 			}
 		
 		else if(create==true){

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import world.WorldAssembler;
 import world.hitDetObj;
 import world.noHitObj;
 
@@ -221,31 +222,18 @@ public class savingSystem {
 															// till menuhandler
 	}
 
-	public void saveWorld(String world, world w) {
+	public void saveWorld(String world, WorldAssembler w) {
 		try {
 			new File(world).mkdirs();
 			
-			for (Iterator<hitDetObj> it = w.objects.iterator(); it.hasNext();) {
-				hitDetObj o = it.next();
-
-				o.textureImg = null;
-
-			
-		}
 			FileOutputStream fos = new FileOutputStream(world + "/hitDet");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(w.objects);
 			oos.close();
+			System.out.println("yees");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		for (Iterator<noHitObj> it = w.noHitObjects.iterator(); it.hasNext();) {
-			noHitObj o = it.next();
-
-			o.textureImg = null;
-
-			
-		}	
 			
 		try {
 
@@ -256,15 +244,6 @@ public class savingSystem {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		
-		
-		for (Iterator<noHitObj> it = w.foregroundStuff.iterator(); it.hasNext();) {
-			noHitObj o = it.next();
-			
-				o.textureImg = null;
-
-			}
 		
 
 		try {
@@ -280,7 +259,7 @@ public class savingSystem {
 		
 	}
 
-	public void loadWorld(String world, world w) {
+	public void loadWorld(String world, WorldAssembler w) {
 		try {
 			FileInputStream fis = new FileInputStream(world + "/hitDet");
 			ObjectInputStream ois = new ObjectInputStream(fis);
