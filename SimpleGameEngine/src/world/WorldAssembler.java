@@ -45,14 +45,14 @@ public class WorldAssembler extends world {
 		 * 
 		 * 
 		 */ 
-		//addhitDetCircle(objects, 100, 100, 100, 100, null);	
-		//addhitDetLine(objects, 0, 0, 79, 450);					Line också, line använder cirkel!
-		//addhitDetRect(objects, 100, 100, 100, 100, null);
-		//addhitDetRect(objects, 400, 400, 200, 100, null);
-		//addNoHitRect(noHitObjects, 250, 250, 150, 150,"chicken");
-		//addInteractionArea (noHitObjects, 200,100,100,100, null, null);
-		SimpleGameEngine.savingSystem.saveWorld("world4", this);
-		SimpleGameEngine.savingSystem.loadWorld("world4", this);
+		addhitDetCircle(objects, 100, 100, 100, 100, null);	
+		//addhitDetLine(objects, 0, 0, 79, 450);					//Line också, line använder cirkel!
+		addhitDetRect(objects, 100, 100, 100, 100, null);
+		addhitDetRect(objects, 400, 400, 200, 100, null);
+		addNoHitRect(noHitObjects, 250, 250, 150, 150,"chicken");
+		addInteractionArea(noHitObjects, 200,100,100,100, null, null);
+		SimpleGameEngine.savingSystem.saveWorld("world3", this);
+		SimpleGameEngine.savingSystem.loadWorld("world3", this);
 		 
 
 	}

@@ -230,7 +230,6 @@ public class savingSystem {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(w.objects);
 			oos.close();
-			System.out.println("yees");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

@@ -58,24 +58,13 @@ public String mode; //this determines what the object created is
 			
 			ox=(int) SimpleGameEngine.mouseX;		//OBS! Vet inte om detta kommer att funka. Måste jag 
 			oy=(int) SimpleGameEngine.mouseY;		// kompensera för px o py?		
-			create=true;		//this code runs once, ox and oy never change
+			create=true;		//this code runs once, ox and oy never change (starting point)
 								//they are used to calculate the width and height
 								//oxNew and oyNew change, they are used for drawing and for the final rect
 			
 		}
 		
-		else if(SimpleGameEngine.mouse.buttonDownOnce(3) && create==true){	//press mouse2 to save the rectangle
-			SimpleGameEngine.space.addhitDetRect(SimpleGameEngine.space.objects, oxNew, oyNew, ow, oh, "chicken");
-			create=false;
-			//System.out.println(SimpleGameEngine.space.objects);
-		//	System.out.println(SimpleGameEngine.space.noHitObjects);
-			SimpleGameEngine.savingSystem.saveWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
-			SimpleGameEngine.savingSystem.loadWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
-		//	System.out.println(SimpleGameEngine.space.objects);
-		//	System.out.println(SimpleGameEngine.space.noHitObjects);
-			}
-		
-		else if(create==true){
+		 else if(create==true){		//updates the variables when create==true
 			if((int)SimpleGameEngine.mouseX>ox){		
 				ow=(int)SimpleGameEngine.mouseX-ox;	//ow=width 
 				oxNew=ox;							//oxNew=ox, since the cursor is on the right side 
@@ -105,6 +94,20 @@ public String mode; //this determines what the object created is
 										
 			r.draw(g);							//draws the rectangle
 		}
+		if(SimpleGameEngine.mouse.buttonDownOnce(3) && create==true){	//press mouse2 to save the rectangle
+			SimpleGameEngine.space.addhitDetRect(SimpleGameEngine.space.objects, oxNew, oyNew, ow, oh, null);
+			create=false;
+			System.out.println(oxNew);
+			System.out.println(oyNew);
+			System.out.println(ow);
+			System.out.println(oh);
+		//System.out.println(SimpleGameEngine.space.objects);
+		//	System.out.println(SimpleGameEngine.space.noHitObjects);
+			SimpleGameEngine.savingSystem.saveWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
+			SimpleGameEngine.savingSystem.loadWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
+		//	System.out.println(SimpleGameEngine.space.objects);
+		//	System.out.println(SimpleGameEngine.space.noHitObjects);
+			}
 		
 		
 	}
