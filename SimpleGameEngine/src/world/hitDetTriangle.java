@@ -4,24 +4,24 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
 public class hitDetTriangle extends hitDetObj {
-	int ox2;
-	int oy2;
-	int ox3;
-	int oy3;
+	double ox2;
+	double oy2;
+	double ox3;
+	double oy3;
 	hitDetectLine line1;
 	hitDetectLine line2;
 	hitDetectLine line3;
 
-	public hitDetTriangle(int ox, int oy, int ox2, int oy2, int ox3, int oy3) {
+	public hitDetTriangle(double ox, double oy, double ox22, double oy22, double ox32, double oy32) {
 		this.ox = ox;
 		this.oy = oy;
-		this.ox2 = ox2;
-		this.oy2 = oy2;
-		this.ox3 = ox3;
-		this.oy3 = oy3;
-		line1 = new hitDetectLine(ox, oy, ox2, oy2);
-		line2 = new hitDetectLine(ox2, oy2, ox3, oy3);
-		line3 = new hitDetectLine(ox3, oy3, ox, oy);
+		this.ox2 = ox22;
+		this.oy2 = oy22;
+		this.ox3 = ox32;
+		this.oy3 = oy32;
+		line1 = new hitDetectLine(ox, oy, ox22, oy22);
+		line2 = new hitDetectLine(ox22, oy22, ox32, oy32);
+		line3 = new hitDetectLine(ox32, oy32, ox, oy);
 	}
 
 	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle) {

@@ -6,28 +6,28 @@ import java.awt.geom.Rectangle2D;
 public class noHitRect extends noHitObj {
 
 	Rectangle2D rect;
-	int ow;
-	int oh;
+	double ow;
+	double oh;
 
-	public noHitRect(int ox, int oy, int ow, int oh) {
+	public noHitRect(double ox, double oy, double ow2, double oh2) {
 		this.ox = ox;
 		this.oy = oy;
-		this.ow = ow;
-		this.oh = oh;
-		rect = new Rectangle2D.Double(ox, oy, ow, oh);
+		this.ow = ow2;
+		this.oh = oh2;
+		rect = new Rectangle2D.Double(ox, oy, ow2, oh2);
 	}
 
 	public void draw(Graphics2D g) {
-		g.drawRect(ox, oy, ow, oh);
+		g.draw(rect);
 		if (textureImg != null) {
-			g.drawImage(textureImg, ox, oy, ow, oh, null);}
+			g.drawImage(textureImg, (int) ox, (int)oy, (int) ow, (int) oh, null);}
 		}
-		public void move(int ox, int oy, int ow, int oh) {
-		this.ox = ox;
-		this.oy = oy;
-		this.ow = ow;
-		this.oh = oh;	
-		rect.setRect(ox, oy, ow, oh);
+		public void move(double oxNew, double oyNew, double ow2, double oh2) {
+		this.ox = oxNew;
+		this.oy = oyNew;
+		this.ow = ow2;
+		this.oh = oh2;	
+		rect.setRect(oxNew, oyNew, ow2, oh2);
 	}
 
 }

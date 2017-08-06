@@ -7,15 +7,15 @@ import java.awt.geom.Rectangle2D;
 public class hitDetRect extends hitDetObj {
 
 	Rectangle2D rect;
-	int ow;
-	int oh;
+	double ow;
+	double oh;
 
-	public hitDetRect(int ox, int oy, int ow, int oh) {
+	public hitDetRect(double ox, double oy, double ow2, double oh2) {
 		this.ox = ox;
 		this.oy = oy;
-		this.ow = ow;
-		this.oh = oh;
-		rect = new Rectangle2D.Double(ox, oy, ow, oh);
+		this.ow = ow2;
+		this.oh = oh2;
+		rect = new Rectangle2D.Double(ox, oy, ow2, oh2);
 	}
 	public void move(int ox, int oy, int ow, int oh) {
 		this.ox = ox;

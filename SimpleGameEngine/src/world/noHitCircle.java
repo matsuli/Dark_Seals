@@ -5,21 +5,21 @@ import java.awt.geom.Ellipse2D;
 
 public class noHitCircle extends noHitObj {
 
-	int r;
+	double r;
 	Ellipse2D circle;
 	double centerX;
 	double centerY;
-	int ow;
-	int oh;
+	double ow;
+	double oh;
 
-	public noHitCircle(int ox, int oy, int ow, int oh) {
+	public noHitCircle(double ox, double oy, double ow, double oh) {
 		this.ox = ox;
 		this.oy = oy;
 		this.ow = ow;
 		this.oh = oh;
 		r = ow / 2;
-		ox = ox - (r / 2);
-		oy = oy - (r / 2);
+		ox = ox - (r);
+		oy = oy - (r);
 		circle = new Ellipse2D.Double(ox, oy, ow, oh);
 		centerX = circle.getCenterX();
 		centerY = circle.getCenterY();
@@ -29,8 +29,20 @@ public class noHitCircle extends noHitObj {
 
 		g.fill(circle);
 		if (textureImg != null) {
-			g.drawImage(textureImg, ox, oy, ow, oh, null);
+			g.drawImage(textureImg, (int) ox, (int) oy, (int) ow, (int) oh, null);
 		}
 	}
+	public void move(double ox, double oy, double ow, double oh) {
+		this.ox = ox;
+		this.oy = oy;
+		this.ow = ow;
+		this.oh = oh;
+		r = ow / 2;
+		ox = ox - (r);
+		oy = oy - (r);
+		circle.setFrame(ox, oy, ow, oh);
+		centerX = circle.getCenterX();
+		centerY = circle.getCenterY();
+		}
 
 }

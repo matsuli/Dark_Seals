@@ -127,47 +127,47 @@ public class world {
 		}
 	}
 
-	public void addhitDetRect(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture) {
+	public void addhitDetRect(ArrayList<hitDetObj> objects, double ox, double oy, double ow, double oh, String texture) {
 
 		hitDetRect r = new hitDetRect(ox, oy, ow, oh);
 		r.textureName = texture;
 		objects.add(r);
 	}
 
-	public void addhitDetCircle(ArrayList<hitDetObj> objects, int ox, int oy, int ow, int oh, String texture) {
+	public void addhitDetCircle(ArrayList<hitDetObj> objects, double ox, double oy, double ow, double oh, String texture) {
 
 		hitDetCircle c = new hitDetCircle(ox, oy, ow, oh);
 		objects.add(c);
 		c.textureName = texture;
 	}
 
-	public void addhitDetTriangle(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2, int ox3, int oy3) {
+	public void addhitDetTriangle(ArrayList<hitDetObj> objects, double ox, double oy, double ox2, double oy2, double ox3, double oy3) {
 
 		hitDetTriangle t = new hitDetTriangle(ox, oy, ox2, oy2, ox3, oy3);
 		objects.add(t);
 	}
 
-	public void addhitDetLine(ArrayList<hitDetObj> objects, int ox, int oy, int ox2, int oy2) {
+	public void addhitDetLine(ArrayList<hitDetObj> objects, double ox, double oy, double ox2, double oy2) {
 
 		hitDetectLine l = new hitDetectLine(ox, oy, ox2, oy2);
 		objects.add(l);
 	}
 
-	public void addNoHitRect(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture) {
+	public void addNoHitRect(ArrayList<noHitObj> noHitObjects, double ox, double oy, double ow, double oh, String texture) {
 
 		noHitRect r = new noHitRect(ox, oy, ow, oh);
 		r.textureName = texture;
 		noHitObjects.add(r);
 	}
 
-	public void addNoHitCircle(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String texture) {
+	public void addNoHitCircle(ArrayList<noHitObj> noHitObjects, double ox, double oy, double ow, double oh, String texture) {
 
 		noHitCircle c = new noHitCircle(ox, oy, ow, oh);
 		c.textureName = texture;
 		noHitObjects.add(c);
 	}
 
-	public void addInteractionArea(ArrayList<noHitObj> noHitObjects, int ox, int oy, int ow, int oh, String type,
+	public void addInteractionArea(ArrayList<noHitObj> noHitObjects, double ox, double oy, double ow, double oh, String type,
 			String texture) {
 		Interaction I = new Interaction(ox, oy, ow, oh);
 		I.textureName = texture;

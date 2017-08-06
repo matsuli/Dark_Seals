@@ -45,7 +45,7 @@ public class WorldAssembler extends world {
 		 * 
 		 * 
 		 */ 
-		addhitDetCircle(objects, 100, 100, 100, 100, null);	
+		addNoHitCircle(noHitObjects, 0, 0, 100, 100, null);	
 		//addhitDetLine(objects, 0, 0, 79, 450);					//Line också, line använder cirkel!
 		addhitDetRect(objects, 100, 100, 100, 100, null);
 		addhitDetRect(objects, 400, 400, 200, 100, null);

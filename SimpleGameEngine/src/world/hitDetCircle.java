@@ -113,4 +113,17 @@ public class hitDetCircle extends hitDetObj {
 			g.drawImage(textureImg, (int) ox, (int) oy, (int) ow, (int) oh, null);
 		}
 	}
+	
+	public void move(double ox, double oy, double ow, double oh) {
+		this.ox = ox;
+		this.oy = oy;
+		this.ow = ow;
+		this.oh = oh;
+		r = ow / 2;
+		ox = ox - (r);
+		oy = oy - (r);
+		circle.setFrame(ox, oy, ow, oh);
+		centerX = circle.getCenterX();
+		centerY = circle.getCenterY();
+		}
 }

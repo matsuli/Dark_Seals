@@ -11,8 +11,8 @@ public class noHitObj implements Serializable {
 	public transient Image textureImg2; // den bild vars bakgrund görs transparent i world
 	public transient BufferedImage interactSymbol; // den bild som ritas
 	public transient Image intSymImg; // den bild vars bakgrund görs transparent i world
-	int ox;
-	int oy;
+	double ox;
+	double oy;
 
 	public void draw(Graphics2D g) {
 

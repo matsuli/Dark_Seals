@@ -7,16 +7,16 @@ import java.awt.geom.Rectangle2D;
 public class Interaction extends noHitObj {
 
 	Rectangle2D rect;
-	int ow;
-	int oh;
+	double ow;
+	double oh;
 	boolean interactionPossible;
 
-	public Interaction(int ox, int oy, int ow, int oh) {
+	public Interaction(double ox, double oy, double ow2, double oh2) {
 		this.ox = ox;
 		this.oy = oy;
-		this.ow = ow;
-		this.oh = oh;
-		rect = new Rectangle2D.Double(ox, oy, ow, oh);
+		this.ow = ow2;
+		this.oh = oh2;
+		rect = new Rectangle2D.Double(ox, oy, ow2, oh2);
 	}
 
 	public boolean interact(hitDetCircle hitDetCircle) {
@@ -30,9 +30,9 @@ public class Interaction extends noHitObj {
 	}
 
 	public void draw(Graphics2D g) {
-		g.drawRect(ox, oy, ow, oh);
+		g.draw(rect);
 		if (textureImg2 != null) {
-			g.drawImage(textureImg2, ox, oy, ow, oh, null);
+			g.drawImage(textureImg2, (int) ox, (int) oy, (int) ow, (int) oh, null);
 		}
 		if (interact(SimpleGameEngine.player.hitDetCircle) && interactSymbol != null) {
 			g.drawImage(interactSymbol,
