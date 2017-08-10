@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import engine.SimpleGameEngine;
+import world.hitDetectLine;
 import world.noHitCircle;
 import world.noHitObj;
 import world.noHitRect;
@@ -40,11 +41,12 @@ public String mode; //this determines what the object created is
 		}
 	
 		else if (mode=="L"){
-			addingLine();
+			hitDetectLine l = new hitDetectLine(0,0, 1, 1); 	//Creates a placeholder line, there for one frame
+			addingLine(g, l);
 		}
 		
 		else if (mode=="C"){
-			noHitCircle c = new noHitCircle(0, 0, 1, 1); //Creates a placeholder rect, there for one frame
+			noHitCircle c = new noHitCircle(0, 0, 1, 1); //Creates a placeholder circle, there for one frame
 			addingCircle(g, c);
 		}
 				
@@ -114,12 +116,38 @@ public String mode; //this determines what the object created is
 		
 	}
 	
-	public void addingLine(){
+	public void addingLine(Graphics2D g, hitDetectLine l){
 		
+		if(SimpleGameEngine.mouse.buttonDownOnce(1) && create==false){ 	//press mouse1 to start creating a line
+			
+			ox=(int) SimpleGameEngine.mouseX;		
+			oy=(int) SimpleGameEngine.mouseY;		
+			create=true;		//this code runs once, ox and oy never change (starting point for line)
+								//oxNew and oyNew change, they are used for drawing and for the final line
+			
+		}
 		
-		
-		
+		else if(create==true){		//updates the variables when create==true
+			
+			
+			
+			l.move(ox, oy, SimpleGameEngine.mouseX, SimpleGameEngine.mouseY);		//edits the line									
+			l.draw(g);							//draws the line
+		}
+	
+		if(SimpleGameEngine.mouse.buttonDownOnce(3) && create==true){	//press mouse2 to save the rectangle
+			SimpleGameEngine.space.addhitDetLine(SimpleGameEngine.space.objects, ox, oy, SimpleGameEngine.mouseX, SimpleGameEngine.mouseY);
+			create=false;
+			//System.out.println(SimpleGameEngine.space.objects);
+			//	System.out.println(SimpleGameEngine.space.noHitObjects);
+			SimpleGameEngine.savingSystem.saveWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
+			SimpleGameEngine.savingSystem.loadWorld(SimpleGameEngine.currentWorld, SimpleGameEngine.space);
+			//		System.out.println(SimpleGameEngine.space.objects);
+			//	System.out.println(SimpleGameEngine.space.noHitObjects);
 	}
+		
+		
+}
 	
 	public void addingCircle(Graphics2D g, noHitCircle c){		
 		double r=0;
@@ -129,7 +157,7 @@ public String mode; //this determines what the object created is
 			oy=(int) SimpleGameEngine.mouseY;		
 			create=true;		//this code runs once, ox and oy never change (starting point)
 								//they are used to calculate the width and height
-								//oxNew and oyNew change, they are used for drawing and for the final rect
+								
 			
 		}
 		
@@ -142,7 +170,7 @@ public String mode; //this determines what the object created is
 			c.draw(g);							//draws the circle
 		}
 		
-		if(SimpleGameEngine.mouse.buttonDownOnce(3) && create==true){	//press mouse2 to save the rectangle
+		if(SimpleGameEngine.mouse.buttonDownOnce(3) && create==true){	//press mouse2 to save the circle
 			SimpleGameEngine.space.addhitDetCircle(SimpleGameEngine.space.objects, ox, oy, 2*r, 2*r, null);
 			create=false;
 		//System.out.println(SimpleGameEngine.space.objects);

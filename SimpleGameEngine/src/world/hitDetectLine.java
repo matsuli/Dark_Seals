@@ -234,4 +234,15 @@ public class hitDetectLine extends hitDetObj {
 		g.draw(line);
 
 	}
+	
+	public void move(double ox, double oy, double ox2, double oy2) {
+
+		line.setLine(ox, oy, ox2, oy2);
+		lineLenght = Math.sqrt((ox - ox2) * (ox - ox2) + (oy - oy2) * (oy - oy2));
+		k = (oy2 - oy);
+		k2 = (oy2 - oy) / (ox2 - ox);
+		c = getLineY(0.0);
+		b = -1;
+		a = k2;
+	}
 }
