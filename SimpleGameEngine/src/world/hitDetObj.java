@@ -55,12 +55,14 @@ public class hitDetObj implements Serializable {
 
 		return bufferedImage;
 	}
-
-	public boolean hitdetect(hitDetCircle hitDetCircle, int radius) {
-		return hit;
+																			//vilkendera hitdetect metod som runnar beror på input
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius) {		//denna version runnar för cirklar, se subclassen 
+		hit=false;
+		return hit;															//gör bara detta=inget för rektanglar
 
 	}
-	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle hitDetCircle2) {
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle hitDetCircle2) {	//denna version runnar för rektanglar, se subclassen
+		hit=false;
 		return hit;
 
 	}

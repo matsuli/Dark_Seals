@@ -39,8 +39,8 @@ public class world {
 
 		for (Iterator<hitDetObj> it = this.objects.iterator(); it.hasNext();) {
 			hitDetObj o = it.next();
-			o.hitdetect(SimpleGameEngine.player.hitDetCircle, (int) SimpleGameEngine.player.radius);
-			o.hitdetect(SimpleGameEngine.player.hitDetCircle, (int) SimpleGameEngine.player.radius, SimpleGameEngine.player.prevHitDetCircle );
+			o.hitdetect(SimpleGameEngine.player.hitDetCircle, (int) SimpleGameEngine.player.radius);	//båda hitdets runnar, båda finns i hitdetobj, men bara ena "innehåller" kod per objeky
+			o.hitdetect(SimpleGameEngine.player.hitDetCircle, (int) SimpleGameEngine.player.radius, SimpleGameEngine.player.prevHitDetCircle );	//se hitdetobj
 
 		}
 		for (Iterator<enemy> it = this.enemies.iterator(); it.hasNext();) {
@@ -61,9 +61,10 @@ public class world {
 			for (int i2 = objects.size() - 1; i2 >= 0; i2--) {
 				hitDetObj o = objects.get(i2);
 
-				if (o.hitdetect(bullet.hitDetBullet, bullet.radius)) {
+				if (o.hitdetect(bullet.hitDetBullet, bullet.radius) || o.hitdetect(bullet.hitDetBullet, bullet.radius, bullet.prevHitDetBullet)) {
 					bullets.remove(bullet);
 				}
+			
 			}
 		}
 	}

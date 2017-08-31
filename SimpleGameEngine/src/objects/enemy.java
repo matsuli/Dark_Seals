@@ -174,7 +174,7 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 											// b.shooter!=this för att den inte
 											// ska döda sig själv då den skjuter
 				toRemove = true;
-				b.toRemove = true; // removar också bullet
+		//		b.toRemove = true; // removar också bullet
 			}
 		}
 
