@@ -33,7 +33,5 @@ public class Actor {
 		}
 	}
 
-	public void hitDetect() {
 
-	}
 }

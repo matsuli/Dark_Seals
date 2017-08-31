@@ -26,7 +26,7 @@ public class hitDetCircle extends hitDetObj {
 		centerY = circle.getCenterY();
 	}
 
-	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle unused) {
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius) {
 		
 		double px = hitDetCircle.circle.getCenterX();
 		double py = hitDetCircle.circle.getCenterY();
@@ -81,7 +81,7 @@ public class hitDetCircle extends hitDetObj {
 			if (hit == true) {
 				SimpleGameEngine.player.hit = true;
 				hit = false;
-			}
+			
 			if (hitRight == true) {
 				SimpleGameEngine.player.hitRight = true;
 				SimpleGameEngine.player.hitCorrectionRight = hitCorrectionRight;
@@ -101,10 +101,11 @@ public class hitDetCircle extends hitDetObj {
 				SimpleGameEngine.player.hitLeft = true;
 				hitLeft = false;
 				SimpleGameEngine.player.hitCorrectionLeft = hitCorrectionLeft;
-			}
-		}
-		
-		return hit;
+				}
+			}	
+		}	
+		System.out.println(SimpleGameEngine.player.hit);
+		return hit;			
 	}
 
 	public void draw(Graphics2D g) {

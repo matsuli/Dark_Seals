@@ -168,8 +168,7 @@ public class SimpleGameEngine extends JFrame {
 		
 		// player
 		player.drawPlayer(offgc, playerX, playerY);
-		System.out.println(player.hit);	
-		offgc.translate(-px, -py);
+		
 		offgc.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		// should be last in the method
 		g.drawImage(offscreen, insets.left, insets.top, this);

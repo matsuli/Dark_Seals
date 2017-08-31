@@ -93,8 +93,6 @@ public class Player extends Actor {
 	}
 
 	public void Control(world space) {
-		hitDetCircle.circle.setFrame(location.x - radius - SimpleGameEngine.px,
-				location.y - radius - SimpleGameEngine.py, radius * 2, radius * 2);
 		prevHitDetCircle.circle.setFrame(location.x - radius - SimpleGameEngine.px,
 				location.y - radius - SimpleGameEngine.py, radius * 2, radius * 2);
 

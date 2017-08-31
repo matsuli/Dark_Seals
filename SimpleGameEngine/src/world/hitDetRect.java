@@ -264,7 +264,7 @@ public class hitDetRect extends hitDetObj {
 			if (hit == true) {
 				SimpleGameEngine.player.hit = true;
 				hit = false;
-			}
+			
 			if (hitRight == true) {
 				SimpleGameEngine.player.hitRight = true;
 				SimpleGameEngine.player.hitCorrectionRight = hitCorrectionRight;
@@ -286,6 +286,8 @@ public class hitDetRect extends hitDetObj {
 				SimpleGameEngine.player.hitCorrectionLeft = hitCorrectionLeft;
 			}
 		}
+		}	
+		
 		return hit;
 	}
 

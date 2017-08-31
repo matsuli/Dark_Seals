@@ -42,7 +42,6 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 
 	public void update() {
 
-		hitDetCircle.circle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
 
 		if (enemyState == 1) {
 			eoldPosX = targetActor.hitDetCircle.circle.getX() + targetActor.radius;
@@ -57,6 +56,8 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 										// behöver inte kompensera för
 										// playerX/Y, då det redan gjorts här.
 		location.y = elocationTest.y;
+		
+		hitDetCircle.circle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
 
 		// This angle is the direction (på enhetscirkel) where the enemy2 is
 		// heading.
@@ -168,9 +169,7 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 
 		for (Bullet b : world.bullets) {
 
-			if ((location.x - b.location.x) * (location.x - b.location.x)
-					+ (location.y - b.location.y) * (location.y - b.location.y) < (radius + b.radius)
-							* (radius + b.radius)
+			if (b.hitDetBullet.hitdetect(hitDetCircle,(int) radius)
 					&& b.shooter != this) { // hit detection. Igen,
 											// b.shooter!=this för att den inte
 											// ska döda sig själv då den skjuter
@@ -179,7 +178,7 @@ public class enemy extends Actor { // enemyn extendar actor, enemyn är alltså en
 			}
 		}
 
-		hitDetCircle.circle.setFrame(location.x - radius, location.y - radius, radius * 2, radius * 2);
+		
 	}
 
 	public void drawEnemy(Graphics2D g) {

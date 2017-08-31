@@ -56,7 +56,11 @@ public class hitDetObj implements Serializable {
 		return bufferedImage;
 	}
 
-	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle prevHitDetCircle) {
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius) {
+		return hit;
+
+	}
+	public boolean hitdetect(hitDetCircle hitDetCircle, int radius, hitDetCircle hitDetCircle2) {
 		return hit;
 
 	}
